@@ -28,7 +28,7 @@
                                     <a href="{{ route('backend.homepage.core_value.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.core_value.create' ? '':'text-muted'}}">Core Value</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="d-block py-1 text-muted">Watches</a></li>
+                                    <a href="{{ route('backend.homepage.mission_vision.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.mission_vision.create' ? '':'text-muted'}}">Mission, Vision & Value</a></li>
                                 <li>
                                     <a href="#" class="d-block py-1 text-muted">Kids</a>
                                 </li>

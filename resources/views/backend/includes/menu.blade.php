@@ -46,6 +46,11 @@
                                    class="nav-link {{request()->route()->getName() == 'backend.homepage.core_value.create' ? 'active':''}}"
                                    data-key="t-multi-level-homepage"> Core Value </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('backend.homepage.mission_vision.create') }}"
+                                   class="nav-link {{request()->route()->getName() == 'backend.homepage.mission_vision.create' ? 'active':''}}"
+                                   data-key="t-multi-level-homepage"> Mission, Vision & Value </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
