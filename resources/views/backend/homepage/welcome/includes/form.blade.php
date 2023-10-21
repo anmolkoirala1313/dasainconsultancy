@@ -43,7 +43,7 @@
     </div>
     <div class="col-lg-12">
         <div class="mb-3 editor">
-            {!! Form::label('description', 'Description', ['class' => 'form-label']) !!}
+            {!! Form::label('description', 'Description', ['class' => 'form-label required']) !!}
             {!! Form::textarea('description', null,['class'=>'form-control ck-editor','id'=>'description','placeholder'=>'Enter description']) !!}
         </div>
     </div>

@@ -41,6 +41,11 @@
                                    class="nav-link {{request()->route()->getName() == 'backend.homepage.call_action.create' ? 'active':''}}"
                                    data-key="t-multi-level-homepage"> Call Action </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('backend.homepage.core_value.create') }}"
+                                   class="nav-link {{request()->route()->getName() == 'backend.homepage.core_value.create' ? 'active':''}}"
+                                   data-key="t-multi-level-homepage"> Core Value </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

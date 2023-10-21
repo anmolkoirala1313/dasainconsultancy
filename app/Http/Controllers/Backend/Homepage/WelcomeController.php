@@ -17,7 +17,7 @@ class WelcomeController extends BackendBaseController
     protected string $base_group    = 'backend.homepage.';
     protected string $base_route    = 'backend.homepage.welcome.';
     protected string $view_path     = 'backend.homepage.welcome.';
-    protected string $page          = 'Welcome Section';
+    protected string $page          = 'Homepage Welcome';
     protected string $folder_name   = 'welcome';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;

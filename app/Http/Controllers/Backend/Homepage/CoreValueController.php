@@ -3,28 +3,29 @@
 namespace App\Http\Controllers\Backend\Homepage;
 
 use App\Http\Controllers\Backend\BackendBaseController;
-use App\Http\Requests\Backend\Homepage\CallActionRequest;
-use App\Models\Backend\Homepage\CallAction;
+use App\Http\Requests\Backend\Homepage\HomeValueRequest;
+use App\Models\Backend\Homepage\HomePageValue;
+use App\Models\Backend\Homepage\Welcome;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 
-class CallActionController extends BackendBaseController
+class CoreValueController extends BackendBaseController
 {
     protected string $module        = 'backend.';
     protected string $base_group    = 'backend.homepage.';
-    protected string $base_route    = 'backend.homepage.call_action.';
-    protected string $view_path     = 'backend.homepage.call_action.';
-    protected string $page          = 'Homepage Call Action';
-    protected string $folder_name   = 'call_action';
+    protected string $base_route    = 'backend.homepage.core_value.';
+    protected string $view_path     = 'backend.homepage.core_value.';
+    protected string $page          = 'Homepage Core Value';
+    protected string $folder_name   = 'core_value';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
 
 
     public function __construct()
     {
-        $this->model            = new CallAction();
+        $this->model  = new Welcome();
     }
 
 
@@ -42,24 +43,42 @@ class CallActionController extends BackendBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param CallActionRequest $request
+     * @param HomeValueRequest $request
      * @return JsonResponse
      */
-    public function store(CallActionRequest $request)
+    public function store(HomeValueRequest $request)
     {
         DB::beginTransaction();
         try {
             $request->request->add(['created_by' => auth()->user()->id ]);
-            $request->request->add(['status' =>true ]);
+            $request->request->add(['status' => true ]);
 
-            $this->model->updateOrCreate(
+            $homepage = $this->model->updateOrCreate(
                 ['id' => $request['id']],
                 $request->all());
+
+            foreach ($request['detail_title'] as $index=>$title){
+
+                HomePageValue::updateOrCreate(
+                    [
+                        'id' => $request['detail_id'][$index],
+                        'homepage_id' => $homepage->id
+                    ],
+                    [
+                        'title'         => $title,
+                        'description'   => $request['detail_description'][$index],
+                        'created_by'    => $request['created_by'],
+                    ]
+
+                );
+
+            }
 
             Session::flash('success',$this->page.' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
+            dd($e);
             Session::flash('error',$this->page.'  was not created. Something went wrong.');
         }
 
@@ -69,20 +88,36 @@ class CallActionController extends BackendBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param CallActionRequest $request
+     * @param HomeValueRequest $request
      * @param int $id
      * @return JsonResponse
      */
-    public function update(CallActionRequest $request, $id)
+    public function update(HomeValueRequest $request, $id)
     {
         $data['row']       = $this->model->find($id);
 
         DB::beginTransaction();
         try {
             $request->request->add(['updated_by' => auth()->user()->id ]);
-            $request->request->add(['status' =>true ]);
+            $request->request->add(['status' => true ]);
 
             $data['row']->update($request->all());
+
+            foreach ($request['detail_title'] as $index=>$title){
+
+                HomePageValue::updateOrCreate(
+                    [
+                        'homepage_id' => $data['row']->id,
+                        'id'          => $request['detail_id'][$index]],
+                    [
+                        'title'         => $title,
+                        'description'   => $request['detail_description'][$index],
+                        'created_by'    => auth()->user()->id,
+                        'updated_by'    => $request['updated_by'],
+                    ]
+                );
+            }
+
 
             Session::flash('success',$this->page.' was updated successfully');
             DB::commit();

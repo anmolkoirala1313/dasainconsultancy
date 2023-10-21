@@ -25,7 +25,7 @@
                                 <li>
                                     <a href="{{ route('backend.homepage.call_action.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.call_action.create' ? '':'text-muted'}}">Call Action</a></li>
                                 <li>
-                                    <a href="#" class="d-block py-1 text-muted">Footwear</a>
+                                    <a href="{{ route('backend.homepage.core_value.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.core_value.create' ? '':'text-muted'}}">Core Value</a>
                                 </li>
                                 <li>
                                     <a href="#" class="d-block py-1 text-muted">Watches</a></li>

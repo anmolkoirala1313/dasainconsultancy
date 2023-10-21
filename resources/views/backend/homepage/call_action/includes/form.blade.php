@@ -8,26 +8,26 @@
     <div class="col-lg-12">
         <div class="mb-3">
             {!! Form::label('action_title', 'Title', ['class' => 'form-label required']) !!}
-            {!! Form::text('action_title', isset($data['row']) ? $data['row']->title : null,['class'=>'form-control','id'=>'action_title','placeholder'=>'Enter title']) !!}
-            {!! Form::hidden('id', isset($data['row']) ? $data['row']->id : null,['class'=>'form-control','id'=>'id','readonly']) !!}
+            {!! Form::text('action_title', null,['class'=>'form-control','id'=>'action_title','placeholder'=>'Enter title']) !!}
+            {!! Form::hidden('id', isset($data['row']) ? $data['row']->id : null,['class'=>'form-control','id'=>'id','placeholder'=>'Enter title']) !!}
         </div>
     </div>
     <div class="col-lg-12">
         <div class="mb-3">
             {!! Form::label('action_subtitle', 'Subtitle', ['class' => 'form-label']) !!}
-            {!! Form::text('action_subtitle', isset($data['row']) ? $data['row']->subtitle : null,['class'=>'form-control','id'=>'action_subtitle','placeholder'=>'Enter subtitle']) !!}
+            {!! Form::text('action_subtitle', null,['class'=>'form-control','id'=>'action_subtitle','placeholder'=>'Enter subtitle']) !!}
         </div>
     </div>
     <div class="col-lg-6">
         <div class="mb-3">
             {!! Form::label('action_button', 'Button', ['class' => 'form-label']) !!}
-            {!! Form::text('action_button', isset($data['row']) ? $data['row']->button : null,['class'=>'form-control','id'=>'action_button','placeholder'=>'Enter button']) !!}
+            {!! Form::text('action_button', null,['class'=>'form-control','id'=>'action_button','placeholder'=>'Enter button']) !!}
         </div>
     </div>
     <div class="col-lg-6">
         <div class="mb-3">
             {!! Form::label('action_link', 'Link', ['class' => 'form-label']) !!}
-            {!! Form::text('action_link', isset($data['row']) ? $data['row']->link : null,['class'=>'form-control','id'=>'action_link','placeholder'=>'Enter link']) !!}
+            {!! Form::text('action_link', null,['class'=>'form-control','id'=>'action_link','placeholder'=>'Enter link']) !!}
         </div>
     </div>
     <div class="col-lg-12 border-top mt-3">
