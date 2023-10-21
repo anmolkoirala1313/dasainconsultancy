@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-trait Crud {
+trait ControllerOps {
 
     /**
      * @return Application|Factory|View|\Illuminate\Foundation\Application
@@ -19,11 +19,11 @@ trait Crud {
     public function index()
     {
         $this->page_method = 'index';
-        $this->page_title  = 'List '.$this->panel;
+        $this->page_title  = 'List '.$this->page;
         $data              = $this->getData();
         $data['row']       = $this->model->descending()->get();
 
-        return view($this->loadView($this->view_path.'index'), compact('data'));
+        return view($this->loadResource($this->view_path.'index'), compact('data'));
     }
 
     public function getData(): array
@@ -34,10 +34,10 @@ trait Crud {
     public function create()
     {
         $this->page_method = 'create';
-        $this->page_title  = 'Create '.$this->panel;
+        $this->page_title  = 'Create '.$this->page;
         $data              = [];
 
-        return view($this->loadView($this->view_path.'index'), compact('data'));
+        return view($this->loadResource($this->view_path.'create'), compact('data'));
     }
 
 
@@ -52,11 +52,11 @@ trait Crud {
             $request->request->add(['created_by' => auth()->user()->id ]);
 
             $this->model->create($request->all());
-            Session::flash('success',$this->panel.' was created successfully');
+            Session::flash('success',$this->page.' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.'  was not created. Something went wrong.');
+            Session::flash('error',$this->page.'  was not created. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));
@@ -72,10 +72,10 @@ trait Crud {
     public function show($id)
     {
         $this->page_method = 'show';
-        $this->page_title  = 'Show '.$this->panel;
+        $this->page_title  = 'Show '.$this->page;
         $data              = [];
 
-        return view($this->loadView($this->view_path.'show'), compact('data'));
+        return view($this->loadResource($this->view_path.'show'), compact('data'));
     }
 
     /**
@@ -87,11 +87,11 @@ trait Crud {
     public function edit($id)
     {
         $this->page_method = 'edit';
-        $this->page_title  = 'Edit '.$this->panel;
+        $this->page_title  = 'Edit '.$this->page;
         $data              = $this->getData();
         $data['row']       = $this->model->find($id);
 
-        return view($this->loadView($this->view_path.'edit'), compact('data'));
+        return view($this->loadResource($this->view_path.'edit'), compact('data'));
     }
 
 
@@ -110,11 +110,11 @@ trait Crud {
             $request->request->add(['updated_by' => auth()->user()->id ]);
             $data['row']->update($request->all());
 
-            Session::flash('success',$this->panel.' was updated successfully');
+            Session::flash('success',$this->page.' was updated successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' was not updated. Something went wrong.');
+            Session::flash('error',$this->page.' was not updated. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));
@@ -138,9 +138,9 @@ trait Crud {
             //deletable without any child values
             $this->model->find($id)->delete();
             DB::commit();
-            Session::flash('success',$this->panel.' was removed successfully');
+            Session::flash('success',$this->page.' was removed successfully');
         } catch (\Exception $e) {
-            Session::flash('error',$this->panel.' was not removed as data is already in use.');
+            Session::flash('error',$this->page.' was not removed as data is already in use.');
         }
 
         return response()->json(route($this->base_route.'index'));
@@ -151,11 +151,11 @@ trait Crud {
     public function trash()
     {
         $this->page_method = 'trash';
-        $this->page_title  = 'Trash '.$this->panel;
+        $this->page_title  = 'Trash '.$this->page;
         $data              = [];
         $data['users']     = $this->model->onlyTrashed()->get();
 
-        return view($this->loadView($this->view_path.'trash'), compact('data'));
+        return view($this->loadResource($this->view_path.'trash'), compact('data'));
     }
 
     public function restore(Request $request, $id)
@@ -165,11 +165,11 @@ trait Crud {
         try {
             $this->model->withTrashed()->find($id)->restore();
 
-            Session::flash('success',$this->panel.' restored successfully');
+            Session::flash('success',$this->page.' restored successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' restored failed. Something went wrong.');
+            Session::flash('error',$this->page.' restored failed. Something went wrong.');
         }
 
         return redirect()->route($this->base_route.'index');
@@ -183,11 +183,11 @@ trait Crud {
             $this->deleteImage($data['row']->image);
             $data['row']->forceDelete();
 
-            Session::flash('success',$this->panel.' was removed successfully');
+            Session::flash('success',$this->page.' was removed successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' was not removed. Something went wrong.');
+            Session::flash('error',$this->page.' was not removed. Something went wrong.');
         }
 
         return redirect()->route($this->base_route.'trash');

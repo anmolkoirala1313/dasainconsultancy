@@ -34,13 +34,13 @@ class ServiceController extends BackendBaseController
     public function index()
     {
         $this->page_method      = 'index';
-        $this->page_title       = 'All '.$this->panel;
+        $this->page_title       = 'All '.$this->page;
         $data                   = $this->getCommonData();
 
         if(!$data['rows']){
             abort(404);
         }
-        return view($this->loadView($this->view_path.'index'), compact('data'));
+        return view($this->loadResource($this->view_path.'index'), compact('data'));
     }
 
 
@@ -56,7 +56,7 @@ class ServiceController extends BackendBaseController
     {
 
         $this->page_method      = 'show';
-        $this->page_title       = $this->panel.' Details';
+        $this->page_title       = $this->page.' Details';
         $data                   = $this->getCommonData();
         $data['row']            = $this->model->where('slug',$slug)->first();
 
@@ -64,6 +64,6 @@ class ServiceController extends BackendBaseController
             abort(404);
         }
 
-        return view($this->loadView($this->view_path.'show'), compact('data'));
+        return view($this->loadResource($this->view_path.'show'), compact('data'));
     }
 }

@@ -53,7 +53,7 @@ class PageController extends BackendBaseController
             }
         }
 
-        return view($this->loadView($this->view_path.'index'), compact('data'));
+        return view($this->loadResource($this->view_path.'index'), compact('data'));
     }
 
 
@@ -62,7 +62,7 @@ class PageController extends BackendBaseController
     {
 
         $this->page_method      = 'show';
-        $this->page_title       = $this->panel.' Details';
+        $this->page_title       = $this->page.' Details';
         $data                   = $this->getCommonData();
         $data['row']            = $this->model->where('slug',$slug)->first();
 
@@ -70,7 +70,7 @@ class PageController extends BackendBaseController
             abort(404);
         }
 
-        return view($this->loadView($this->view_path.'show'), compact('data'));
+        return view($this->loadResource($this->view_path.'show'), compact('data'));
     }
 
     public function category($slug)
@@ -79,13 +79,13 @@ class PageController extends BackendBaseController
             $this->page_method      = 'category';
             $data                   = $this->getCommonData();
             $data['category']       = BlogCategory::where('slug',$slug)->active()->first();
-            $this->page_title       = $data['category']->title.' | '.$this->panel;
+            $this->page_title       = $data['category']->title.' | '.$this->page;
             $data['rows']           = $this->model->where('blog_category_id', $data['category']->id)->active()->descending()->paginate(6);
         } catch (\Exception $e) {
             abort(404);
         }
 
-        return view($this->loadView($this->view_path.'category'), compact('data'));
+        return view($this->loadResource($this->view_path.'category'), compact('data'));
     }
 
 }

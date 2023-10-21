@@ -6,7 +6,7 @@ use App\Http\Controllers\Backend\BackendBaseController;
 use App\Http\Requests\Backend\PageRequest;
 use App\Models\Backend\Page\Page;
 use App\Services\PageService;
-use App\Traits\Crud;
+use App\Traits\ControllerOps;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Session;
 
 class PageController extends BackendBaseController
 {
-    use Crud;
+    use ControllerOps;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.page.';
     protected string $view_path     = 'backend.page.';
-    protected string $panel         = 'Page';
+    protected string $page         = 'Page';
     protected string $folder_name   = 'page';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
@@ -61,11 +61,11 @@ class PageController extends BackendBaseController
 
             $page = $this->model->create($request->all());
             $this->pageService->syncSections($request, $page);
-            Session::flash('success',$this->panel.' was created successfully');
+            Session::flash('success',$this->page.' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.'  was not created. Something went wrong.');
+            Session::flash('error',$this->page.'  was not created. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));
@@ -83,14 +83,14 @@ class PageController extends BackendBaseController
     public function edit($id)
     {
         $this->page_method          = 'edit';
-        $this->page_title           = 'Edit '.$this->panel;
+        $this->page_title           = 'Edit '.$this->page;
         $data                       = [];
         $data['row']                = $this->model->find($id);
         $data['section_slug']       = $data['row']->pageSections->pluck('slug')->toArray();
         $data['section_position']   = $data['row']->pageSections->whereNotNull('list_number_1')->pluck('list_number_1','slug')->toArray();
         $data['gallery']            = $data['row']->pageSections->where('slug','gallery')->first();
 
-        return view($this->loadView($this->view_path.'edit'), compact('data'));
+        return view($this->loadResource($this->view_path.'edit'), compact('data'));
     }
 
 
@@ -118,11 +118,11 @@ class PageController extends BackendBaseController
             $section_slug_database  = $data['row']->pageSections->pluck('slug')->toArray();
             $this->pageService->syncSections($request, $data['row'],$section_slug_database);
 
-            Session::flash('success',$this->panel.' was updated successfully');
+            Session::flash('success',$this->page.' was updated successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' was not updated. Something went wrong.');
+            Session::flash('error',$this->page.' was not updated. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));

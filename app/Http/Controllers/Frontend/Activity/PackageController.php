@@ -41,13 +41,13 @@ class PackageController extends BackendBaseController
     public function index()
     {
         $this->page_method      = 'index';
-        $this->page_title       = 'All '.$this->panel;
+        $this->page_title       = 'All '.$this->page;
         $data                   = $this->getCommonData();
         $data['rows']           = $this->model->active()->descending()->paginate(6);
         if(!$data['rows']){
             abort(404);
         }
-        return view($this->loadView($this->view_path.'index'), compact('data'));
+        return view($this->loadResource($this->view_path.'index'), compact('data'));
     }
 
 
@@ -68,17 +68,17 @@ class PackageController extends BackendBaseController
     public function search(Request $request)
     {
         $this->page_method      = 'search';
-        $this->page_title       = 'Search '.$this->panel;
+        $this->page_title       = 'Search '.$this->page;
         $data                   = $this->getCommonData();
         $data['rows']           = $this->packageSearchService->getSearchedPackages($request);
 
-        return view($this->loadView($this->view_path.'search'), compact('data'));
+        return view($this->loadResource($this->view_path.'search'), compact('data'));
     }
 
     public function show($slug)
     {
         $this->page_method          = 'show';
-        $this->page_title           = $this->panel.' Details';
+        $this->page_title           = $this->page.' Details';
         $data                       = $this->getCommonData();
         $data['row']                = $this->model->where('slug',$slug)->first();
         $data['related_activity']   = $this->model->active()->descending()->whereNotIn('id',[$data['row']->id])->where('package_category_id',$data['row']->package_category_id)->limit(6)->get();
@@ -86,7 +86,7 @@ class PackageController extends BackendBaseController
         if(!$data['row']){
             abort(404);
         }
-        return view($this->loadView($this->view_path.'show'), compact('data'));
+        return view($this->loadResource($this->view_path.'show'), compact('data'));
     }
 
     public function category($slug)
@@ -95,12 +95,12 @@ class PackageController extends BackendBaseController
             $data                   = $this->getCommonData();
             $data['category']       = PackageCategory::where('slug',$slug)->active()->first();
             $this->page_method      = 'category';
-            $this->page_title       = $data['category']->title.' | '.$this->panel;
+            $this->page_title       = $data['category']->title.' | '.$this->page;
             $data['rows']           = $this->model->where('package_category_id', $data['category']->id)->active()->descending()->paginate(6);
         } catch (\Exception $e) {
             abort(404);
         }
-        return view($this->loadView($this->view_path.'category'), compact('data'));
+        return view($this->loadResource($this->view_path.'category'), compact('data'));
     }
 
 }

@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Backend\Homepage;
 
 use App\Http\Controllers\Backend\BackendBaseController;
 use App\Http\Requests\Backend\Homepage\SliderRequest;
+use App\Http\Requests\Backend\Homepage\WelcomeRequest;
 use App\Models\Backend\Homepage\Slider;
-use App\Traits\Crud;
+use App\Traits\ControllerOps;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -13,11 +14,11 @@ use Illuminate\Support\Facades\Session;
 
 class SliderController extends BackendBaseController
 {
-    use Crud;
+    use ControllerOps;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.homepage.slider.';
     protected string $view_path     = 'backend.homepage.slider.';
-    protected string $panel         = 'Slider';
+    protected string $page          = 'Slider';
     protected string $folder_name   = 'slider';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
@@ -46,11 +47,11 @@ class SliderController extends BackendBaseController
             $request->request->add(['created_by' => auth()->user()->id ]);
 
             $this->model->create($request->all());
-            Session::flash('success',$this->panel.' was created successfully');
+            Session::flash('success',$this->page.' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.'  was not created. Something went wrong.');
+            Session::flash('error',$this->page.'  was not created. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));
@@ -77,12 +78,11 @@ class SliderController extends BackendBaseController
             $request->request->add(['updated_by' => auth()->user()->id ]);
             $data['row']->update($request->all());
 
-            Session::flash('success',$this->panel.' was updated successfully');
+            Session::flash('success',$this->page.' was updated successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            dd($e);
-            Session::flash('error',$this->panel.' was not updated. Something went wrong.');
+            Session::flash('error',$this->page.' was not updated. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));

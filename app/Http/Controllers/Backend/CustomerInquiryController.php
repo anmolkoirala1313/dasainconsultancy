@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Requests\Backend\Homepage\SliderRequest;
+use App\Http\Requests\Backend\Homepage\WelcomeRequest;
 use App\Http\Requests\Backend\ServiceRequest;
 use App\Http\Requests\Backend\TestimonialRequest;
 use App\Http\Requests\Frontend\CustomerInquiryRequest;
 use App\Models\Backend\CustomerInquiry;
 use App\Models\Backend\Service;
 use App\Models\Backend\Testimonial;
-use App\Traits\Crud;
+use App\Traits\ControllerOps;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Session;
 
 class CustomerInquiryController extends BackendBaseController
 {
-    use Crud;
+    use ControllerOps;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.customer-inquiry.';
     protected string $view_path     = 'backend.customer_inquiry.';
-    protected string $panel         = 'Customer Inquiry';
+    protected string $page         = 'Customer Inquiry';
     protected string $folder_name   = 'customer_inquiry';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
@@ -48,11 +48,11 @@ class CustomerInquiryController extends BackendBaseController
         try {
             $data['row']->update($request->all());
 
-            Session::flash('success',$this->panel.' was updated successfully');
+            Session::flash('success',$this->page.' was updated successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' was not updated. Something went wrong.');
+            Session::flash('error',$this->page.' was not updated. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));
@@ -73,9 +73,9 @@ class CustomerInquiryController extends BackendBaseController
             //deletable without any child values
             $this->model->find($id)->delete();
             DB::commit();
-            Session::flash('success',$this->panel.' was removed successfully');
+            Session::flash('success',$this->page.' was removed successfully');
         } catch (\Exception $e) {
-            Session::flash('error',$this->panel.' was not removed as data is already in use.');
+            Session::flash('error',$this->page.' was not removed as data is already in use.');
         }
 
         return response()->json(route($this->base_route.'index'));

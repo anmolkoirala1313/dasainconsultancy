@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Requests\Backend\Homepage\SliderRequest;
+use App\Http\Requests\Backend\Homepage\WelcomeRequest;
 use App\Http\Requests\Backend\TestimonialRequest;
 use App\Models\Backend\Testimonial;
-use App\Traits\Crud;
+use App\Traits\ControllerOps;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Session;
 
 class TestimonialController extends BackendBaseController
 {
-    use Crud;
+    use ControllerOps;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.testimonial.';
     protected string $view_path     = 'backend.testimonial.';
-    protected string $panel         = 'Testimonial';
+    protected string $page         = 'Testimonial';
     protected string $folder_name   = 'testimonial';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
@@ -46,11 +46,11 @@ class TestimonialController extends BackendBaseController
             $request->request->add(['created_by' => auth()->user()->id ]);
 
             $this->model->create($request->all());
-            Session::flash('success',$this->panel.' was created successfully');
+            Session::flash('success',$this->page.' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.'  was not created. Something went wrong.');
+            Session::flash('error',$this->page.'  was not created. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));
@@ -59,7 +59,7 @@ class TestimonialController extends BackendBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param SliderRequest $request
+     * @param WelcomeRequest $request
      * @param int $id
      * @return JsonResponse
      */
@@ -77,11 +77,11 @@ class TestimonialController extends BackendBaseController
             $request->request->add(['updated_by' => auth()->user()->id ]);
             $data['row']->update($request->all());
 
-            Session::flash('success',$this->panel.' was updated successfully');
+            Session::flash('success',$this->page.' was updated successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' was not updated. Something went wrong.');
+            Session::flash('error',$this->page.' was not updated. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));

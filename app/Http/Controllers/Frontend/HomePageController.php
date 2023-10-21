@@ -59,7 +59,7 @@ class HomePageController extends BackendBaseController
         $data['search_categories']  = $this->getPackageCategory();
 
 
-        return view($this->loadView($this->view_path.'homepage'), compact('data'));
+        return view($this->loadResource($this->view_path.'homepage'), compact('data'));
     }
 
     public function getCommonData(): array
@@ -76,10 +76,10 @@ class HomePageController extends BackendBaseController
     {
         $this->page_method      = 'index';
         $this->page_title       = 'Contact us';
-        $this->panel            = 'Contact';
+        $this->page            = 'Contact';
         $data                   = [];
         $data['setting_data']   = Setting::first();
-        return view($this->loadView($this->view_path.'page.contact_us'), compact('data'));
+        return view($this->loadResource($this->view_path.'page.contact_us'), compact('data'));
     }
 
     public function getFieldType()

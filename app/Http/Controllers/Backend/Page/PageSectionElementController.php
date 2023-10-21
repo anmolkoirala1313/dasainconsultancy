@@ -24,7 +24,7 @@ class PageSectionElementController extends BackendBaseController
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.page.';
     protected string $view_path     = 'backend.page.';
-    protected string $panel         = 'Page section elements';
+    protected string $page         = 'Page section elements';
     protected string $folder_name   = 'section_element';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
@@ -38,7 +38,7 @@ class PageSectionElementController extends BackendBaseController
     public function show($id)
     {
         $this->page_method          = 'show';
-        $this->page_title           = 'Update '.$this->panel;
+        $this->page_title           = 'Update '.$this->page;
         $data                       = [];
         $data['row']                = Page::active()->find($id);
         $data['page_section']       = $data['row']->pageSections->pluck('slug','id')->toArray();
@@ -47,7 +47,7 @@ class PageSectionElementController extends BackendBaseController
         foreach ($data['row']->pageSections as $section){
             $data['section_elements'][$section->slug] = $section->pageSectionElements;
         }
-        return view($this->loadView($this->view_path.'show'), compact('data'));
+        return view($this->loadResource($this->view_path.'show'), compact('data'));
     }
 
 

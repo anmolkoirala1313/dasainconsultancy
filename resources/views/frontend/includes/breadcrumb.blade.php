@@ -5,14 +5,14 @@
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 @if($page_method !=='index')
                     <li class="breadcrumb-item text-white" aria-current="page">
-                        <a href="{{route($base_route.'index')}}">{{ $panel }}</a>
+                        <a href="{{route($base_route.'index')}}">{{ $page }}</a>
                     </li>
                     <li class="breadcrumb-item active text-white" aria-current="{{ $page_title }}">
                         {{ $page_title }}
                     </li>
                 @else
-                    <li class="breadcrumb-item active text-white" aria-current="  {{ $panel }}">
-                        {{ $panel }}
+                    <li class="breadcrumb-item active text-white" aria-current="  {{ $page }}">
+                        {{ $page }}
                     </li>
                 @endif
             </ol>

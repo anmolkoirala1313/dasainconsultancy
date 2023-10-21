@@ -5,7 +5,7 @@
             <ol class="breadcrumb text-light mb-0 p-0">
                 <li class="breadcrumb-item text-white"><a href="/">Home</a></li>
                 @if($page_method !== 'index')
-                    <li class="breadcrumb-item text-white"><a href="{{route($base_route.'index')}}">{{ $panel }}</a></li>
+                    <li class="breadcrumb-item text-white"><a href="{{route($base_route.'index')}}">{{ $page }}</a></li>
                     <li class="breadcrumb-item active text-white" aria-current="page"> {{ $page_title }}</li>
                 @else
                     <li class="breadcrumb-item active text-white" aria-current="page"> {{ $page_title }}</li>

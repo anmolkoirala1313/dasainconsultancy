@@ -21,6 +21,32 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarHomepageMultilevel" data-bs-toggle="collapse" role="button" aria-controls="sidebarHomepageMultilevel">
+                        <i class="ri-ancient-pavilion-line"></i> <span data-key="t-multi-level-homepage">Homepage</span>
+                    </a>
+                    <div class="menu-dropdown collapse" id="sidebarHomepageMultilevel" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('backend.homepage.slider.index') }}"
+                                   class="nav-link {{request()->route()->getName() == 'backend.homepage.slider.index' ? 'active':''}}"
+                                   data-key="t-multi-level-homepage"> Slider </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('backend.homepage.welcome.create') }}"
+                                   class="nav-link {{request()->route()->getName() == 'backend.homepage.welcome.create' ? 'active':''}}"
+                                   data-key="t-multi-level-homepage"> Welcome </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('backend.homepage.call_action.create') }}"
+                                   class="nav-link {{request()->route()->getName() == 'backend.homepage.call_action.create' ? 'active':''}}"
+                                   data-key="t-multi-level-homepage"> Call Action </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="nav-item">
                     <a class="nav-link menu-link collapsed" href="#sidebarTourMultilevel" data-bs-toggle="collapse" role="button" aria-controls="sidebarTourMultilevel">
                         <i class="ri-haze-line"></i> <span data-key="t-multi-level-tour">Activity</span>
                     </a>
@@ -89,20 +115,6 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link collapsed" href="#sidebarHomepageMultilevel" data-bs-toggle="collapse" role="button" aria-controls="sidebarHomepageMultilevel">
-                        <i class="ri-ancient-pavilion-line"></i> <span data-key="t-multi-level-homepage">Homepage</span>
-                    </a>
-                    <div class="menu-dropdown collapse" id="sidebarHomepageMultilevel" style="">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="{{ route('backend.homepage.slider.index') }}"
-                                   class="nav-link {{request()->route()->getName() == 'backend.homepage.slider.index' ? 'active':''}}"
-                                   data-key="t-multi-level-homepage"> Slider </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link {{request()->route()->getName() == 'backend.page.index' ? 'active':''}}" href="{{route('backend.page.index')}}">

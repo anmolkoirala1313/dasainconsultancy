@@ -4,7 +4,7 @@
             <ol class="breadcrumb mb-0 p-0">
                 <li class="breadcrumb-item text-white"><a href="#">Home</a></li>
                 <li class="breadcrumb-item text-white" aria-current="page">
-                    <a href="{{route($base_route.'index')}}">{{ $panel }}</a>
+                    <a href="{{route($base_route.'index')}}">{{ $page }}</a>
                 </li>
                 <li class="breadcrumb-item active text-white" aria-current="{{ $data['row']->title ?? $page_title ?? '' }}">
                     {{ $page_title }}

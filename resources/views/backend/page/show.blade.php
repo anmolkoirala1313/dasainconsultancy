@@ -50,7 +50,7 @@
                         <div class="col-lg-10">
                             <div class="tab-content text-muted mt-3 mt-lg-0">
                                 @foreach($data['page_section'] as $key=>$value)
-                                    <div class="tab-pane fade {{ $loop->first ? 'active show':'' }}" id="custom-v-pills-{{$value}}" role="tabpanel" aria-labelledby="custom-v-pills-{{$value}}-tab">
+                                    <div class="tab-pane fade {{ $loop->first ? 'active show':'' }}" id="custom-v-pills-{{$value}}" role="tabpage" aria-labelledby="custom-v-pills-{{$value}}-tab">
                                         @if($value == 'basic_section')
                                             @include($view_path.'includes.basic_section')
                                         @endif

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\CustomerInquiryController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\Homepage\CallActionController;
+use App\Http\Controllers\Backend\Homepage\WelcomeController;
 use App\Http\Controllers\Backend\Homepage\SliderController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\News\BlogCategoryController;
@@ -108,16 +110,16 @@ Route::prefix('activity/')->name('activity.')->middleware(['auth'])->group(funct
 });
 
 Route::prefix('homepage/')->name('homepage.')->middleware(['auth'])->group(function () {
-    Route::get('/slider/trash', [SliderController::class,'trash'])->name('slider.trash');
-    Route::post('/slider/trash/{id}/restore', [SliderController::class,'restore'])->name('slider.restore');
-    Route::delete('/slider/trash/{id}/remove', [SliderController::class,'removeTrash'])->name('slider.remove-trash');
-    Route::resource('slider', SliderController::class)->names('slider');
+    Route::get('/slider/trash', [WelcomeController::class,'trash'])->name('slider.trash');
+    Route::post('/slider/trash/{id}/restore', [WelcomeController::class,'restore'])->name('slider.restore');
+    Route::delete('/slider/trash/{id}/remove', [WelcomeController::class,'removeTrash'])->name('slider.remove-trash');
+    Route::resource('slider', WelcomeController::class)->names('slider');
 });
 
 //testimonials
-Route::get('/testimonial/trash', [SliderController::class,'trash'])->name('testimonial.trash');
-Route::post('/testimonial/trash/{id}/restore', [SliderController::class,'restore'])->name('testimonial.restore');
-Route::delete('/testimonial/trash/{id}/remove', [SliderController::class,'removeTrash'])->name('testimonial.remove-trash');
+Route::get('/testimonial/trash', [WelcomeController::class,'trash'])->name('testimonial.trash');
+Route::post('/testimonial/trash/{id}/restore', [WelcomeController::class,'restore'])->name('testimonial.restore');
+Route::delete('/testimonial/trash/{id}/remove', [WelcomeController::class,'removeTrash'])->name('testimonial.remove-trash');
 Route::resource('testimonial', TestimonialController::class)->names('testimonial');
 
 //services
@@ -164,6 +166,14 @@ Route::prefix('homepage/')->name('homepage.')->middleware(['auth'])->group(funct
     Route::post('/slider/trash/{id}/restore', [SliderController::class,'restore'])->name('slider.restore');
     Route::delete('/slider/trash/{id}/remove', [SliderController::class,'removeTrash'])->name('slider.remove-trash');
     Route::resource('slider', SliderController::class)->names('slider');
+
+    //Welcome
+    Route::get('welcome', [WelcomeController::class, 'create'])->name('welcome.create');
+    Route::resource('welcome', WelcomeController::class)->only(['store', 'update'])->names('welcome');
+
+    //call action
+    Route::get('call-action', [CallActionController::class, 'create'])->name('call_action.create');
+    Route::resource('call-action', CallActionController::class)->only(['store', 'update'])->names('call_action');
 });
 
 

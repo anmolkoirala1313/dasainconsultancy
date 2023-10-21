@@ -13,16 +13,20 @@ use Intervention\Image\Facades\Image;
 
 class BackendBaseController extends Controller
 {
-    protected function loadView($view_path){
-        View::composer($view_path, function ($view){
+    protected function loadResource($path){
+        View::composer($path, function ($view){
             $view->with('base_route', $this->base_route);
             $view->with('view_path', $this->view_path);
-            if(isset($this->panel)) {
-                $view->with('panel', $this->panel);
+            if(isset($this->page)) {
+                $view->with('page', $this->page);
             }
             $view->with('folder_name', property_exists($this,'folder_name') ? $this->folder_name:'');
             if(isset($this->module)){
                 $view->with('module', $this->module);
+            }
+
+            if(isset($this->base_group)){
+                $view->with('base_group', $this->base_group);
             }
             if(isset($this->page_method)){
                 $view->with('page_method', $this->page_method);
@@ -44,7 +48,7 @@ class BackendBaseController extends Controller
                 $view->with('folder_name', $this->folder_name);
             }
         });
-        return $view_path;
+        return $path;
     }
 
     protected function generalUploadImage($image,$width,$height){
@@ -97,7 +101,7 @@ class BackendBaseController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' was not updated. Something went wrong.');
+            Session::flash('error',$this->page.' was not updated. Something went wrong.');
         }
         return response()->json(['id'=>$data['row']->id,'status'=>$data['row']->status]);
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\Backend\SettingRequest;
 use App\Models\Backend\Setting;
-use App\Traits\Crud;
+use App\Traits\ControllerOps;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Session;
 
 class SettingController extends BackendBaseController
 {
-    use Crud;
+    use ControllerOps;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.setting.';
     protected string $view_path     = 'backend.setting.';
-    protected string $panel         = 'Setting';
+    protected string $page         = 'Setting';
     protected string $folder_name   = 'setting';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
@@ -31,11 +31,11 @@ class SettingController extends BackendBaseController
     public function index()
     {
         $this->page_method = 'index';
-        $this->page_title  = 'System '.$this->panel;
+        $this->page_title  = 'System '.$this->page;
         $data              = $this->getData();
         $data['row']       = $this->model->descending()->first();
 
-        return view($this->loadView($this->view_path.'index'), compact('data'));
+        return view($this->loadResource($this->view_path.'index'), compact('data'));
     }
 
     /**
@@ -66,11 +66,11 @@ class SettingController extends BackendBaseController
 
             $this->model->create($request->all());
 
-            Session::flash('success',$this->panel.' was created successfully');
+            Session::flash('success',$this->page.' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.'  was not created. Something went wrong.');
+            Session::flash('error',$this->page.'  was not created. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));
@@ -107,11 +107,11 @@ class SettingController extends BackendBaseController
 
             $data['row']->update($request->all());
 
-            Session::flash('success',$this->panel.' was updated successfully');
+            Session::flash('success',$this->page.' was updated successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' was not updated. Something went wrong.');
+            Session::flash('error',$this->page.' was not updated. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));

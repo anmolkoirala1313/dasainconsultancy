@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class DashboardController extends BackendBaseController
 {
     protected string $module        = 'backend.';
-    protected string $panel         = 'Dashboard';
+    protected string $page         = 'Dashboard';
     protected string $base_route    = 'backend.';
     protected string $view_path     = 'backend.';
 
@@ -34,7 +34,7 @@ class DashboardController extends BackendBaseController
         $data               = [];
         $data['all_users']  = User::take(4)->get();
 
-        return view($this->loadView($this->view_path.'dashboard'), compact('data'));
+        return view($this->loadResource($this->view_path.'dashboard'), compact('data'));
     }
 
     public function filemanager()
@@ -54,7 +54,7 @@ class DashboardController extends BackendBaseController
     public function errorPage()
     {
         $data               = [];
-        return view($this->loadView($this->view_path.'errors.404'), compact('data'));
+        return view($this->loadResource($this->view_path.'errors.404'), compact('data'));
     }
 
 }

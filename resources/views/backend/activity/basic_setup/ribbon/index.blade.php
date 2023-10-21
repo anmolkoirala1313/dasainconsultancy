@@ -21,7 +21,7 @@
                                     <div class="d-flex justify-content-sm-end gap-2">
                                         <button class="btn btn-outline-success waves-effect waves-light" type="button" data-bs-toggle="offcanvas"
                                                 data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                                            <i class="ri-add-line align-bottom me-1"></i> Add {{ $panel }}</button>
+                                            <i class="ri-add-line align-bottom me-1"></i> Add {{ $page }}</button>
                                         <a class="btn btn-outline-danger waves-effect waves-light" href="{{ route($base_route.'trash') }}">
                                             <i class="ri-delete-bin-7-line align-bottom me-1"></i>  Trash </a>
                                     </div>

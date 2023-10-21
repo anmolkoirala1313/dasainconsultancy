@@ -18,7 +18,7 @@
     <!-- end card header -->
     <div class="card-body">
         <div class="tab-content">
-            <div class="tab-pane active" id="google-info-tab" role="tabpanel">
+            <div class="tab-pane active" id="google-info-tab" role="tabpage">
                 <div class="mb-3">
                     {!! Form::label('google_analytics', 'Google Analytics Code', ['class' => 'form-label']) !!}
                     {!! Form::text('google_analytics', null,['class'=>'form-control','id'=>'google_analytics','placeholder'=>'Enter google analytics code']) !!}
@@ -43,7 +43,7 @@
             </div>
             <!-- end tab-pane -->
 
-            <div class="tab-pane" id="add-website-metadata" role="tabpanel">
+            <div class="tab-pane" id="add-website-metadata" role="tabpage">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="mb-3">

@@ -6,7 +6,7 @@ use App\Http\Controllers\Backend\BackendBaseController;
 use App\Http\Requests\Backend\UserRequest;
 use App\Models\Backend\User;
 use App\Services\UserService;
-use App\Traits\Crud;
+use App\Traits\ControllerOps;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends BackendBaseController
 {
-    use Crud;
+    use ControllerOps;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.user.user-management.';
     protected string $view_path     = 'backend.user.user_management.';
-    protected string $panel         = 'User';
+    protected string $page         = 'User';
     protected string $folder_name   = 'user';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
@@ -66,11 +66,11 @@ class UserController extends BackendBaseController
             }
 
             $this->model->create($request->all());
-            Session::flash('success',$this->panel.' was created successfully');
+            Session::flash('success',$this->page.' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.'  was not created. Something went wrong.');
+            Session::flash('error',$this->page.'  was not created. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));
@@ -103,11 +103,11 @@ class UserController extends BackendBaseController
             }
 
             $data['row']->update($request->all());
-            Session::flash('success',$this->panel.' was updated successfully');
+            Session::flash('success',$this->page.' was updated successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' was not updated. Something went wrong.');
+            Session::flash('error',$this->page.' was not updated. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));
@@ -123,11 +123,11 @@ class UserController extends BackendBaseController
             $this->deleteImage($data['row']->cover);
             $data['row']->forceDelete();
 
-            Session::flash('success',$this->panel.' was removed successfully');
+            Session::flash('success',$this->page.' was removed successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' was not removed. Something went wrong.');
+            Session::flash('error',$this->page.' was not removed. Something went wrong.');
         }
 
         return redirect()->route($this->base_route.'trash');
@@ -142,7 +142,7 @@ class UserController extends BackendBaseController
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.' was not updated. Something went wrong.');
+            Session::flash('error',$this->page.' was not updated. Something went wrong.');
         }
         return response()->json(['id'=>$data['row']->id,'status'=>$data['row']->status]);
     }

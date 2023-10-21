@@ -3,7 +3,7 @@
      data-bs-focus="false"
      aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header border-bottom">
-        <h5 id="offcanvasRightLabel">Create {{ $panel }}</h5>
+        <h5 id="offcanvasRightLabel">Create {{ $page }}</h5>
         <button type="button" class="btn-close text-reset" data-bs-focus="false"
                 data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>

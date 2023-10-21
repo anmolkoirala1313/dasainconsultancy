@@ -11,7 +11,7 @@ use App\Models\Backend\News\Blog;
 use App\Models\Backend\Page\Page;
 use App\Models\Backend\Service;
 use App\Services\MenuService;
-use App\Traits\Crud;
+use App\Traits\ControllerOps;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,11 +21,11 @@ use Illuminate\Support\Facades\Session;
 
 class MenuController extends BackendBaseController
 {
-    use Crud;
+    use ControllerOps;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.menu.';
     protected string $view_path     = 'backend.menu.';
-    protected string $panel         = 'Menu';
+    protected string $page         = 'Menu';
     protected string $folder_name   = 'menu';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
@@ -66,11 +66,11 @@ class MenuController extends BackendBaseController
 
             $data = $this->model->create($request->all());
             DB::commit();
-            Session::flash('success',$this->panel.' was created successfully');
+            Session::flash('success',$this->page.' was created successfully');
             return redirect()->route($this->base_route.'index');
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->panel.'  was not created. Something went wrong.');
+            Session::flash('error',$this->page.'  was not created. Something went wrong.');
             return redirect()->back();
         }
     }
@@ -103,11 +103,11 @@ class MenuController extends BackendBaseController
 
             $data['row']->forceDelete();
             DB::commit();
-            Session::flash('success',$this->panel.' was deleted successfully');
+            Session::flash('success',$this->page.' was deleted successfully');
         } catch (\Exception $e) {
             DB::rollback();
 
-            Session::flash('error',$this->panel.'  was not deleted. Something went wrong.');
+            Session::flash('error',$this->page.'  was not deleted. Something went wrong.');
         }
 
         return redirect()->route($this->base_route.'index');
@@ -171,9 +171,9 @@ class MenuController extends BackendBaseController
             }
         }
             if($status){
-            Session::flash('success','Page added in '.$this->panel);
+            Session::flash('success','Page added in '.$this->page);
             }else{
-                Session::flash('error','Page could not be added in '.$this->panel);
+                Session::flash('error','Page could not be added in '.$this->page);
             }
     }
 
@@ -223,9 +223,9 @@ class MenuController extends BackendBaseController
             }
         }
         if($status){
-            Session::flash('success','Service added in '.$this->panel);
+            Session::flash('success','Service added in '.$this->page);
         }else{
-            Session::flash('error','Service could not be added in '.$this->panel);
+            Session::flash('error','Service could not be added in '.$this->page);
         }
     }
 
@@ -287,9 +287,9 @@ class MenuController extends BackendBaseController
         }
 
         if($status){
-            Session::flash('success','Package added in '.$this->panel);
+            Session::flash('success','Package added in '.$this->page);
         }else{
-            Session::flash('error','Package could not be added in '.$this->panel);
+            Session::flash('error','Package could not be added in '.$this->page);
         }
     }
 
@@ -349,9 +349,9 @@ class MenuController extends BackendBaseController
 //        }
 //
 //        if($status){
-//            Session::flash('success','Blog added in '.$this->panel);
+//            Session::flash('success','Blog added in '.$this->page);
 //        }else{
-//            Session::flash('error','Blog could not be added in '.$this->panel);
+//            Session::flash('error','Blog could not be added in '.$this->page);
 //        }
 //    }
 
@@ -388,9 +388,9 @@ class MenuController extends BackendBaseController
             $status = $menu->update(['content'=>json_encode($olddata)]);
         }
         if($status){
-            Session::flash('success','Custom link added in '.$this->panel);
+            Session::flash('success','Custom link added in '.$this->page);
         }else{
-            Session::flash('error','Custom link could not be added in '.$this->panel);
+            Session::flash('error','Custom link could not be added in '.$this->page);
         }
     }
 
