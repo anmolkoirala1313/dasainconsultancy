@@ -2,7 +2,7 @@
     <div class="sticky-side-div">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Front Page Components</h5>
+                <h5 class="card-title mb-0">Homepage Components</h5>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled mb-0">
@@ -30,7 +30,7 @@
                                 <li>
                                     <a href="{{ route('backend.homepage.mission_vision.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.mission_vision.create' ? '':'text-muted'}}">Mission, Vision & Value</a></li>
                                 <li>
-                                    <a href="#" class="d-block py-1 text-muted">Kids</a>
+                                    <a href="{{ route('backend.homepage.general_grievance.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.general_grievance.create' ? '':'text-muted'}}">General Grievance</a>
                                 </li>
                             </ul>
                         </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\CustomerInquiryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Homepage\CallActionController;
 use App\Http\Controllers\Backend\Homepage\CoreValueController;
+use App\Http\Controllers\Backend\Homepage\GeneralGrievanceController;
 use App\Http\Controllers\Backend\Homepage\MissionVisionController;
 use App\Http\Controllers\Backend\Homepage\WelcomeController;
 use App\Http\Controllers\Backend\Homepage\SliderController;
@@ -184,6 +185,10 @@ Route::prefix('homepage/')->name('homepage.')->middleware(['auth'])->group(funct
     //mission vision
     Route::get('mission-vision', [MissionVisionController::class, 'create'])->name('mission_vision.create');
     Route::resource('mission-vision', MissionVisionController::class)->only(['store', 'update'])->names('mission_vision');
+
+    //mission vision
+    Route::get('general-grievance', [GeneralGrievanceController::class, 'create'])->name('general_grievance.create');
+    Route::resource('general-grievance', GeneralGrievanceController::class)->only(['store', 'update'])->names('general_grievance');
 });
 
 
