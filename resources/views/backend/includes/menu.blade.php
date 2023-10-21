@@ -51,6 +51,16 @@
                                    class="nav-link {{request()->route()->getName() == 'backend.homepage.mission_vision.create' ? 'active':''}}"
                                    data-key="t-multi-level-homepage"> Mission, Vision & Value </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('backend.homepage.why_us.create') }}"
+                                   class="nav-link {{request()->route()->getName() == 'backend.homepage.why_us.create' ? 'active':''}}"
+                                   data-key="t-multi-level-homepage">Why Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('backend.homepage.general_grievance.create') }}"
+                                   class="nav-link {{request()->route()->getName() == 'backend.homepage.general_grievance.create' ? 'active':''}}"
+                                   data-key="t-multi-level-homepage">General Grievance</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

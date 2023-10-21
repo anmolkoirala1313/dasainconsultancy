@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\Homepage\GeneralGrievanceController;
 use App\Http\Controllers\Backend\Homepage\MissionVisionController;
 use App\Http\Controllers\Backend\Homepage\WelcomeController;
 use App\Http\Controllers\Backend\Homepage\SliderController;
+use App\Http\Controllers\Backend\Homepage\WhyUsController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\News\BlogCategoryController;
 use App\Http\Controllers\Backend\News\BlogController;
@@ -186,9 +187,13 @@ Route::prefix('homepage/')->name('homepage.')->middleware(['auth'])->group(funct
     Route::get('mission-vision', [MissionVisionController::class, 'create'])->name('mission_vision.create');
     Route::resource('mission-vision', MissionVisionController::class)->only(['store', 'update'])->names('mission_vision');
 
-    //mission vision
+    //general grievance
     Route::get('general-grievance', [GeneralGrievanceController::class, 'create'])->name('general_grievance.create');
     Route::resource('general-grievance', GeneralGrievanceController::class)->only(['store', 'update'])->names('general_grievance');
+
+    //why us
+    Route::get('why-us', [WhyUsController::class, 'create'])->name('why_us.create');
+    Route::resource('why-us', WhyUsController::class)->only(['store', 'update'])->names('why_us');
 });
 
 

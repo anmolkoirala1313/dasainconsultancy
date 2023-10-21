@@ -13,7 +13,7 @@
                                 <h5 class="fs-13 mb-0">Navigation List</h5>
                             </div>
                             <div class="flex-shrink-0 ms-2">
-                                <span class="badge bg-light text-muted">5</span>
+                                <span class="badge bg-light text-muted">6</span>
                             </div>
                         </a>
 
@@ -23,12 +23,17 @@
                                     <a href="{{ route('backend.homepage.welcome.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.welcome.create' ? '':'text-muted'}}">Welcome Section</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('backend.homepage.call_action.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.call_action.create' ? '':'text-muted'}}">Call Action</a></li>
+                                    <a href="{{ route('backend.homepage.call_action.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.call_action.create' ? '':'text-muted'}}">Call Action</a>
+                                </li>
                                 <li>
                                     <a href="{{ route('backend.homepage.core_value.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.core_value.create' ? '':'text-muted'}}">Core Value</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('backend.homepage.mission_vision.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.mission_vision.create' ? '':'text-muted'}}">Mission, Vision & Value</a></li>
+                                    <a href="{{ route('backend.homepage.mission_vision.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.mission_vision.create' ? '':'text-muted'}}">Mission, Vision & Value</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('backend.homepage.why_us.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.why_us.create' ? '':'text-muted'}}">Why Us</a>
+                                </li>
                                 <li>
                                     <a href="{{ route('backend.homepage.general_grievance.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.general_grievance.create' ? '':'text-muted'}}">General Grievance</a>
                                 </li>
