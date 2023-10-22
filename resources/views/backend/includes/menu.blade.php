@@ -173,6 +173,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link {{request()->route()->getName() == 'backend.album.index' ? 'active':''}}" href="{{route('backend.album.index')}}">
+                        <i class="ri-gallery-line"></i> <span data-key="t-widgets">Album</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
                     <a class="nav-link menu-link {{request()->route()->getName() == 'backend.customer-inquiry.index' ? 'active':''}}" href="{{route('backend.customer-inquiry.index')}}">
                         <i class="ri-discuss-line"></i> <span data-key="t-widgets">Customer Inquiry</span>
                     </a>

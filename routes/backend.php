@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AlbumController;
 use App\Http\Controllers\Backend\Career\Basic_setup\JobCategoryController;
 use App\Http\Controllers\Backend\Career\JobController;
 use App\Http\Controllers\Backend\ClientController;
@@ -186,6 +187,13 @@ Route::get('/client/trash', [ClientController::class,'trash'])->name('client.tra
 Route::post('/client/trash/{id}/restore', [ClientController::class,'restore'])->name('client.restore');
 Route::delete('/client/trash/{id}/remove', [ClientController::class,'removeTrash'])->name('client.remove-trash');
 Route::resource('client', ClientController::class)->names('client');
+
+
+//Album
+Route::get('/album/trash', [AlbumController::class,'trash'])->name('album.trash');
+Route::post('/album/trash/{id}/restore', [AlbumController::class,'restore'])->name('album.restore');
+Route::delete('/album/trash/{id}/remove', [AlbumController::class,'removeTrash'])->name('album.remove-trash');
+Route::resource('album', AlbumController::class)->names('album');
 
 //for menu
 Route::get('/add-page-to-menu',[MenuController::class,'addPage'])->name('menu.page');
