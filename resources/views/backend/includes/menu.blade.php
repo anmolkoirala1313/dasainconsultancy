@@ -167,6 +167,12 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link {{request()->route()->getName() == 'backend.client.index' ? 'active':''}}" href="{{route('backend.client.index')}}">
+                        <i class="ri-user-2-line"></i> <span data-key="t-widgets">Client</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link {{request()->route()->getName() == 'backend.customer-inquiry.index' ? 'active':''}}" href="{{route('backend.customer-inquiry.index')}}">
                         <i class="ri-discuss-line"></i> <span data-key="t-widgets">Customer Inquiry</span>
                     </a>

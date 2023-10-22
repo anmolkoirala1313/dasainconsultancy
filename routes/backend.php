@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\Career\Basic_setup\JobCategoryController;
 use App\Http\Controllers\Backend\Career\JobController;
+use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\CustomerInquiryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Homepage\CallActionController;
@@ -173,12 +174,18 @@ Route::post('/managing-director/trash/{id}/restore', [ManagingDirectorController
 Route::delete('/managing-director/trash/{id}/remove', [ManagingDirectorController::class,'removeTrash'])->name('managing_director.remove-trash');
 Route::resource('managing-director', ManagingDirectorController::class)->names('managing_director');
 
-//managing director
+//team
 Route::post('/team/order', [TeamController::class,'orderUpdate'])->name('team.order');
 Route::get('/team/trash', [TeamController::class,'trash'])->name('team.trash');
 Route::post('/team/trash/{id}/restore', [TeamController::class,'restore'])->name('team.restore');
 Route::delete('/team/trash/{id}/remove', [TeamController::class,'removeTrash'])->name('team.remove-trash');
 Route::resource('team', TeamController::class)->names('team');
+
+//client
+Route::get('/client/trash', [ClientController::class,'trash'])->name('client.trash');
+Route::post('/client/trash/{id}/restore', [ClientController::class,'restore'])->name('client.restore');
+Route::delete('/client/trash/{id}/remove', [ClientController::class,'removeTrash'])->name('client.remove-trash');
+Route::resource('client', ClientController::class)->names('client');
 
 //for menu
 Route::get('/add-page-to-menu',[MenuController::class,'addPage'])->name('menu.page');
