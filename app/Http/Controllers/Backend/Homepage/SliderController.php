@@ -16,6 +16,7 @@ class SliderController extends BackendBaseController
 {
     use ControllerOps;
     protected string $module        = 'backend.';
+    protected string $base_group    = 'backend.homepage.';
     protected string $base_route    = 'backend.homepage.slider.';
     protected string $view_path     = 'backend.homepage.slider.';
     protected string $page          = 'Slider';

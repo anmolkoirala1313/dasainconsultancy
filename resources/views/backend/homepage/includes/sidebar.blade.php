@@ -13,12 +13,15 @@
                                 <h5 class="fs-13 mb-0">Navigation List</h5>
                             </div>
                             <div class="flex-shrink-0 ms-2">
-                                <span class="badge bg-light text-muted">6</span>
+                                <span class="badge bg-light text-muted">8</span>
                             </div>
                         </a>
 
                         <div class="collapse show" id="filterlist-fashion">
                             <ul class="ps-4">
+                                <li>
+                                    <a href="{{ route('backend.homepage.slider.index') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.slider.index' ? '':'text-muted'}}">Slider</a>
+                                </li>
                                 <li>
                                     <a href="{{ route('backend.homepage.welcome.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.welcome.create' ? '':'text-muted'}}">Welcome Section</a>
                                 </li>
