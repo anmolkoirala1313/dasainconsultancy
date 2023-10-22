@@ -12,7 +12,7 @@ function loadNormalDatatable(){
             paging: true,
             searching: true,
             ordering:  true,
-            lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+            lengthMenu: [[10, 25, 50, 100, -1], [ 10, 25, 50, 100, "All"]],
         });
     }
 }
@@ -42,8 +42,8 @@ function reinitializeSelect2(){
 
 $(document).on('submit','form.submit_form', function (e){
    e.preventDefault();
-
-   let button = $(this).find("[type=submit]");
+    let form  = $(this);
+    let button = $(this).find("[type=submit]");
 
    button.prop('disabled', true);
 
@@ -81,19 +81,21 @@ $(document).on('submit','form.submit_form', function (e){
            $('span.text-danger').remove();
            if(error.responseJSON.errors){
                $.each(error.responseJSON.errors, function (index, error){
+
                    let html = document.createElement('span');
                    html.className = index + ' text-danger';
                    html.innerText = error[0];
-                   if($("[name='"+index+"[]']").length){
-                       $("[name='"+index+"[]']").after(html);
-                   }else if($("[name='"+index.split('.')[0]+"[]']").length){
-                       $("[name='"+index.split('.')[0]+"[]']")[index.split('.')[1]].after(html);
-                   }else if($("[name='"+index.split('.')[0]+"["+ index.split('.')[1] +"]']").length){
-                       $("[name='"+index.split('.')[0]+"["+ index.split('.')[1] +"]']").after(html);
-                   }else if($("[name='"+index.split('.')[0]+"["+ index.split('.')[1] +"][]']").length){
-                       $("[name='"+index.split('.')[0]+"["+ index.split('.')[1] +"][]']")[index.split('.')[2]].after(html);
-                   }else{
-                       $("[name='"+index+"']:first").after(html);
+
+                   if (form.find("[name='" + index + "[]']").length) {
+                       form.find("[name='" + index + "[]']").after(html);
+                   } else if (form.find("[name='" + index.split('.')[0] + "[]']").length) {
+                       form.find("[name='" + index.split('.')[0] + "[]']")[index.split('.')[1]].after(html);
+                   } else if (form.find("[name='" + index.split('.')[0] + "[" + index.split('.')[1] + "]']").length) {
+                       form.find("[name='" + index.split('.')[0] + "[" + index.split('.')[1] + "]']").after(html);
+                   } else if (form.find("[name='" + index.split('.')[0] + "[" + index.split('.')[1] + "][]']").length) {
+                       form.find("[name='" + index.split('.')[0] + "[" + index.split('.')[1] + "][]']")[index.split('.')[2]].after(html);
+                   } else {
+                       form.find("[name='" + index + "']:first").after(html);
                    }
                })
            }

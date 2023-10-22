@@ -3,6 +3,7 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('assets/backend/css/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/backend/custom_css/datatable_style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/backend/libs/glightbox/css/glightbox.min.css')}}" />
     <link href="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
@@ -34,27 +35,42 @@
                                 <table id="NormalDataTable" class="table align-middle table-nowrap table-striped">
                                     <thead class="table-light">
                                     <tr>
+                                        <th width="30px">#</th>
                                         <th>S.N</th>
+                                        <th>Image</th>
                                         <th>Title</th>
+                                        <th>Designation</th>
                                         <th>Status</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="sortable_rows">
                                     @foreach($data['row'] as $row)
-                                        <tr>
+                                        <tr class="rows" data-id="{{ $row->id }}">
+                                            <td class="pl-3"><i class=" ri-drag-move-2-fill"></i></td>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $row->title ?? ''}} </td>
+                                            <td>
+                                                <div class="gallery-box card">
+                                                    <div class="gallery-container">
+                                                        <a class="image-popup" href="{{ asset(imagePath($row->image))}}" title="">
+                                                            <img class="gallery-img img-fluid mx-auto lazy" data-src="{{ asset(imagePath($row->image))}}" alt="" />
+                                                            <div class="gallery-overlay">
+                                                                <h5 class="overlay-caption"></h5>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ $row->title }}</td>
+                                            <td>{{ $row->designation ?? '' }}</td>
                                             <td>
                                                 @include($module.'includes.status_display',['status'=>$row->status])
-
                                             </td>
                                             <td>
                                                 @include($module.'includes.dataTable_action',['params'=>['id'=>$row->id,'base_route'=>$base_route]])
                                             </td>
                                         </tr>
                                     @endforeach
-
                                     </tbody>
                                 </table>
                             </div>
@@ -71,5 +87,10 @@
     <script src="{{asset('assets/backend/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="{{asset('assets/common/general.js')}}"></script>
+    <script src="{{asset('assets/backend/js/jquery-ui.min.js')}}"></script>
+
     @include($module.'includes.toast_message')
+    @include($module.'includes/gallery')
+    @include($view_path.'includes.script')
+
 @endsection

@@ -31,7 +31,7 @@
                                     <thead class="table-light">
                                     <tr>
                                         <th>S.N</th>
-                                        <th>Title</th>
+                                        <th>Image</th>
                                         <th>Status</th>
                                         <th class="text-right">Action</th>
                                     </tr>

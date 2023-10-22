@@ -5,7 +5,7 @@
 @endif
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <div class="mb-3">
             {!! Form::label('title', 'Title', ['class' => 'form-label required']) !!}
             {!! Form::text('title', null,['class'=>'form-control','id'=>'name','placeholder'=>'Enter title']) !!}
@@ -13,9 +13,32 @@
     </div>
     <div class="col-lg-6">
         <div class="mb-3">
-            {!! Form::label('image_input', 'Images', ['class' => 'form-label']) !!}
+            {!! Form::label('designation', 'Designation', ['class' => 'form-label']) !!}
+            {!! Form::text('designation', null,['class'=>'form-control','id'=>'designation','placeholder'=>'Enter designation']) !!}
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="mb-3">
+            {!! Form::label('description', 'Description', ['class' => 'form-label required']) !!}
+            {!! Form::textarea('description', null,['class'=>'form-control','id'=>'description','placeholder'=>'Enter description']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('button', 'Button', ['class' => 'form-label']) !!}
+            {!! Form::text('button', null,['class'=>'form-control','id'=>'action_button','placeholder'=>'Enter button']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('link', 'Link', ['class' => 'form-label']) !!}
+            {!! Form::text('link', null,['class'=>'form-control','id'=>'link','placeholder'=>'Enter link']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('image_input', 'Images', ['class' => 'form-label required']) !!}
             {!! Form::file('image_input', ['class'=>'form-control','id'=>'image_input']) !!}
-            <p class="text-muted mb-2">Recommended size: 475 x 555px</p>
         </div>
         @if($page_method=='edit' && $data['row']->image)
             <div class="col-xxl-4 col-xl-4 col-sm-6">
@@ -24,7 +47,7 @@
                         <a class="image-popup" href="{{ asset(imagePath($data['row']->image))}}" title="">
                             <img class="gallery-img img-fluid mx-auto lazy" data-src="{{ asset(imagePath($data['row']->image))}}" alt="" />
                             <div class="gallery-overlay">
-                                <h5 class="overlay-caption">Feature Image</h5>
+                                <h5 class="overlay-caption">Image</h5>
                             </div>
                         </a>
                     </div>

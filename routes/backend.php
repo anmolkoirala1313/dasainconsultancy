@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\Homepage\RecruitmentProcessController;
 use App\Http\Controllers\Backend\Homepage\WelcomeController;
 use App\Http\Controllers\Backend\Homepage\SliderController;
 use App\Http\Controllers\Backend\Homepage\WhyUsController;
+use App\Http\Controllers\Backend\ManagingDirectorController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\News\BlogCategoryController;
 use App\Http\Controllers\Backend\News\BlogController;
@@ -76,43 +77,6 @@ Route::prefix('user/')->name('user.')->middleware(['auth'])->group(function () {
     Route::post('/user-management/trash/{id}/restore', [UserController::class,'restore'])->name('user-management.restore');
     Route::delete('/user-management/trash/{id}/remove', [UserController::class,'removeTrash'])->name('user-management.remove-trash');
     Route::resource('user-management', UserController::class)->names('user-management');
-
-});
-
-Route::prefix('activity/')->name('activity.')->middleware(['auth'])->group(function () {
-
-    Route::prefix('basic-setup/')->name('basic_setup.')->middleware(['auth'])->group(function () {
-       //country
-        Route::get('/country/trash', [CountryController::class,'trash'])->name('country.trash');
-        Route::post('/country/trash/{id}/restore', [CountryController::class,'restore'])->name('country.restore');
-        Route::delete('/country/trash/{id}/remove', [CountryController::class,'removeTrash'])->name('country.remove-trash');
-        Route::resource('country', CountryController::class)->names('country');
-
-        //category
-        Route::get('/category/trash', [PackageCategoryController::class,'trash'])->name('category.trash');
-        Route::post('/category/trash/{id}/restore', [PackageCategoryController::class,'restore'])->name('category.restore');
-        Route::delete('/category/trash/{id}/remove', [PackageCategoryController::class,'removeTrash'])->name('category.remove-trash');
-        Route::resource('category', PackageCategoryController::class)->names('category');
-
-        //country
-        Route::get('/ribbon/trash', [PackageRibbonController::class,'trash'])->name('ribbon.trash');
-        Route::post('/ribbon/trash/{id}/restore', [PackageRibbonController::class,'restore'])->name('ribbon.restore');
-        Route::delete('/ribbon/trash/{id}/remove', [PackageRibbonController::class,'removeTrash'])->name('ribbon.remove-trash');
-        Route::resource('ribbon', PackageRibbonController::class)->names('ribbon');
-
-    });
-
-    //package
-    Route::put('/package-upload-gallery/{id}', [PackageController::class,'uploadGallery'])->name('package.gallery-update');
-    Route::post('/package/image-delete', [PackageController::class,'deleteGallery'])->name('package.gallery-delete');
-    Route::get('/package/get-gallery/{id}', [PackageController::class,'getGallery'])->name('package.gallery-display');
-    Route::get('/package/gallery/{key}', [PackageController::class,'gallery'])->name('package.gallery');
-    Route::post('/package/status-update', [PackageController::class,'statusUpdate'])->name('package.status-update');
-    Route::post('/package/data', [PackageController::class,'getDataForDataTable'])->name('package.data');
-    Route::get('/package/trash', [PackageController::class,'trash'])->name('package.trash');
-    Route::post('/package/trash/{id}/restore', [PackageController::class,'restore'])->name('package.restore');
-    Route::delete('/package/trash/{id}/remove', [PackageController::class,'removeTrash'])->name('package.remove-trash');
-    Route::resource('package', PackageController::class)->names('package');
 
 });
 
@@ -201,6 +165,12 @@ Route::post('/service/trash/{id}/restore', [ServiceController::class,'restore'])
 Route::delete('/service/trash/{id}/remove', [ServiceController::class,'removeTrash'])->name('service.remove-trash');
 Route::resource('service', ServiceController::class)->names('service');
 
+//managing director
+Route::post('/managing-director/order', [ManagingDirectorController::class,'orderUpdate'])->name('managing_director.order');
+Route::get('/managing-director/trash', [ManagingDirectorController::class,'trash'])->name('managing_director.trash');
+Route::post('/managing-director/trash/{id}/restore', [ManagingDirectorController::class,'restore'])->name('managing_director.restore');
+Route::delete('/managing-director/trash/{id}/remove', [ManagingDirectorController::class,'removeTrash'])->name('managing_director.remove-trash');
+Route::resource('managing-director', ManagingDirectorController::class)->names('managing_director');
 
 //for menu
 Route::get('/add-page-to-menu',[MenuController::class,'addPage'])->name('menu.page');
