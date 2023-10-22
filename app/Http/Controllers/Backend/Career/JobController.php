@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Backend\Career;
 use App\Http\Controllers\Backend\BackendBaseController;
 use App\Http\Requests\Backend\Career\JobRequest;
 use App\Models\Backend\Career\Job;
+use App\Models\Backend\Career\JobCategory;
 use App\Traits\ControllerOps;
+use App\Traits\Status;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class JobController extends BackendBaseController
 {
-    use ControllerOps;
+    use ControllerOps, Status;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.career.job.';
     protected string $view_path     = 'backend.career.job.';
@@ -21,13 +23,19 @@ class JobController extends BackendBaseController
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
 
-
     public function __construct()
     {
         $this->model            = new Job();
         $this->image_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
     }
 
+    public function getData(): array
+    {
+        $data['categories']        = JobCategory::active()->pluck('title','id');
+        $data['min_qualification'] = ['none','primary education','secondary education','SEE','intermediate pass','bachelor pass','post graduate pass'];
+
+        return $data;
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -40,8 +48,17 @@ class JobController extends BackendBaseController
         DB::beginTransaction();
         try {
             $request->request->add(['created_by' => auth()->user()->id ]);
+            if($request->hasFile('image_input')){
+                $image_name = $this->uploadImage($request->file('image_input'));
+                $request->request->add(['image'=>$image_name]);
+            }
 
-            $this->model->create($request->all());
+            $job = $this->model->create($request->all());
+
+            if($request->has('job_category_id')){
+                $job->categories()->sync($request->input('job_category_id'));
+            }
+
             Session::flash('success',$this->page.' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
@@ -66,7 +83,15 @@ class JobController extends BackendBaseController
         DB::beginTransaction();
         try {
             $request->request->add(['updated_by' => auth()->user()->id ]);
+
+            if($request->hasFile('image_input')){
+                $image_name = $this->updateImage($request->file('image_input'),$data['row']->image,'600','400');
+                $request->request->add(['image'=>$image_name]);
+            }
+
             $data['row']->update($request->all());
+
+            $data['row']->categories()->sync($request->input('job_category_id'));
 
             Session::flash('success',$this->page.' was updated successfully');
             DB::commit();

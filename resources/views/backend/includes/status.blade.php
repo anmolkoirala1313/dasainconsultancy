@@ -4,9 +4,9 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside" style="">
         @if( $params['status'] )
-            <li><a class="dropdown-item change-status" cs-update-route="{{ route($params['base_route'].'status-update') }}" href="#" value="0" id="{{$params['id']}}">Inactive</a></li>
+            <li><a class="dropdown-item change-status" cs-update-route="{{ route($params['base_route'] ?? $base_route.'status-update') }}" href="#" value="0" id="{{$params['id']}}">Inactive</a></li>
         @else
-            <li><a class="dropdown-item change-status" cs-update-route="{{ route($params['base_route'].'status-update') }}" href="#" value="1" id="{{$params['id']}}">Active</a></li>
+            <li><a class="dropdown-item change-status" cs-update-route="{{ route($params['base_route'] ?? $base_route.'status-update') }}" href="#" value="1" id="{{$params['id']}}">Active</a></li>
         @endif
     </ul>
 </div>

@@ -179,7 +179,6 @@ class PackageController extends BackendBaseController
         return view($this->loadResource($this->view_path.'gallery'), compact('data'));
     }
 
-
     public function getGallery(Request $request,$id)
     {
         $images = PackageGallery::where('package_id',$id)->get()->toArray();

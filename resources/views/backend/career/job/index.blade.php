@@ -3,11 +3,12 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('assets/backend/css/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/backend/custom_css/datatable_style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/backend/libs/glightbox/css/glightbox.min.css')}}" />
     <link href="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     <style>
-    .cke_contents{
-        height: 400px!important;
-    }
+        .cke_contents{
+            height: 400px!important;
+        }
     </style>
 @endsection
 @section('content')
@@ -36,18 +37,45 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive  mt-3 mb-1">
-                                <table id="dataTable" class="table align-middle table-nowrap table-striped">
+                                <table id="NormalDataTable" class="table align-middle table-nowrap table-striped">
                                     <thead class="table-light">
                                     <tr>
                                         <th>S.N</th>
+                                        <th>Image</th>
                                         <th>Title</th>
-                                        <th>Country</th>
                                         <th>Category</th>
                                         <th>Status</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($data['row'] as $row)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>
+                                                <div class="gallery-box card">
+                                                    <div class="gallery-container">
+                                                        <a class="image-popup" href="{{ asset(imagePath($row->image))}}" title="">
+                                                            <img class="gallery-img img-fluid mx-auto lazy" data-src="{{ asset(imagePath($row->image))}}" alt="" />
+                                                            <div class="gallery-overlay">
+                                                                <h5 class="overlay-caption"></h5>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ $row->title ?? ''}} </td>
+
+                                            <td>{{ $row->categories ? implode(", ", $row->categories->pluck('title')->toArray()): '-'}} </td>
+
+                                            <td>
+                                                @include($module.'includes.status',['params'=>$row])
+                                            </td>
+                                            <td>
+                                                @include($module.'includes.dataTable_action',['params'=>['id'=>$row->id,'base_route'=>$base_route]])
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -66,31 +94,7 @@
     <script src="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="{{asset('assets/common/general.js')}}"></script>
     @include($module.'includes.toast_message')
+    @include($module.'includes.gallery')
     @include($module.'includes.status_alert')
-    <script type="text/javascript">
-        let dataTables = $('#dataTable').DataTable({
-            processing:true,
-            serverSide: true,
-            searching: true,
-            stateSave: true,
-            order:[[1,'asc']],
-            aaSorting: [],
-            ajax: {
-                "url": '{{ route($base_route.'data') }}',
-                "type": 'POST',
-                'data': function (d) {
-                    d._token = '{{csrf_token()}}';
-                }
-            },
-            columns :[
-                {data:'DT_RowIndex', name: 'DT_RowIndex', searchable:false, orderable: false},
-                {data:'title', name: 'title', orderable: true},
-                {data:'country', name: 'country', searchable:true, orderable: false},
-                {data:'category', name: 'category', searchable:true, orderable: true},
-                {data:'status', name: 'status', searchable:false, orderable: false},
-                {data:'action', name: 'action', searchable:false, orderable: false},
-            ]
-        })
-    </script>
 
 @endsection

@@ -7,48 +7,77 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="mb-3">
-            {!! Form::label('country_id', 'Country', ['class' => 'form-label required']) !!}
-            {!! Form::select('country_id', $data['countries'], $data['row']->country_id ?? '',['class'=>'form-select mb-3 select2','id'=>'country_id','placeholder'=>'Select country']) !!}
+            {!! Form::label('job_category_id', 'Category', ['class' => 'form-label']) !!}
+            {!! Form::select('job_category_id[]', $data['categories'],$page_method == 'edit' && $data['row']->categories ? $data['row']->categories->pluck('id'): null,['class'=>'form-select mb-3 select2','id'=>'job_category_id','multiple'=>'multiple']) !!}
         </div>
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <div class="mb-2">
             {!! Form::label('title', 'Title', ['class' => 'form-label required']) !!}
             {!! Form::text('title', null,['class'=>'form-control','id'=>'title','placeholder'=>'Enter title']) !!}
         </div>
     </div>
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('name', 'Name', ['class' => 'form-label']) !!}
+            {!! Form::text('name', null,['class'=>'form-control','id'=>'name','placeholder'=>'Enter name']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('start_date', 'Start Date', ['class' => 'form-label required']) !!}
+            {!! Form::date('start_date',null,['class'=>'form-control','id'=>'start_date','placeholder'=>'mm-dd-yyyy']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('end_date', 'End Date', ['class' => 'form-label required']) !!}
+            {!! Form::date('end_date',null,['class'=>'form-control','id'=>'end_date','placeholder'=>'mm-dd-yyyy']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-2">
+            {!! Form::label('required_number', 'Number Of Jobs', ['class' => 'form-label']) !!}
+            {!! Form::number('required_number', null,['class'=>'form-control','id'=>'required_number','placeholder'=>'Required number of jobs']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('lt_number', 'LT Number', ['class' => 'form-label']) !!}
+            {!! Form::text('lt_number', null,['class'=>'form-control','id'=>'lt_number','placeholder'=>'Enter LT Number']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-2">
+            {!! Form::label('company', 'Company Name', ['class' => 'form-label']) !!}
+            {!! Form::text('company', null,['class'=>'form-control','id'=>'company','placeholder'=>'Company 1, Company 2..']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('salary', 'Salary', ['class' => 'form-label']) !!}
+            {!! Form::text('salary', null,['class'=>'form-control','id'=>'salary','placeholder'=>'Enter Salary']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3 editor">
+            {!! Form::label('min_qualification', 'Min. Qualification', ['class' => 'form-label']) !!}
+            {!! Form::select('min_qualification',$data['min_qualification'], null,['class'=>'form-control select2','id'=>'min_qualification','placeholder'=>'Select Min Qualification']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3 editor">
+            {!! Form::label('formlink', 'Form Link', ['class' => 'form-label']) !!}
+            {!! Form::text('formlink', null,['class'=>'form-control','id'=>'formlink','placeholder'=>'Enter form link']) !!}
+        </div>
+    </div>
     <div class="col-lg-12">
-        <div class="mb-3">
-            {!! Form::label('price', 'Price', ['class' => 'form-label']) !!}
-            {!! Form::text('price', null,['class'=>'form-control','id'=>'price','placeholder'=>'Enter price']) !!}
+        <div class="mb-3 editor">
+            {!! Form::label('description', 'Description', ['class' => 'form-label']) !!}
+            {!! Form::textarea('description', null,['class'=>'form-control ck-editor','id'=>'description','placeholder'=>'Enter description']) !!}
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="mb-3">
-            {!! Form::label('package_category_id', 'Category', ['class' => 'form-label required']) !!}
-            {!! Form::select('package_category_id', $data['categories'], $data['row']->package_category_id ?? '',['class'=>'form-select mb-3 select2','id'=>'package_category_id','placeholder'=>'Select category']) !!}
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="mb-3">
-            {!! Form::label('package_ribbon_id', 'Ribbon', ['class' => 'form-label']) !!}
-            {!! Form::select('package_ribbon_id', $data['ribbons'], $data['row']->package_ribbon_id ?? '',['class'=>'form-select mb-3 select2','id'=>'package_ribbon_id','placeholder'=>'Select ribbon']) !!}
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="mb-3">
-            {!! Form::label('map', 'Map URL', ['class' => 'form-label']) !!}
-            {!! Form::text('map',null,['class'=>'form-control','id'=>'map','placeholder'=>'Map URL']) !!}
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="mb-3">
-            {!! Form::label('video', 'video URL', ['class' => 'form-label']) !!}
-            {!! Form::text('video',null,['class'=>'form-control','id'=>'video','placeholder'=>'video URL']) !!}
-        </div>
-    </div>
-
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <div class="mb-3">
             {!! Form::label('image_input', 'Images', ['class' => 'form-label required']) !!}
             {!! Form::file('image_input', ['class'=>'form-control','id'=>'image_input']) !!}
@@ -69,42 +98,32 @@
             </div>
         @endif
     </div>
+    <div class="col-lg-12">
+        <div class="separator">
+            <h2><i class="ri-global-line"></i> Meta Data (SEO)</h2>
+        </div>
+    </div>
     <div class="col-lg-6">
         <div class="mb-3">
-            {!! Form::label('cover_image', 'Cover Image', ['class' => 'form-label']) !!}
-            {!! Form::file('cover_image', ['class'=>'form-control','id'=>'cover_image']) !!}
-            <p class="text-muted mb-2">Recommended size: 1920 x 500px</p>
+            {!! Form::label('meta_title', 'Meta Title', ['class' => 'form-label']) !!}
+            {!! Form::text('meta_title', null,['class'=>'form-control','id'=>'meta_title','placeholder'=>'Enter meta title']) !!}
         </div>
-        @if($page_method=='edit' && $data['row']->cover)
-            <div class="col-xxl-4 col-xl-4 col-sm-6">
-                <div class="gallery-box card">
-                    <div class="gallery-container">
-                        <a class="image-popup" href="{{ asset(imagePath($data['row']->cover))}}" title="">
-                            <img class="gallery-img img-fluid mx-auto lazy" data-src="{{ asset(imagePath($data['row']->cover))}}" alt="" />
-                            <div class="gallery-overlay">
-                                <h5 class="overlay-caption">Cover Image</h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        @endif
     </div>
-    <div class="col-lg-12">
-        <div class="mb-3 editor">
-            {!! Form::label('description', 'Description', ['class' => 'form-label']) !!}
-            {!! Form::textarea('description', null,['class'=>'form-control ck-editor','id'=>'description','placeholder'=>'Enter description']) !!}
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('meta_tags', 'Min. Qualification', ['class' => 'form-label']) !!}
+            {!! Form::text('meta_tags', null,['class'=>'form-control','id'=>'meta_tags','data-choices','data-choices-text-unique-true']) !!}
         </div>
     </div>
     <div class="col-lg-12">
-        <div class="mb-3 editor">
-            {!! Form::label('itinerary', 'Itinerary', ['class' => 'form-label']) !!}
-            {!! Form::textarea('itinerary', null,['class'=>'form-control ck-editor','id'=>'itinerary','placeholder'=>'Enter itinerary']) !!}
+        <div class="mb-3">
+            {!! Form::label('meta_description', 'Meta Description', ['class' => 'form-label']) !!}
+            {!! Form::textarea('meta_description', null,['class'=>'form-control','id'=>'meta_description','placeholder'=>'Enter meta description']) !!}
         </div>
     </div>
 
-    <div class="col-lg-12">
-        {!! Form::label('status', 'Status', ['class' => 'form-label']) !!}
+    <div class="col-lg-12 border-top">
+        {!! Form::label('status', 'Status', ['class' => 'form-label mt-3']) !!}
         <div class="mb-3 mt-2">
             <div class="form-check form-check-inline form-radio-success">
                 {!! Form::radio('status', 1, true,['class'=>'form-check-input','id'=>'status1']) !!}
@@ -116,7 +135,9 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-12 border-top mt-3">
+</div>
+<div class="row sticky-button">
+    <div class="col-lg-12 border-top mb-2 mt-2">
         <div class="hstack gap-2">
             {!! Form::submit($button,['class'=>'btn btn-success mt-3','id'=>'user-add-button']) !!}
         </div>

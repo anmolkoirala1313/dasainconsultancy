@@ -62,7 +62,7 @@ class BackendBaseController extends Controller
         }
         $status = $status->save($this->image_path.$name);
 
-        return ['status'=>$status,'name'=>$name];
+        return ['status'=>$status, 'name'=>$name];
     }
 
 
@@ -90,27 +90,5 @@ class BackendBaseController extends Controller
         if (!empty($image) && file_exists($this->image_path.$image)){
             @unlink($this->image_path.DIRECTORY_SEPARATOR.$image);
         }
-    }
-
-    public function statusUpdate(){
-
-        $data['row']       = $this->model->find(request()->id);
-        DB::beginTransaction();
-        try {
-            $data['row']->update(request()->all());
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-            Session::flash('error',$this->page.' was not updated. Something went wrong.');
-        }
-        return response()->json(['id'=>$data['row']->id,'status'=>$data['row']->status]);
-    }
-
-    public function getCountries(){
-        return Country::has('packages')->active()->descending()->pluck('title','id');
-    }
-
-    public function getPackageCategory(){
-        return PackageCategory::has('packages')->active()->descending()->pluck('title','id');
     }
 }

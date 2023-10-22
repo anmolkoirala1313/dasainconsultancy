@@ -86,5 +86,5 @@
     <script src="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="{{asset('assets/common/general.js')}}"></script>
     @include($module.'includes.toast_message')
-    @include($module.'includes/gallery')
+    @include($module.'includes.gallery')
 @endsection

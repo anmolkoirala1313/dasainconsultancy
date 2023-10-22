@@ -127,6 +127,7 @@ Route::prefix('career/')->name('career.')->middleware(['auth'])->group(function 
     });
 
     //package
+    Route::post('/job/status-update', [JobController::class,'statusUpdate'])->name('job.status-update');
     Route::get('/job/trash', [JobController::class,'trash'])->name('job.trash');
     Route::post('/job/trash/{id}/restore', [JobController::class,'restore'])->name('job.restore');
     Route::delete('/job/trash/{id}/remove', [JobController::class,'removeTrash'])->name('job.remove-trash');
