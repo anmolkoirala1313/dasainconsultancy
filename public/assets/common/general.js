@@ -40,7 +40,7 @@ function reinitializeSelect2(){
 }
 
 
-$("form.submit_form").on('submit', function (e){
+$(document).on('submit','form.submit_form', function (e){
    e.preventDefault();
 
    let button = $(this).find("[type=submit]");
@@ -112,7 +112,7 @@ $(document).on('click','.cs-remove-data', function (e) {
         type: "DELETE",
         cache: false,
         data: {
-            "_token": $('meta[name="csrf-token"]').attr('content'),
+            "_token": $('meta[name="_token"]').attr('content'),
             "id": id,
         },
         success: function (url){

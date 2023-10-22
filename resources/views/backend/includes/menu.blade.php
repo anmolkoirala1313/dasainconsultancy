@@ -73,39 +73,28 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link collapsed" href="#sidebarTourMultilevel" data-bs-toggle="collapse" role="button" aria-controls="sidebarTourMultilevel">
-                        <i class="ri-haze-line"></i> <span data-key="t-multi-level-tour">Activity</span>
+                        <i class="ri-links-line"></i> <span data-key="t-multi-level-career">Career</span>
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarTourMultilevel" style="">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="#sidebarBasicSetupPackage" class="nav-link collapsed" data-bs-toggle="collapse" role="button" aria-controls="sidebarBasicSetupPackage"
-                                   data-key="t-level-basic-package"> Basic Setup
+                                   data-key="t-level-basic-career"> Basic Setup
                                 </a>
                                 <div class="menu-dropdown collapse" id="sidebarBasicSetupPackage" style="">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item">
-                                            <a href="{{ route('backend.activity.basic_setup.country.index') }}"
-                                               class="nav-link {{request()->route()->getName() == 'backend.activity.basic_setup.country.index' ? 'active':''}}"
-                                               data-key="t-level-basic-package">
-                                                Country </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('backend.activity.basic_setup.category.index') }}"
-                                               class="nav-link {{request()->route()->getName() == 'backend.activity.basic_setup.category.index' ? 'active':''}}"
-                                               data-key="t-level-basic-package"> Category </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('backend.activity.basic_setup.ribbon.index') }}"
-                                               class="nav-link {{request()->route()->getName() == 'backend.activity.basic_setup.ribbon.index' ? 'active':''}}"
-                                               data-key="t-level-basic-package"> Ribbon </a>
+                                            <a href="{{ route('backend.career.basic_setup.category.index') }}"
+                                               class="nav-link {{request()->route()->getName() == 'backend.career.basic_setup.category.index' ? 'active':''}}"
+                                               data-key="t-level-basic-career"> Category </a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('backend.activity.package.index') }}"
-                                   class="nav-link {{request()->route()->getName() == 'backend.activity.package.index' ? 'active':''}}"
-                                   data-key="t-multi-level-tour"> Package </a>
+                                <a href="{{ route('backend.career.job.index') }}"
+                                   class="nav-link {{request()->route()->getName() == 'backend.career.job.index' ? 'active':''}}"
+                                   data-key="t-multi-level-career"> Job </a>
                             </li>
                         </ul>
                     </div>

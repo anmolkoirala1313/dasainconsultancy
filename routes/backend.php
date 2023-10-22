@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\Career\Basic_setup\JobCategoryController;
+use App\Http\Controllers\Backend\Career\JobController;
 use App\Http\Controllers\Backend\CustomerInquiryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\Homepage\CallActionController;
@@ -114,38 +116,23 @@ Route::prefix('activity/')->name('activity.')->middleware(['auth'])->group(funct
 
 });
 
-Route::prefix('homepage/')->name('homepage.')->middleware(['auth'])->group(function () {
-    Route::get('/slider/trash', [WelcomeController::class,'trash'])->name('slider.trash');
-    Route::post('/slider/trash/{id}/restore', [WelcomeController::class,'restore'])->name('slider.restore');
-    Route::delete('/slider/trash/{id}/remove', [WelcomeController::class,'removeTrash'])->name('slider.remove-trash');
-    Route::resource('slider', WelcomeController::class)->names('slider');
+Route::prefix('career/')->name('career.')->middleware(['auth'])->group(function () {
+
+    Route::prefix('basic-setup/')->name('basic_setup.')->middleware(['auth'])->group(function () {
+        //category
+        Route::get('/category/trash', [JobCategoryController::class,'trash'])->name('category.trash');
+        Route::post('/category/trash/{id}/restore', [JobCategoryController::class,'restore'])->name('category.restore');
+        Route::delete('/category/trash/{id}/remove', [JobCategoryController::class,'removeTrash'])->name('category.remove-trash');
+        Route::resource('category', JobCategoryController::class)->names('category');
+    });
+
+    //package
+    Route::get('/job/trash', [JobController::class,'trash'])->name('job.trash');
+    Route::post('/job/trash/{id}/restore', [JobController::class,'restore'])->name('job.restore');
+    Route::delete('/job/trash/{id}/remove', [JobController::class,'removeTrash'])->name('job.remove-trash');
+    Route::resource('job', JobController::class)->names('job');
+
 });
-
-//testimonials
-Route::get('/testimonial/trash', [WelcomeController::class,'trash'])->name('testimonial.trash');
-Route::post('/testimonial/trash/{id}/restore', [WelcomeController::class,'restore'])->name('testimonial.restore');
-Route::delete('/testimonial/trash/{id}/remove', [WelcomeController::class,'removeTrash'])->name('testimonial.remove-trash');
-Route::resource('testimonial', TestimonialController::class)->names('testimonial');
-
-//services
-Route::get('/service/trash', [ServiceController::class,'trash'])->name('service.trash');
-Route::post('/service/trash/{id}/restore', [ServiceController::class,'restore'])->name('service.restore');
-Route::delete('/service/trash/{id}/remove', [ServiceController::class,'removeTrash'])->name('service.remove-trash');
-Route::resource('service', ServiceController::class)->names('service');
-
-
-//for menu
-Route::get('/add-page-to-menu',[MenuController::class,'addPage'])->name('menu.page');
-Route::get('/add-service-to-menu',[MenuController::class,'addService'])->name('menu.service');
-Route::get('add-blog-to-menu',[MenuController::class,'addBlog'])->name('menu.blog');
-Route::get('add-custom-link',[MenuController::class,'addCustomLink'])->name('menu.custom');
-Route::get('/update-menu',[MenuController::class,'updateMenu'])->name('menu.updateMenu');
-Route::post('/update-menuitem/{id}',[MenuController::class,'updateMenuItem'])->name('menu.update_menu_item');
-Route::get('/delete-menuitem/{id}/{key}/{in?}/{inside?}',[MenuController::class,'deleteMenuItem'])->name('menu.delete_menu_item');
-Route::post('menu', [MenuController::class,'store'])->name('menu.store');
-Route::get('/menu/{slug?}', [MenuController::class,'index'])->name('menu.index');
-Route::get('/menu/{id}/delete',[MenuController::class,'destroy'])->name('menu.delete');
-Route::resource('menu', MenuController::class)->names('menu');
 
 
 Route::prefix('news/')->name('news.')->middleware(['auth'])->group(function () {
@@ -200,6 +187,32 @@ Route::prefix('homepage/')->name('homepage.')->middleware(['auth'])->group(funct
     Route::resource('recruitment-process', RecruitmentProcessController::class)->only(['store', 'update'])->names('recruitment_process');
 });
 
+
+//testimonials
+Route::get('/testimonial/trash', [WelcomeController::class,'trash'])->name('testimonial.trash');
+Route::post('/testimonial/trash/{id}/restore', [WelcomeController::class,'restore'])->name('testimonial.restore');
+Route::delete('/testimonial/trash/{id}/remove', [WelcomeController::class,'removeTrash'])->name('testimonial.remove-trash');
+Route::resource('testimonial', TestimonialController::class)->names('testimonial');
+
+//services
+Route::get('/service/trash', [ServiceController::class,'trash'])->name('service.trash');
+Route::post('/service/trash/{id}/restore', [ServiceController::class,'restore'])->name('service.restore');
+Route::delete('/service/trash/{id}/remove', [ServiceController::class,'removeTrash'])->name('service.remove-trash');
+Route::resource('service', ServiceController::class)->names('service');
+
+
+//for menu
+Route::get('/add-page-to-menu',[MenuController::class,'addPage'])->name('menu.page');
+Route::get('/add-service-to-menu',[MenuController::class,'addService'])->name('menu.service');
+Route::get('add-blog-to-menu',[MenuController::class,'addBlog'])->name('menu.blog');
+Route::get('add-custom-link',[MenuController::class,'addCustomLink'])->name('menu.custom');
+Route::get('/update-menu',[MenuController::class,'updateMenu'])->name('menu.updateMenu');
+Route::post('/update-menuitem/{id}',[MenuController::class,'updateMenuItem'])->name('menu.update_menu_item');
+Route::get('/delete-menuitem/{id}/{key}/{in?}/{inside?}',[MenuController::class,'deleteMenuItem'])->name('menu.delete_menu_item');
+Route::post('menu', [MenuController::class,'store'])->name('menu.store');
+Route::get('/menu/{slug?}', [MenuController::class,'index'])->name('menu.index');
+Route::get('/menu/{id}/delete',[MenuController::class,'destroy'])->name('menu.delete');
+Route::resource('menu', MenuController::class)->names('menu');
 
 //pages
 Route::post('/page/status-update', [PageController::class,'statusUpdate'])->name('page.status-update');

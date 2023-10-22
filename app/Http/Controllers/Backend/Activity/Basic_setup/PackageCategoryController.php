@@ -59,4 +59,6 @@ class PackageCategoryController extends BackendBaseController
 
         return response()->json(route($this->base_route.'index'));
     }
+
+
 }
