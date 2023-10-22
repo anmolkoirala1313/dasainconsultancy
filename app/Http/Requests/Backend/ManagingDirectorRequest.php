@@ -38,7 +38,7 @@ class ManagingDirectorRequest extends FormRequest
             'description.required'      => 'Please enter description',
             'description.max'           => 'Description must be less than 800 characters',
             'title.max'                 => 'Title must be less than 50 characters',
-            'image_input.required_if'   => 'Please select a image',
+            'image_input.required'   => 'Please select a image',
         ];
     }
 }

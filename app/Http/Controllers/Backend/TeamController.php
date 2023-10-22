@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Requests\Backend\Homepage\WelcomeRequest;
 use App\Http\Requests\Backend\ManagingDirectorRequest;
 use App\Http\Requests\Backend\ServiceRequest;
+use App\Http\Requests\Backend\TeamRequest;
 use App\Http\Requests\Backend\TestimonialRequest;
 use App\Models\Backend\ManagingDirector;
 use App\Models\Backend\Service;
+use App\Models\Backend\Team;
 use App\Models\Backend\Testimonial;
 use App\Traits\ControllerOps;
 use App\Traits\Order;
@@ -17,21 +19,21 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 
-class ManagingDirectorController extends BackendBaseController
+class TeamController extends BackendBaseController
 {
     use ControllerOps, Order;
     protected string $module        = 'backend.';
-    protected string $base_route    = 'backend.managing_director.';
-    protected string $view_path     = 'backend.managing_director.';
-    protected string $page          = 'Managing Director';
-    protected string $folder_name   = 'managing_director';
+    protected string $base_route    = 'backend.team.';
+    protected string $view_path     = 'backend.team.';
+    protected string $page          = 'Team';
+    protected string $folder_name   = 'team';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
 
 
     public function __construct()
     {
-        $this->model            = new ManagingDirector();
+        $this->model            = new Team();
         $this->image_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
     }
 
@@ -48,17 +50,17 @@ class ManagingDirectorController extends BackendBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param ManagingDirectorRequest $request
+     * @param TeamRequest $request
      * @return JsonResponse
      */
-    public function store(ManagingDirectorRequest $request)
+    public function store(TeamRequest $request)
     {
         DB::beginTransaction();
         try {
             $request->request->add(['created_by' => auth()->user()->id ]);
 
             if($request->hasFile('image_input')){
-                $image_name = $this->uploadImage($request->file('image_input'),'516','516');
+                $image_name = $this->uploadImage($request->file('image_input'),'300','350');
                 $request->request->add(['image'=>$image_name]);
             }
 
@@ -76,19 +78,19 @@ class ManagingDirectorController extends BackendBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param ManagingDirectorRequest $request
+     * @param TeamRequest $request
      * @param int $id
      * @return JsonResponse
      */
-    public function update(ManagingDirectorRequest $request, $id)
+    public function update(TeamRequest $request, $id)
     {
         $data['row']       = $this->model->find($id);
 
         DB::beginTransaction();
         try {
             if($request->hasFile('image_input')){
-                $image_name = $this->updateImage($request->file('image_input'),$data['row']->image,'516','516');
-                $request->request->add(['image'=>$image_name]);
+                $image_name = $this->updateImage($request->file('image_input'),$data['row']->image,'300','350');
+                $request->request->add(['image'=> $image_name]);
             }
 
             $request->request->add(['updated_by' => auth()->user()->id ]);

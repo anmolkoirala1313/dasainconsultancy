@@ -39,7 +39,7 @@ class TestimonialRequest extends FormRequest
             'title.max'                 => 'Title must be less than 50 characters',
             'position.max'              => 'Please must be less than 40 characters',
             'description.required'      => 'Please enter a description',
-            'image_input.required_if'   => 'Please select a image',
+            'image_input.required'      => 'Please select a image',
         ];
     }
 }

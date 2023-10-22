@@ -161,6 +161,12 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link {{request()->route()->getName() == 'backend.team.index' ? 'active':''}}" href="{{route('backend.team.index')}}">
+                        <i class="ri-team-line"></i> <span data-key="t-widgets">Team</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link {{request()->route()->getName() == 'backend.customer-inquiry.index' ? 'active':''}}" href="{{route('backend.customer-inquiry.index')}}">
                         <i class="ri-discuss-line"></i> <span data-key="t-widgets">Customer Inquiry</span>
                     </a>

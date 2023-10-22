@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\Page\PageController;
 use App\Http\Controllers\Backend\Page\PageSectionElementController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\Activity\Basic_setup\CountryController;
 use App\Http\Controllers\Backend\Activity\Basic_setup\PackageCategoryController;
@@ -171,6 +172,13 @@ Route::get('/managing-director/trash', [ManagingDirectorController::class,'trash
 Route::post('/managing-director/trash/{id}/restore', [ManagingDirectorController::class,'restore'])->name('managing_director.restore');
 Route::delete('/managing-director/trash/{id}/remove', [ManagingDirectorController::class,'removeTrash'])->name('managing_director.remove-trash');
 Route::resource('managing-director', ManagingDirectorController::class)->names('managing_director');
+
+//managing director
+Route::post('/team/order', [TeamController::class,'orderUpdate'])->name('team.order');
+Route::get('/team/trash', [TeamController::class,'trash'])->name('team.trash');
+Route::post('/team/trash/{id}/restore', [TeamController::class,'restore'])->name('team.restore');
+Route::delete('/team/trash/{id}/remove', [TeamController::class,'removeTrash'])->name('team.remove-trash');
+Route::resource('team', TeamController::class)->names('team');
 
 //for menu
 Route::get('/add-page-to-menu',[MenuController::class,'addPage'])->name('menu.page');
