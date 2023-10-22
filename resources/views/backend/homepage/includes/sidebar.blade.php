@@ -35,6 +35,9 @@
                                     <a href="{{ route('backend.homepage.why_us.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.why_us.create' ? '':'text-muted'}}">Why Us</a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('backend.homepage.recruitment_process.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.recruitment_process.create' ? '':'text-muted'}}">Recruitment Process</a>
+                                </li>
+                                <li>
                                     <a href="{{ route('backend.homepage.general_grievance.create') }}" class="d-block py-1 {{request()->route()->getName() == 'backend.homepage.general_grievance.create' ? '':'text-muted'}}">General Grievance</a>
                                 </li>
                             </ul>

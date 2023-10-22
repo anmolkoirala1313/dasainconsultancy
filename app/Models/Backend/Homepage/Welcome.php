@@ -19,4 +19,9 @@ class Welcome extends BackendBaseModel
         return $this->hasMany(HomePageValue::class,'homepage_id','id');
     }
 
+    public function recruitmentProcess(): HasMany
+    {
+        return $this->hasMany(HomePageRecruitment::class,'homepage_id','id');
+    }
+
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\Homepage\CallActionController;
 use App\Http\Controllers\Backend\Homepage\CoreValueController;
 use App\Http\Controllers\Backend\Homepage\GeneralGrievanceController;
 use App\Http\Controllers\Backend\Homepage\MissionVisionController;
+use App\Http\Controllers\Backend\Homepage\RecruitmentProcessController;
 use App\Http\Controllers\Backend\Homepage\WelcomeController;
 use App\Http\Controllers\Backend\Homepage\SliderController;
 use App\Http\Controllers\Backend\Homepage\WhyUsController;
@@ -194,6 +195,10 @@ Route::prefix('homepage/')->name('homepage.')->middleware(['auth'])->group(funct
     //why us
     Route::get('why-us', [WhyUsController::class, 'create'])->name('why_us.create');
     Route::resource('why-us', WhyUsController::class)->only(['store', 'update'])->names('why_us');
+
+    //recruitment process
+    Route::get('recruitment-process', [RecruitmentProcessController::class, 'create'])->name('recruitment_process.create');
+    Route::resource('recruitment-process', RecruitmentProcessController::class)->only(['store', 'update'])->names('recruitment_process');
 });
 
 
