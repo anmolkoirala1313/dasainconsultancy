@@ -68,183 +68,152 @@
 
             <div class="row mt-4">
                 <div class="col-xl-4 col-lg-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex">
-                                <div class="flex-grow-1">
-                                    <h5 class="fs-16">Menu Items</h5>
+                    <div class="sticky-side-div">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <h5 class="fs-16">Menu Items</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="accordion accordion-flush">
+                            <div class="accordion accordion-flush">
 
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingBrands">
-                                    <button class="accordion-button bg-transparent shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseBrands" aria-expanded="false" aria-controls="flush-collapseBrands">
-                                        <span class="text-muted text-uppercase fs-12 fw-medium">Pages </span> <span class="badge bg-success rounded-pill align-middle ms-1">{{count($data['pages'])}}</span>
-                                    </button>
-                                </h2>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingBrands">
+                                        <button class="accordion-button bg-transparent shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseBrands" aria-expanded="false" aria-controls="flush-collapseBrands">
+                                            <span class="text-muted text-uppercase fs-12 fw-medium">Pages </span> <span class="badge bg-success rounded-pill align-middle ms-1">{{count($data['pages'])}}</span>
+                                        </button>
+                                    </h2>
 
-                                <div id="flush-collapseBrands" class="accordion-collapse collapse show" aria-labelledby="flush-headingBrands" style="">
-                                    <div class="accordion-body {{(count($data['menus'] ) == 0) ? 'disabled':''}} text-body pt-0" id="page-list">
-                                        <div class="d-flex flex-column gap-2 mt-3">
-                                            @if(count($data['pages']) !== 0)
-                                                @foreach($data['pages'] as $page)
-                                                    <div class="form-check form-check-outline form-check-success {{(in_array($page->slug, $slug_to_disable)) ? 'disabled':''}}">
-                                                        <input class="form-check-input" type="checkbox" id="pages-{{$page->id}}" value="{{$page->id}}" name="select-page[]" {{(count($data['menus']) == 0 || in_array($page->slug, $slug_to_disable)) ? 'disabled':''}}>
-                                                        <label class="form-check-label {{(in_array($page->slug, $slug_to_disable)) ? 'disabled':''}}" for="pages-{{$page->id}}"> {{ucfirst($page->title)}}</label>
-                                                    </div>
-                                                @endforeach
+                                    <div id="flush-collapseBrands" class="accordion-collapse collapse show" aria-labelledby="flush-headingBrands" style="">
+                                        <div class="accordion-body {{(count($data['menus'] ) == 0) ? 'disabled':''}} text-body pt-0" id="page-list">
+                                            <div class="d-flex flex-column gap-2 mt-3">
+                                                @if(count($data['pages']) !== 0)
+                                                    @foreach($data['pages'] as $page)
+                                                        <div class="form-check form-check-outline form-check-success {{(in_array($page->slug, $slug_to_disable)) ? 'disabled':''}}">
+                                                            <input class="form-check-input" type="checkbox" id="pages-{{$page->id}}" value="{{$page->id}}" name="select-page[]" {{(count($data['menus']) == 0 || in_array($page->slug, $slug_to_disable)) ? 'disabled':''}}>
+                                                            <label class="form-check-label {{(in_array($page->slug, $slug_to_disable)) ? 'disabled':''}}" for="pages-{{$page->id}}"> {{ucfirst($page->title)}}</label>
+                                                        </div>
+                                                    @endforeach
+                                                    @else
+                                                        <div class="pb-2">
+                                                            <span class="h6">Please <a href="{{route($module.'pages.index')}}">create a page</a> to add in menu.</span>
+                                                        </div>
+                                                    @endif
+
+
+                                                <div class="{{(count($data['pages']) == 0) ? 'disabled':''}}">
+                                                    <label class="btn btn-light btn-sm bg-gradient waves-effect waves-light text-decoration-none"><input type="checkbox" id="select-all-pages" class="hidden"> Select All</label>
+                                                    <button type="button" class="pull-right btn btn-light bg-gradient waves-effect waves-light btn-sm text-decoration-none pull-right" id="add-pages">Add to Menu</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingBrands">
+                                        <button class="accordion-button bg-transparent shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseBrands" aria-expanded="false" aria-controls="flush-collapseBrands">
+                                            <span class="text-muted text-uppercase fs-12 fw-medium">Blogs </span> <span class="badge bg-success rounded-pill align-middle ms-1">{{count($data['blogs'])}}</span>
+                                        </button>
+                                    </h2>
+
+                                    <div id="flush-collapseBrands" class="accordion-collapse collapse show" aria-labelledby="flush-headingBrands" style="">
+                                        <div class="accordion-body {{(count($data['menus']) == 0) ? 'disabled':''}} text-body pt-0" id="blogs-list">
+                                            <div class="d-flex flex-column gap-2 mt-3">
+                                                @if(count($data['blogs']) !== 0)
+                                                    @foreach($data['blogs'] as $blog)
+                                                        <div class="form-check form-check-outline form-check-success {{(in_array($blog->key, $slug_to_disable)) ? 'disabled':''}}">
+                                                            <input class="form-check-input" type="checkbox" id="blogs-{{$blog->id}}" value="{{$blog->id}}" name="select-blogs[]" {{(count($data['menus']) == 0 || in_array($blog->slug, $slug_to_disable)) ? 'disabled':''}}>
+                                                            <label class="form-check-label {{(in_array($blog->key, $slug_to_disable)) ? 'disabled':''}}" for="blogs-{{$blog->id}}"> {{ucfirst($blog->title)}}</label>
+                                                        </div>
+                                                    @endforeach
                                                 @else
                                                     <div class="pb-2">
-                                                        <span class="h6">Please <a href="{{route($module.'pages.index')}}">create a page</a> to add in menu.</span>
+                                                        <span class="h6">Please <a href="{{route($module.'news.blog.index')}}">create a blog</a> to add in menu.</span>
+                                                    </div>
+                                                @endif
+
+                                                <div class="{{(count($data['blogs']) == 0) ? 'disabled':''}}">
+                                                    <label class="btn btn-light btn-sm bg-gradient waves-effect waves-light text-decoration-none"><input type="checkbox" id="select-all-blogs" class="hidden"> Select All</label>
+                                                    <button type="button" class="pull-right btn btn-light bg-gradient waves-effect waves-light btn-sm text-decoration-none pull-right" id="add-blogs">Add to Menu</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingBrands">
+                                        <button class="accordion-button bg-transparent shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseBrands" aria-expanded="false" aria-controls="flush-collapseBrands">
+                                            <span class="text-muted text-uppercase fs-12 fw-medium">Services </span> <span class="badge bg-success rounded-pill align-middle ms-1">{{count($data['services'])}}</span>
+                                        </button>
+                                    </h2>
+
+                                    <div id="flush-collapseBrands" class="accordion-collapse collapse" aria-labelledby="flush-headingBrands" style="">
+                                        <div class="accordion-body {{(count($data['menus']) == 0) ? 'disabled':''}} text-body pt-0" id="service-list">
+                                            <div class="d-flex flex-column gap-2 mt-3">
+                                                @if(count($data['services']) !== 0)
+                                                    @foreach($data['services'] as $service)
+                                                        <div class="form-check form-check-outline form-check-success {{(in_array($service->key, $slug_to_disable)) ? 'disabled':''}}">
+                                                            <input class="form-check-input" type="checkbox" id="service-{{$service->id}}" value="{{$service->id}}" name="select-service[]" {{(count($data['menus']) == 0 || in_array($service->key, $slug_to_disable)) ? 'disabled':''}}>
+                                                            <label class="form-check-label {{(in_array($service->key, $slug_to_disable)) ? 'disabled':''}}" for="service-{{$service->id}}"> {{ucfirst($service->title)}}</label>
+                                                        </div>
+                                                    @endforeach
+                                                @else
+                                                    <div class="pb-2">
+                                                        <span class="h6">Please <a href="{{route($module.'service.index')}}">create a service</a> to add in menu.</span>
                                                     </div>
                                                 @endif
 
 
-                                            <div class="{{(count($data['pages']) == 0) ? 'disabled':''}}">
-                                                <label class="btn btn-light btn-sm bg-gradient waves-effect waves-light text-decoration-none"><input type="checkbox" id="select-all-pages" class="hidden"> Select All</label>
-                                                <button type="button" class="pull-right btn btn-light bg-gradient waves-effect waves-light btn-sm text-decoration-none pull-right" id="add-pages">Add to Menu</button>
+                                                <div class="{{(count($data['services']) == 0) ? 'disabled':''}}">
+                                                    <label class="btn btn-light btn-sm bg-gradient waves-effect waves-light text-decoration-none"><input type="checkbox" id="select-all-services" class="hidden"> Select All</label>
+                                                    <button type="button" class="pull-right btn btn-light bg-gradient waves-effect waves-light btn-sm text-decoration-none pull-right" id="add-service">Add to Menu</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingRating">
+                                        <button class="accordion-button bg-transparent shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseRating" aria-expanded="false" aria-controls="flush-collapseRating">
+                                            <span class="text-muted text-uppercase fs-12 fw-medium">Custom Links</span>
+                                        </button>
+                                    </h2>
 
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingBrands">
-                                    <button class="accordion-button bg-transparent shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseBrands" aria-expanded="false" aria-controls="flush-collapseBrands">
-                                        <span class="text-muted text-uppercase fs-12 fw-medium">Packages </span> <span class="badge bg-success rounded-pill align-middle ms-1">{{count($data['packages'])}}</span>
-                                    </button>
-                                </h2>
-
-                                <div id="flush-collapseBrands" class="accordion-collapse collapse show" aria-labelledby="flush-headingBrands" style="">
-                                    <div class="accordion-body {{(count($data['menus']) == 0) ? 'disabled':''}} text-body pt-0" id="package-list">
-                                        <div class="d-flex flex-column gap-2 mt-3">
-                                            @if(count($data['packages']) !== 0)
-                                                @foreach($data['packages'] as $package)
-                                                    <div class="form-check form-check-outline form-check-success {{(in_array($package->key, $slug_to_disable)) ? 'disabled':''}}">
-                                                        <input class="form-check-input" type="checkbox" id="packages-{{$package->id}}" value="{{$package->id}}" name="select-packages[]" {{(count($data['menus']) == 0 || in_array($package->slug, $slug_to_disable)) ? 'disabled':''}}>
-                                                        <label class="form-check-label {{(in_array($package->key, $slug_to_disable)) ? 'disabled':''}}" for="packages-{{$package->id}}"> {{ucfirst($package->title)}}</label>
+                                    <div id="flush-collapseRating" class="accordion-collapse collapse" aria-labelledby="flush-headingRating">
+                                        <div class="accordion-body text-body {{(count($data['menus']) == 0) ? 'disabled':''}}">
+                                            <div class="d-flex flex-column gap-2">
+                                                <div>
+                                                    <label for="borderInputURL" class="form-label">URL</label>
+                                                    <input type="url" name="url" class="form-control border-dashed" id="borderInputURL" placeholder="Enter your URL">
+                                                    <div class="invalid-feedback" id="custom-slug">
+                                                        Please enter the url.
                                                     </div>
-                                                @endforeach
-                                            @else
-                                                <div class="pb-2">
-                                                    <span class="h6">Please <a href="{{route($module.'activity.package.index')}}">create a package</a> to add in menu.</span>
                                                 </div>
-                                            @endif
-
-
-                                            <div class="{{(count($data['packages']) == 0) ? 'disabled':''}}">
-                                                <label class="btn btn-light btn-sm bg-gradient waves-effect waves-light text-decoration-none"><input type="checkbox" id="select-all-packages" class="hidden"> Select All</label>
-                                                <button type="button" class="pull-right btn btn-light bg-gradient waves-effect waves-light btn-sm text-decoration-none pull-right" id="add-packages">Add to Menu</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingBrands">
-                                    <button class="accordion-button bg-transparent shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseBrands" aria-expanded="false" aria-controls="flush-collapseBrands">
-                                        <span class="text-muted text-uppercase fs-12 fw-medium">Services </span> <span class="badge bg-success rounded-pill align-middle ms-1">{{count($data['services'])}}</span>
-                                    </button>
-                                </h2>
-
-                                <div id="flush-collapseBrands" class="accordion-collapse collapse" aria-labelledby="flush-headingBrands" style="">
-                                    <div class="accordion-body {{(count($data['menus']) == 0) ? 'disabled':''}} text-body pt-0" id="service-list">
-                                        <div class="d-flex flex-column gap-2 mt-3">
-                                            @if(count($data['services']) !== 0)
-                                                @foreach($data['services'] as $service)
-                                                    <div class="form-check form-check-outline form-check-success {{(in_array($service->key, $slug_to_disable)) ? 'disabled':''}}">
-                                                        <input class="form-check-input" type="checkbox" id="service-{{$service->id}}" value="{{$service->id}}" name="select-service[]" {{(count($data['menus']) == 0 || in_array($service->key, $slug_to_disable)) ? 'disabled':''}}>
-                                                        <label class="form-check-label {{(in_array($service->key, $slug_to_disable)) ? 'disabled':''}}" for="service-{{$service->id}}"> {{ucfirst($service->title)}}</label>
+                                                <div>
+                                                    <label for="borderInputURLtext" class="form-label">URL Text</label>
+                                                    <input type="url" name="url_text" class="form-control border-dashed" id="borderInputURLtext" placeholder="Enter your URL Text">
+                                                    <div class="invalid-feedback" id="custom-name">
+                                                        Please enter the url text.
                                                     </div>
-                                                @endforeach
-                                            @else
-                                                <div class="pb-2">
-                                                    <span class="h6">Please <a href="{{route($module.'service.index')}}">create a service</a> to add in menu.</span>
                                                 </div>
-                                            @endif
-
-
-                                            <div class="{{(count($data['services']) == 0) ? 'disabled':''}}">
-                                                <label class="btn btn-light btn-sm bg-gradient waves-effect waves-light text-decoration-none"><input type="checkbox" id="select-all-services" class="hidden"> Select All</label>
-                                                <button type="button" class="pull-right btn btn-light bg-gradient waves-effect waves-light btn-sm text-decoration-none pull-right" id="add-service">Add to Menu</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-{{--                            <div class="accordion-item">--}}
-{{--                                <h2 class="accordion-header" id="flush-headingDiscount">--}}
-{{--                                    <button class="accordion-button bg-transparent shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseDiscount" aria-expanded="true" aria-controls="flush-collapseDiscount">--}}
-{{--                                        <span class="text-muted text-uppercase fs-12 fw-medium">Posts</span> <span class="badge bg-success rounded-pill align-middle ms-1">{{count($blogs)}}</span>--}}
-{{--                                    </button>--}}
-{{--                                </h2>--}}
-{{--                                <div id="flush-collapseDiscount" class="accordion-collapse collapse" aria-labelledby="flush-headingDiscount">--}}
-{{--                                    <div class="accordion-body {{(count($menus) == 0) ? 'disabled':''}} text-body pt-1"  id="posts-list">--}}
-{{--                                        <div class="d-flex flex-column gap-2">--}}
-{{--                                            @if(count($blogs) !== 0)--}}
-{{--                                                @foreach($blogs as $blog)--}}
-{{--                                                    <div class="form-check form-check-outline form-check-success {{(in_array($blog->slug, $slug_to_disable)) ? 'disabled':''}}">--}}
-{{--                                                        <input class="form-check-input" name="select-post[]" value="{{$blog->id}}" type="checkbox" id="posts-{{$blog->id}}" {{(count($menus) == 0 || in_array($blog->slug, $slug_to_disable)) ? 'disabled':''}} >--}}
-{{--                                                        <label class="form-check-label {{(in_array($blog->slug, $slug_to_disable)) ? 'disabled':''}}" for="posts-{{$blog->id}}">--}}
-{{--                                                            {{$blog->title}}--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                @endforeach--}}
-{{--                                            @else--}}
-{{--                                                <div class="pb-2">--}}
-{{--                                                    <span class="h6">Please <a href="{{route('blog.index')}}">create a blog</a> to add in menu.</span>--}}
-{{--                                                </div>--}}
-{{--                                            @endif--}}
-{{--                                                <div  class="{{(count($blogs) == 0) ? 'disabled':''}}">--}}
-{{--                                                    <label class="btn btn-light bg-gradient waves-effect waves-light btn-sm text-decoration-none"><input type="checkbox" id="select-all-posts" class="hidden"> Select All</label>--}}
-{{--                                                    <button type="button" class="pull-right btn btn-light bg-gradient waves-effect waves-light btn-sm text-decoration-none pull-right" id="add-posts">Add to Menu</button>--}}
-{{--                                                </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingRating">
-                                    <button class="accordion-button bg-transparent shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseRating" aria-expanded="false" aria-controls="flush-collapseRating">
-                                        <span class="text-muted text-uppercase fs-12 fw-medium">Custom Links</span>
-                                    </button>
-                                </h2>
-
-                                <div id="flush-collapseRating" class="accordion-collapse collapse" aria-labelledby="flush-headingRating">
-                                    <div class="accordion-body text-body {{(count($data['menus']) == 0) ? 'disabled':''}}">
-                                        <div class="d-flex flex-column gap-2">
-                                            <div>
-                                                <label for="borderInputURL" class="form-label">URL</label>
-                                                <input type="url" name="url" class="form-control border-dashed" id="borderInputURL" placeholder="Enter your URL">
-                                                <div class="invalid-feedback" id="custom-slug">
-                                                    Please enter the url.
+                                                <div class="{{(count($data['menus']) == 0) ? 'disabled':''}}">
+                                                    <button type="button" class="pull-right btn btn-light bg-gradient waves-effect waves-light btn-sm text-decoration-none pull-right" id="add-custom-link">Add to Menu</button>
                                                 </div>
-                                            </div>
-                                            <div>
-                                                <label for="borderInputURLtext" class="form-label">URL Text</label>
-                                                <input type="url" name="url_text" class="form-control border-dashed" id="borderInputURLtext" placeholder="Enter your URL Text">
-                                                <div class="invalid-feedback" id="custom-name">
-                                                    Please enter the url text.
-                                                </div>
-                                            </div>
-                                            <div class="{{(count($data['menus']) == 0) ? 'disabled':''}}">
-                                                <button type="button" class="pull-right btn btn-light bg-gradient waves-effect waves-light btn-sm text-decoration-none pull-right" id="add-custom-link">Add to Menu</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- end card -->
                     </div>
-                    <!-- end card -->
                 </div>
                 <!-- end col -->
 

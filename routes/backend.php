@@ -136,9 +136,8 @@ Route::resource('service', ServiceController::class)->names('service');
 
 //for menu
 Route::get('/add-page-to-menu',[MenuController::class,'addPage'])->name('menu.page');
-Route::get('/add-package-to-menu',[MenuController::class,'addPackage'])->name('menu.package');
 Route::get('/add-service-to-menu',[MenuController::class,'addService'])->name('menu.service');
-Route::get('add-post-to-menu',[MenuController::class,'addPost'])->name('menu.post');
+Route::get('add-blog-to-menu',[MenuController::class,'addBlog'])->name('menu.blog');
 Route::get('add-custom-link',[MenuController::class,'addCustomLink'])->name('menu.custom');
 Route::get('/update-menu',[MenuController::class,'updateMenu'])->name('menu.updateMenu');
 Route::post('/update-menuitem/{id}',[MenuController::class,'updateMenuItem'])->name('menu.update_menu_item');

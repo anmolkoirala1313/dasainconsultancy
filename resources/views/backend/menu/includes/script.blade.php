@@ -84,18 +84,6 @@
         }
     });
 
-    $('#select-all-packages').click(function(event) {
-        if(this.checked) {
-            $('#package-list :checkbox:not(:disabled)').each(function() {
-                this.checked = true;
-            });
-        }else{
-            $('#package-list :checkbox:not(:disabled)').each(function() {
-                this.checked = false;
-            });
-        }
-    });
-
     $('#select-all-services').click(function(event) {
         if(this.checked) {
             $('#service-list :checkbox:not(:disabled)').each(function() {
@@ -108,13 +96,13 @@
         }
     });
 
-    $('#select-all-posts').click(function(event) {
+    $('#select-all-blogs').click(function(event) {
         if(this.checked) {
-            $('#posts-list :checkbox:not(:disabled)').each(function() {
+            $('#blogs-list :checkbox:not(:disabled)').each(function() {
                 this.checked = true;
             });
         }else{
-            $('#posts-list :checkbox:not(:disabled)').each(function() {
+            $('#blogs-list :checkbox:not(:disabled)').each(function() {
                 this.checked = false;
             });
         }
@@ -149,11 +137,10 @@
         });
     });
 
-    $('#add-packages').click(function(){
-        console.log('clicked');
+    $('#add-blogs').click(function(){
         var menuid  = "{{$data['desiredMenu']->id}}";
-        var n       = $('input[name="select-packages[]"]:checked').length;
-        var array   = $('input[name="select-packages[]"]:checked');
+        var n       = $('input[name="select-blogs[]"]:checked').length;
+        var array   = $('input[name="select-blogs[]"]:checked');
         var ids     = [];
 
         if(n == 0){
@@ -171,7 +158,7 @@
         $.ajax({
             type:"get",
             data: {menuid:menuid,ids:ids},
-            url: "{{route($base_route.'package')}}",
+            url: "{{route($base_route.'blog')}}",
             success:function(res){
                 location.reload();
             }
@@ -204,35 +191,6 @@
                 location.reload();
             }
         });
-    });
-
-    $('#add-posts').click(function(){
-        var menuid  = "{{$data['desiredMenu']->id}}";
-        var n       = $('input[name="select-post[]"]:checked').length;
-        var array   = $('input[name="select-post[]"]:checked');
-        var ids     = [];
-
-        if(n == 0){
-            return false;
-        }
-
-        for(var i=0;i<n;i++){
-            ids[i] =  array.eq(i).val();
-        }
-
-        if(ids.length == 0){
-            return false;
-        }
-
-        $.ajax({
-            type:"get",
-            data: {menuid:menuid,ids:ids},
-            url: "{{route($base_route.'post')}}",
-            success:function(res){
-                location.reload();
-            }
-        });
-
     });
 
     $("#add-custom-link").click(function(){

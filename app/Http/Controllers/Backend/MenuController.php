@@ -229,28 +229,28 @@ class MenuController extends BackendBaseController
         }
     }
 
-    public function addPackage(Request $request){
+    public function addBlog(Request $request){
         $menuid     = $request->menuid;
         $ids        = $request->ids;
         $menu       = $this->model->findOrFail($menuid);
         if($menu->content == null){
             $olddata = [];
             foreach($ids as $id){
-                $package = Package::find($id);
+                $post = Blog::find($id);
                 $data = [
-                    'title'          => $package->title,
-                    'slug'           => $package->key,
+                    'title'          => $post->title,
+                    'slug'           => $post->key,
                     'package_id'     => $id,
-                    'type'           => 'package',
+                    'type'           => 'post',
                     'menu_id'        => $menuid,
                     'created_by'     => Auth::user()->id,
                 ];
                 $array = [
-                    'title'          => $package->title,
-                    'slug'           => $package->key,
+                    'title'          => $post->title,
+                    'slug'           => $post->key,
                     'package_id'     => $id,
-                    'type'           => 'package',
-                    'id'             => MenuItem::where('slug',$package->key)->where('type','package')->value('id'),
+                    'type'           => 'post',
+                    'id'             => MenuItem::where('slug',$post->key)->where('type','post')->value('id'),
                     'children'       => [[]],
                 ];
                 array_push($olddata,$array);
@@ -261,23 +261,23 @@ class MenuController extends BackendBaseController
         else{
             $olddata = json_decode($menu->content,true);
             foreach($ids as $id){
-                $package = Package::find($id);
+                $post = Blog::find($id);
                 $data =[
-                    'title'         => $package->title,
-                    'slug'          => $package->key,
+                    'title'         => $post->title,
+                    'slug'          => $post->key,
                     'package_id'    => $id,
-                    'type'          => 'package',
+                    'type'          => 'post',
                     'menu_id'       => $menuid,
                     'created_by'    => Auth::user()->id,
                 ];
                 $status = MenuItem::create($data);
             }
             foreach($ids as $id){
-                $package = Package::find($id);
-                $array['title']         = $package->title;
-                $array['slug']          = $package->key;
+                $post = Blog::find($id);
+                $array['title']         = $post->title;
+                $array['slug']          = $post->key;
                 $array['package_id']    = $id;
-                $array['type']          = 'package';
+                $array['type']          = 'post';
                 $array['id']            = MenuItem::where('slug',$array['slug'])->where('type',$array['type'])->value('id');
                 $array['children']      = [[]];
                 array_push($olddata[0],$array);
@@ -287,9 +287,9 @@ class MenuController extends BackendBaseController
         }
 
         if($status){
-            Session::flash('success','Package added in '.$this->page);
+            Session::flash('success','Blog added in '.$this->page);
         }else{
-            Session::flash('error','Package could not be added in '.$this->page);
+            Session::flash('error','Blog could not be added in '.$this->page);
         }
     }
 
