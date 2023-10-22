@@ -143,10 +143,17 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'formbuilder::forms.index' || \Request::route()->getName() == 'formbuilder::forms.create' || \Request::route()->getName() == 'formbuilder::forms.edit') active @endif" href="{{route('formbuilder::forms.index')}}">
+                        <i class="ri-pages-line"></i> <span data-key="t-widgets">Forms</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link {{request()->route()->getName() == 'backend.service.index' ? 'active':''}}" href="{{route('backend.service.index')}}">
                         <i class="ri-shopping-bag-line"></i> <span data-key="t-widgets">Service</span>
                     </a>
                 </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link {{request()->route()->getName() == 'backend.customer-inquiry.index' ? 'active':''}}" href="{{route('backend.customer-inquiry.index')}}">
