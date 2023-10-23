@@ -16,7 +16,7 @@ Dropzone.options.myDropzone = {
         var myDropzone = this;
         // console.log(album_id);
         $.ajax({
-            url: "/adminsite/album-gallery/" + album_id,
+            url: "/administration/album/get-gallery/" + album_id,
             type: 'GET',
             dataType: 'json',
             success: function(data) {
@@ -50,17 +50,21 @@ Dropzone.options.myDropzone = {
                 });
                 $.ajax({
                     type: 'POST',
-                    url: '/adminsite/album-gallery/image-delete',
+                    url: '/administration/album/image-delete',
                     data: { filename: name },
                     success: function(data) {
                         total_photos_counter--;
                         $("#counter").text("# " + total_photos_counter);
                         // alert(data.success +" Image has been successfully removed!");
-                        toastr.options = {
-                            "closeButton": true,
-                            "progressBar": true
-                        }
-                        toastr.success(data.success + " Image has been successfully removed!");
+                        Toastify({
+                            newWindow: !0,
+                            text: "Image has been successfully removed!",
+                            gravity: 'top',
+                            position: 'right',
+                            stopOnFocus: !0,
+                            duration: 5000,
+                            close: "close",
+                            className: "bg-success mt-5" }).showToast();
                     },
                     error: function(e) {
                         $('.invalid-feedback').show();

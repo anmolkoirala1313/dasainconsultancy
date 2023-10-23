@@ -190,6 +190,10 @@ Route::resource('client', ClientController::class)->names('client');
 
 
 //Album
+Route::put('/album-upload-gallery/{id}', [AlbumController::class,'uploadGallery'])->name('album.gallery-update');
+Route::post('/album/image-delete', [AlbumController::class,'deleteGallery'])->name('album.gallery-delete');
+Route::get('/album/get-gallery/{id}', [AlbumController::class,'getGallery'])->name('album.gallery-display');
+Route::get('/album/gallery/{key}', [AlbumController::class,'gallery'])->name('album.gallery');
 Route::get('/album/trash', [AlbumController::class,'trash'])->name('album.trash');
 Route::post('/album/trash/{id}/restore', [AlbumController::class,'restore'])->name('album.restore');
 Route::delete('/album/trash/{id}/remove', [AlbumController::class,'removeTrash'])->name('album.remove-trash');

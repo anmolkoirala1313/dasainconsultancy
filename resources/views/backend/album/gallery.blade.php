@@ -32,7 +32,7 @@
                             <h2 class="page-heading">Upload your Images <span id="counter"></span></h2>
                             <div class="invalid-feedback">    </div>
                             <script type="text/javascript">
-                                var package_id = "{{$data['row']->id}}";
+                                var album_id = "{{$data['row']->id}}";
                             </script>
                             {!! Form::open(['url'=>route($base_route.'gallery-update', $data['row']->id),'method'=>'PUT','class'=>'dropzone','id'=>'myDropzone','enctype'=>'multipart/form-data']) !!}
                             <div class="dz-message">
