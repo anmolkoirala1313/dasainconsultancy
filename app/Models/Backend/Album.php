@@ -16,6 +16,6 @@ class Album extends BackendBaseModel
     protected $fillable = ['id','title','slug','image','status','created_by','updated_by'];
 
     public function albumGallery(){
-        $this->hasMany(AlbumGallery::class,'album_id','id');
+       return $this->hasMany(AlbumGallery::class,'album_id','id');
     }
 }

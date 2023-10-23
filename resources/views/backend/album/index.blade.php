@@ -38,6 +38,7 @@
                                         <th>S.N</th>
                                         <th>Image</th>
                                         <th>Title</th>
+                                        <th>Gallery Images</th>
                                         <th>Status</th>
                                         <th class="text-right">Action</th>
                                     </tr>
@@ -59,6 +60,7 @@
                                                 </div>
                                             </td>
                                             <td>{{ $row->title }}</td>
+                                            <td>{{ count($row->albumGallery ?? 0) }}</td>
                                             <td>
                                                 @include($module.'includes.status_display',['status'=>$row->status])
                                             </td>
