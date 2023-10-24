@@ -288,6 +288,8 @@ if (!function_exists('get_page_section_icons')) {
             $icon = 'ri-list-check-2';
         } else if($value == 'small_box_description'){
             $icon = 'ri-inbox-line';
+        } else if($value == 'background_image_section'){
+            $icon = 'ri-screenshot-2-line';
         }else{
             $icon = 'ri-flag-line';
         }

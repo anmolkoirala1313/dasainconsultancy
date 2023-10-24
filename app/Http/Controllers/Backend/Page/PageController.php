@@ -7,6 +7,7 @@ use App\Http\Requests\Backend\PageRequest;
 use App\Models\Backend\Page\Page;
 use App\Services\PageService;
 use App\Traits\ControllerOps;
+use App\Traits\Status;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -18,11 +19,11 @@ use Illuminate\Support\Facades\Session;
 
 class PageController extends BackendBaseController
 {
-    use ControllerOps;
+    use ControllerOps, Status;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.page.';
     protected string $view_path     = 'backend.page.';
-    protected string $page         = 'Page';
+    protected string $page          = 'Page';
     protected string $folder_name   = 'page';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;

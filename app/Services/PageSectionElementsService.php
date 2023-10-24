@@ -2,18 +2,28 @@
 
 namespace App\Services;
 
+use App\Http\Controllers\Backend\BackendBaseController;
 use App\Models\Backend\Page\PageSection;
 use App\Models\Backend\Page\PageSectionElement;
+use App\Traits\ImageUpload;
 use Yajra\DataTables\DataTables;
 
 
 class PageSectionElementsService {
 
+    use ImageUpload;
     protected object $model;
+    protected string $image_path;
 
-    public function __construct(DataTables $dataTables)
+    protected string $module        = 'backend.';
+    protected string $base_route    = 'backend.page.';
+    protected string $folder_name   = 'section_element';
+
+    public function __construct()
     {
         $this->model            = new PageSectionElement();
+        $this->image_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
+
     }
 
     public function syncSectionElements($request,$data)
@@ -58,6 +68,7 @@ class PageSectionElementsService {
                 $image_name = $this->uploadImage($request->file('image_input'), '550','450');
                 $request->request->add(['image' => $image_name]);
             }
+
             $this->model->create($request->all());
         }
     }

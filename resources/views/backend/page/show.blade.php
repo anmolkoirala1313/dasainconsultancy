@@ -37,14 +37,16 @@
 
                     <div class="row">
                         <div class="col-lg-2">
-                            <div class="nav nav-pills flex-column nav-pills-tab custom-verti-nav-pills text-center" role="tablist" aria-orientation="vertical">
-                                @foreach($data['page_section'] as $key=>$value)
-                                    <a class="nav-link {{ $loop->first ? 'active show':'' }}" id="custom-v-pills-{{$value}}-tab" data-bs-toggle="pill" href="#custom-v-pills-{{$value}}"
-                                       role="tab" aria-controls="custom-v-pills-{{$value}}" aria-selected="true">
-                                        <i class="{{ get_page_section_icons($value) }} d-block fs-20 mb-1"></i>
-                                        {{ucfirst(str_replace('_',' ',$value))}}
-                                    </a>
-                                @endforeach
+                            <div class="sticky-side-div">
+                                <div class="nav nav-pills flex-column nav-pills-tab custom-verti-nav-pills text-center" role="tablist" aria-orientation="vertical">
+                                    @foreach($data['page_section'] as $key=>$value)
+                                        <a class="nav-link {{ $loop->first ? 'active show':'' }}" id="custom-v-pills-{{$value}}-tab" data-bs-toggle="pill" href="#custom-v-pills-{{$value}}"
+                                           role="tab" aria-controls="custom-v-pills-{{$value}}" aria-selected="true">
+                                            <i class="{{ get_page_section_icons($value) }} d-block fs-20 mb-1"></i>
+                                            {{ucfirst(str_replace('_',' ',$value))}}
+                                        </a>
+                                    @endforeach
+                                </div>
                             </div>
                         </div> <!-- end col-->
                         <div class="col-lg-10">
@@ -59,6 +61,9 @@
                                         @endif
                                         @if($value == 'call_to_action')
                                             @include($view_path.'includes.call_to_action')
+                                        @endif
+                                        @if($value == 'background_image_section')
+                                            @include($view_path.'includes.background_image_section')
                                         @endif
                                         @if($value == 'faq')
                                             @include($view_path.'includes.faq')

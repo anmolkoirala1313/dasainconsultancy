@@ -24,7 +24,7 @@ class PageSectionElementController extends BackendBaseController
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.page.';
     protected string $view_path     = 'backend.page.';
-    protected string $page         = 'Page section elements';
+    protected string $page          = 'Page section elements';
     protected string $folder_name   = 'section_element';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
@@ -75,6 +75,7 @@ class PageSectionElementController extends BackendBaseController
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
+            dd($e);
             Session::flash('error',$data['section'].' was not created. Something went wrong.');
         }
 
@@ -107,6 +108,7 @@ class PageSectionElementController extends BackendBaseController
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
+            dd($e);
             Session::flash('error',$data['section'].' was not updated. Something went wrong.');
         }
 
@@ -131,6 +133,7 @@ class PageSectionElementController extends BackendBaseController
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
+            dd($e);
             Session::flash('error',$data['section'].' was not updated. Something went wrong.');
         }
 

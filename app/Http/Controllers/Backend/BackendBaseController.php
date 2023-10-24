@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Backend\Activity\Country;
-use App\Models\Backend\Activity\PackageCategory;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Session;
+use App\Traits\ImageUpload;
 use Illuminate\Support\Facades\View;
-use Intervention\Image\Facades\Image;
 
 class BackendBaseController extends Controller
 {
+    use ImageUpload;
+
     protected function loadResource($path){
         View::composer($path, function ($view){
             $view->with('base_route', $this->base_route);
@@ -51,44 +48,5 @@ class BackendBaseController extends Controller
         return $path;
     }
 
-    protected function generalUploadImage($image,$width,$height){
-        $name        = $this->folder_name.'/'.uniqid().$image->getClientOriginalName();
-        if (!is_dir($this->image_path.$this->folder_name)) {
-            File::makeDirectory($this->image_path.$this->folder_name, 0777, true);
-        }
-        $status = Image::make($image->getRealPath())->orientate();
-        if($width && $height){
-            $status = $status->fit($width,$height);
-        }
-        $status = $status->save($this->image_path.$name);
 
-        return ['status'=>$status, 'name'=>$name];
-    }
-
-
-    protected function uploadImage($image,$width=null,$height=null)
-    {
-        $result = $this->generalUploadImage($image,$width,$height);
-        if ($result['status']) {
-            return $result['name'];
-        }
-    }
-
-    protected function updateImage($image,$image_name=null,$width=null,$height=null)
-    {
-        $result = $this->generalUploadImage($image,$width,$height);
-        if ($result['status']) {
-            if (!empty($image_name) && file_exists($this->image_path.$image_name)){
-                @unlink($this->image_path.$image_name);
-            }
-            return $result['name'];
-        }
-    }
-
-    protected function deleteImage($image)
-    {
-        if (!empty($image) && file_exists($this->image_path.$image)){
-            @unlink($this->image_path.DIRECTORY_SEPARATOR.$image);
-        }
-    }
 }
