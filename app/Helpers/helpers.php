@@ -290,6 +290,8 @@ if (!function_exists('get_page_section_icons')) {
             $icon = 'ri-inbox-line';
         } else if($value == 'background_image_section'){
             $icon = 'ri-screenshot-2-line';
+        } else if($value == 'map_and_description'){
+            $icon = 'ri-map-2-line';
         }else{
             $icon = 'ri-flag-line';
         }
