@@ -17,7 +17,7 @@ Dropzone.options.myDropzone2 = {
 
         // console.log(page_section_id_2);
         $.ajax({
-            url: "/adminsite/section-element/gallery2/" + page_section_id_2,
+            url: "/administration/section-element/gallery2/" + page_section_id_2,
             type: 'GET',
             dataType: 'json',
             success: function(data) {
@@ -46,7 +46,7 @@ Dropzone.options.myDropzone2 = {
                 console.log(name);
                 $.ajax({
                     type: 'POST',
-                    url: '/adminsite/section-element/image2-delete',
+                    url: '/administration/section-element/image2-delete',
                     data: { filename: name, _token: $('[name="_token"]').val() },
                     success: function(data) {
                         total_photos_counter2--;

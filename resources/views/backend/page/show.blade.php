@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 mb-3">
                             <div class="sticky-side-div">
                                 <div class="nav nav-pills flex-column nav-pills-tab custom-verti-nav-pills text-center" role="tablist" aria-orientation="vertical">
                                     @foreach($data['page_section'] as $key=>$value)

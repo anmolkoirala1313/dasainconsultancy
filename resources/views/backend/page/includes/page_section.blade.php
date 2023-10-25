@@ -130,35 +130,33 @@
 
                     </div>
                 </div>
+                <div class="card shadow-none">
+                    <div class="card-header">
+                        <h5 class="card-title text-primary mb-0">Gallery Section</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {!! Form::label('gallery_title', 'Title', ['class' => 'form-label']) !!}
+                                    {!! Form::text('gallery_title', $page_method == 'edit' ?  ($data['gallery'] ? $data['gallery']->list_number_1:null):null,['class'=>'form-control','id'=>'gallery_title','placeholder'=>'Gallery Subtitle']) !!}
+                                </div>
+                                <div class="form-group mt-2">
+                                    {!! Form::label('gallery_subtitle', 'Subtitle', ['class' => 'form-label']) !!}
+                                    {!! Form::text('gallery_subtitle', $page_method == 'edit' ?  ($data['gallery'] ? $data['gallery']->list_number_2:null):null,['class'=>'form-control','id'=>'gallery_subtitle','placeholder'=>'Gallery Subtitle']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <label class="image-checkbox {{ $page_method == 'edit' ? (in_array('gallery', $data['section_slug']) ? "image-checkbox-checked":"") : ''}}">
+                                    <img class="img-responsive" src="{{asset('assets/backend/images/pages/sections/gallery.png')}}" width="100%"/>
+                                    <input type="checkbox" name="section[]" value="gallery" id="gallery.png" {{ $page_method == 'edit' ? (in_array('gallery', $data['section_slug']) ? "checked":"") : ''}} />
+                                    <i class="ri ri-check-line hidden"></i>
+                                </label>
+                            </div>
+                        </div>
 
-
-{{--                <div class="card shadow-none">--}}
-{{--                    <div class="card-header">--}}
-{{--                        <h5 class="card-title text-primary mb-0">Gallery Section</h5>--}}
-{{--                    </div>--}}
-{{--                    <div class="card-body">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-12">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    {!! Form::label('gallery_title', 'Title', ['class' => 'form-label']) !!}--}}
-{{--                                    {!! Form::text('gallery_title', $page_method == 'edit' ?  ($data['gallery'] ? $data['gallery']->list_number_1:null):null,['class'=>'form-control','id'=>'gallery_title','placeholder'=>'Gallery Subtitle']) !!}--}}
-{{--                                </div>--}}
-{{--                                <div class="form-group mt-2">--}}
-{{--                                    {!! Form::label('gallery_subtitle', 'Subtitle', ['class' => 'form-label']) !!}--}}
-{{--                                    {!! Form::text('gallery_subtitle', $page_method == 'edit' ?  ($data['gallery'] ? $data['gallery']->list_number_2:null):null,['class'=>'form-control','id'=>'gallery_subtitle','placeholder'=>'Gallery Subtitle']) !!}--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-12 mt-2">--}}
-{{--                                <label class="image-checkbox {{ $page_method == 'edit' ? (in_array('gallery', $data['section_slug']) ? "image-checkbox-checked":"") : ''}}">--}}
-{{--                                    <img class="img-responsive" src="{{asset('assets/backend/images/pages/sections/gallery.png')}}" width="100%"/>--}}
-{{--                                    <input type="checkbox" name="section[]" value="gallery" id="gallery.png" {{ $page_method == 'edit' ? (in_array('gallery', $data['section_slug']) ? "checked":"") : ''}} />--}}
-{{--                                    <i class="ri ri-check-line hidden"></i>--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-{{--                </div>--}}
+                    </div>
+                </div>
 
             </div>
         </div>

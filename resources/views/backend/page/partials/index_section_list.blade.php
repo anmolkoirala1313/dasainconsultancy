@@ -1,8 +1,11 @@
-@if(count($params['page']->pageSections)>0)
-
-    @foreach($params['page']->pageSections as $section)
-        <span class="text-primary">{{ucfirst($section->title)}} {{ $loop->last ? '':', ' }}</span>
+@if(count($params['page'])>0)
+    <ul class="list-group">
+    @foreach($params['page'] as $chunk)
+        <li class="list-group-item">
+            {{ trim(implode(', ', array_map('ucfirst', $chunk)), ', ') }}
+        </li>
     @endforeach
+    </ul>
 @else
     <span> No sections chosen </span>
 @endif

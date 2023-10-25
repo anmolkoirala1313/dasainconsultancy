@@ -4,13 +4,14 @@ namespace App\Services;
 
 use App\Models\Backend\Page\Page;
 use App\Models\Backend\Page\PageSection;
+use App\Traits\ImageUpload;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 
 class PageService {
 
-
+    use ImageUpload;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.page.';
     protected string $view_path     = 'backend.page.';
@@ -31,7 +32,7 @@ class PageService {
         return $this->dataTables->eloquent($query)
             ->editColumn('section',function ($item){
                 $params = [
-                    'page'    => $item,
+                    'page'    => array_chunk($item->pageSections->pluck('title')->toArray(), 5),
                 ];
                 return view($this->view_path.'partials.index_section_list', compact('params'));
             })
@@ -64,7 +65,6 @@ class PageService {
 
     public function syncSections($request,$page, $db_section_slug=[])
     {
-
         $sorted_sections = $request['sorted_sections'];
         $section_position = $request['position'];
 
@@ -72,68 +72,49 @@ class PageService {
         $faq_list = $request['faq_list'] ?? 1;
 
         //gallery section heading
-        $gallery_heading = $request['gallery_title'];
+        $gallery_heading    = $request['gallery_title'];
         $gallery_subheading = $request['gallery_subtitle'];
 
         if ($sorted_sections) {
             foreach ($sorted_sections as $key => $section) {
                 $section_name = str_replace("_", " ", $section);
                 if ($section == 'faq') {
-                    $data = [
-                        'page_id' => $page->id,
-                        'title' => $section_name,
-                        'slug' => $section,
+                    PageSection::updateOrCreate(
+                        [   'page_id'=>$page->id,
+                            'slug' => $section
+                        ], [
+                        'title'         => $section_name,
                         'list_number_1' => $faq_list,
-                        'position' => $section_position[$key],
-                        'status' => $request['status']
-                    ];
-                    if (!in_array($section, $db_section_slug)) {
-                        $data['created_by'] = $request['created_by'];
-                        PageSection::create($data);
-                    } else {
-                        $data['updated_by'] = $request['updated_by'];
-                        $update = PageSection::where('page_id', $request['page_id'])->where('slug', $section)->first();
-                        $update->update($data);
-                    }
-
-
+                        'position'      => $section_position[$key],
+                        'status'        => $request['status'],
+                        'created_by'    => $request['created_by'],
+                        'updated_by'    => $request['updated_by']
+                    ]);
                 }
                 elseif ($section == 'gallery') {
-                    $data = [
-                        'page_id' => $page->id,
-                        'title' => $section_name,
-                        'slug' => $section,
+                    PageSection::updateOrCreate(
+                        [   'page_id'=>$page->id,
+                            'slug' => $section
+                        ], [
+                        'title'         => $section_name,
                         'list_number_1' => $gallery_heading,
                         'list_number_2' => $gallery_subheading,
-                        'position' => $section_position[$key],
-                    ];
-                    if (!in_array($section, $db_section_slug)) {
-                        $data['created_by'] = $request['created_by'];
-                        PageSection::create($data);
-                    } else {
-                        $data['updated_by'] = $request['updated_by'];
-                        $update = PageSection::where('page_id', $request['page_id'])->where('slug', $section)->first();
-                        $update->update($data);
-                    }
+                        'position'      => $section_position[$key],
+                        'created_by'    => $request['created_by'],
+                        'updated_by'    => $request['updated_by']
+                    ]);
                 }
                 else {
-//                    dd($section);
-
-                    $data = [
-                        'page_id'   => $page->id,
+                    PageSection::updateOrCreate(
+                        [   'page_id'=>$page->id,
+                            'slug' => $section
+                        ],[
                         'title'     => $section_name,
-                        'slug'      => $section,
                         'position'  => $section_position[$key],
-                        'status'    => $request['status']
-                    ];
-                    if (!in_array($section, $db_section_slug)) {
-                        $data['created_by'] = $request['created_by'];
-                        PageSection::create($data);
-                    } else {
-                        $data['updated_by'] = $request['updated_by'];
-                        $update = PageSection::where('page_id', $request['page_id'])->where('slug', $section)->first();
-                        $update->update($data);
-                    }
+                        'status'    => $request['status'],
+                         'created_by'    => $request['created_by'],
+                        'updated_by'    => $request['updated_by']
+                    ]);
                 }
             }
 
