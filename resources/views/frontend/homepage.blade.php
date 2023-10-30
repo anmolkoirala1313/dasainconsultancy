@@ -4,288 +4,1030 @@
 
 @endsection
 @section('content')
-<main id="content">
-    <section>
-        <div class="slick-slider mx-0 custom-arrow-center" data-slick-options='{"slidesToShow": 1, "autoplay":true,"autoplaySpeed": 9000,"responsive":[{"breakpoint": 2900,"settings": {"slidesToShow":1,"arrows":false,"dots":false}},{"breakpoint": 992,"settings": {"slidesToShow":1,"arrows":false,"dots":false}},{"breakpoint": 768,"settings": {"slidesToShow": 1,"arrows":false,"dots":false}},{"breakpoint": 576,"settings": {"slidesToShow": 1,"arrows":false,"dots":false}}]}'>
-            @foreach($data['sliders']  as $slider)
-                <div class="box px-0 d-flex flex-column">
-                    <div style="background-image: linear-gradient(180deg, rgba(24, 26, 32, 0) 0%, #181A20 100%), url({{ asset(imagePath($slider->image)) }});" class="py-lg-14 py-11 bg-cover">
-                        <div class="container mt-lg-9 zoomIn animated text-center" data-animate="zoomIn">
-                            <p class="mb-1 text-white text-center fs-md-22 fs-16 font-weight-600">{{ $slider->subtitle ?? '' }}</p>
-                            <h2 class="text-white text-center display-2 font-weight-light mb-4">{{ $slider->title ?? '' }}</h2>
-                            @if($slider->link)
-                                <a href="{{ $slider->link ?? '' }}" class="btn btn-lg btn-primary font-weight-600 rounded-lg mb-8 zoomIn animated" data-animate="zoomIn">
-                                    {{ $slider->link ?? 'View More' }} <i class="far fa-long-arrow-right ml-2"></i></a>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </section>
 
-    <section>
-        <div class="container">
-            <div class="mt-n12 px-6 py-3 rounded-lg form-search-02 position-relative z-index-3">
-                <section class="col-lg-12">
-                    <div class="collapse-tabs">
-                        <ul class="nav nav-tabs tabs-04 d-md-flex d-none" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link fs-16 active" data-toggle="tab" href="#details" role="tab">
-                                    Flight</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fs-16" data-toggle="tab" href="#facts" role="tab">Tour</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content  bg-white px-6 py-3 shadow-sm-4 form-search-02 position-relative z-index-3">
-                            <div id="collapse-tabs-accordion-01">
-                                <div class="tab-pane tab-pane-parent fade show active mb-md-0 mb-2" id="details" role="tabpanel">
-                                    @include($module.'includes.flight_tab')
-                                </div>
-                                <div class="tab-pane tab-pane-parent fade" id="facts" role="tabpanel">
-                                    @include($module.'includes.tour_tab')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </section>
+    <!-- Main Sllider Start -->
+    <section class="main-slider-three">
+        <div class="main-slider-three__carousel owl-carousel owl-theme thm-owl__carousel"
+             data-owl-options='{"loop": true, "items": 1, "navText": ["<span class=\"icon-left-arrow\"></span>","<span class=\"icon-right-arrow\"></span>"], "margin": 0, "dots": true, "nav": false, "animateOut": "slideOutDown", "animateIn": "fadeIn", "active": true, "smartSpeed": 1000, "autoplay": true, "autoplayTimeout": 7000, "autoplayHoverPause": false}'>
 
-    @if(count($data['all_packages'])>0)
-        <section class="pt-lg-12 pb-lg-10 py-11">
-            <div class="container container-xxl">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2 class="text-heading">Best Properties For Sale</h2>
-                        <span class="heading-divider"></span>
-                        <p class="mb-6">Lorem ipsum dolor sit amet, consec tetur cing elit. Suspe ndisse suscipit</p>
-                    </div>
-                    <div class="col-md-6 text-md-right">
-                        <a href="{{ route('frontend.activity.index') }}" class="btn fs-14 text-secondary btn-accent py-3 lh-15 px-7 mb-6 mb-lg-0">
-                            View All Activities
-                            <i class="far fa-long-arrow-right ml-1"></i>
-                        </a>
-                    </div>
+            <div class="item main-slider-three__slide-1">
+
+                <div class="main-slider-three__img">
+                    <img src="assets/images/resources/main-slider-three-img-1.png" alt="">
                 </div>
-                <div class="row mt-3">
-                    @foreach($data['all_packages'] as $package)
-                        <div class="col-lg-4 box pb-7 pt-2">
-                            <div class="card shadow-hover-2" data-animate="zoomIn">
-                                <div class="hover-change-image bg-hover-overlay rounded-lg card-img-top">
-                                    <img class="lazy" data-src="{{ asset(imagePath($package->image)) }}" alt="Home in Metric Way">
-                                    <div class="card-img-overlay p-2 d-flex flex-column">
-                                        @if($package->package_ribbon_id)
-                                            <div>
-                                               <span class="badge mr-2 badge-orange {{$package->packageRibbon->key ?? ''}}">{{$package->packageRibbon->title ?? ''}}</span>
-                                            </div>
-                                        @endif
-                                        <ul class="list-inline mb-0 mt-auto hover-image">
-                                            @if(count( $package->packageGalleries ) !== 0)
-                                                <li class="list-inline-item mr-2" data-toggle="tooltip" title="{{count( $package->packageGalleries )}} Images">
-                                                    <a href="#" class="text-white hover-primary">
-                                                        <i class="far fa-images"></i><span class="pl-1">
-                                                            {{ count( $package->packageGalleries ) }}
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            @endif
-                                            @if($package->video)
-                                                <li class="list-inline-item" data-toggle="tooltip" title="1 Video">
-                                                    <a href="{{ route('frontend.activity.show',$package->slug) }}" class="text-white hover-primary">
-                                                        <i class="far fa-play-circle"></i><span class="pl-1">1</span>
-                                                    </a>
-                                                </li>
-                                            @endif
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-3">
-                                    <h2 class="card-title fs-16 lh-2 mb-0">
-                                        <a href="{{ route('frontend.activity.show',$package->slug) }}" class="text-dark hover-primary">
-                                            {{ $package->title ?? '' }}
-                                        </a>
-                                    </h2>
-                                </div>
-                                <div class="card-footer bg-transparent d-flex justify-content-between align-items-center py-3">
-                                    <a class="fs-16 font-weight-bold text-heading mb-0" href="{{ route('frontend.activity.category', $package->packageCategory->slug) }}">
-                                        {{ $package->packageCategory->title }} {{ $package->price ?  ' / ' . $package->price:''}}
-                                    </a>
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item">
-                                            <a class="w-40px h-40 border rounded-circle d-inline-flex align-items-center justify-content-center text-secondary bg-accent border-accent" data-toggle="tooltip" title="{{ $package->country->title }}">
-                                                <i class="fas fa-globe"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+
+                <div class="main-slider-three__shape-1 rotate-me">
+                    <img src="assets/images/shapes/main-slider-three-shape-1.png" alt="">
+                </div>
+                <div class="main-slider-three__shape-2 img-bounce">
+                    <img src="assets/images/shapes/main-slider-three-shape-2.png" alt="">
+                </div>
+                <div class="main-slider-three__shape-3 shape-mover">
+                    <img src="assets/images/shapes/main-slider-three-shape-3.png" alt="">
+                </div>
+
+                <div class="container">
+                    <div class="main-slider-three__content">
+                        <h2 class="main-slider-three__title">Get more of what <br> you want from your <br> business
+                        </h2>
+                        <p class="main-slider-three__text">Lorem Ipsum is simply dummy text of the printing</p>
+                        <div class="main-slider-three__btn-box">
+                            <a href="contact.html" class="thm-btn main-slider__btn-1">Get Consulting</a>
+                            <a href="about.html" class="thm-btn main-slider__btn-2">Learn More</a>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             </div>
-        </section>
-    @endif
 
-    <section class="bg-single-image-02 bg-accent py-lg-11 py-11" data-animated-id="12">
+            <div class="item main-slider-three__slide-2">
+
+                <div class="main-slider-three__img">
+                    <img src="assets/images/resources/main-slider-three-img-1.png" alt="">
+                </div>
+
+                <div class="main-slider-three__shape-1 rotate-me">
+                    <img src="assets/images/shapes/main-slider-three-shape-1.png" alt="">
+                </div>
+                <div class="main-slider-three__shape-2 img-bounce">
+                    <img src="assets/images/shapes/main-slider-three-shape-2.png" alt="">
+                </div>
+                <div class="main-slider-three__shape-3 shape-mover">
+                    <img src="assets/images/shapes/main-slider-three-shape-3.png" alt="">
+                </div>
+
+                <div class="container">
+                    <div class="main-slider-three__content">
+                        <h2 class="main-slider-three__title">Get more of what <br> you want from your <br> business
+                        </h2>
+                        <p class="main-slider-three__text">Lorem Ipsum is simply dummy text of the printing</p>
+                        <div class="main-slider-three__btn-box">
+                            <a href="contact.html" class="thm-btn main-slider__btn-1">Get Consulting</a>
+                            <a href="about.html" class="thm-btn main-slider__btn-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item main-slider-three__slide-3">
+
+                <div class="main-slider-three__img">
+                    <img src="assets/images/resources/main-slider-three-img-1.png" alt="">
+                </div>
+
+                <div class="main-slider-three__shape-1 rotate-me">
+                    <img src="assets/images/shapes/main-slider-three-shape-1.png" alt="">
+                </div>
+                <div class="main-slider-three__shape-2 img-bounce">
+                    <img src="assets/images/shapes/main-slider-three-shape-2.png" alt="">
+                </div>
+                <div class="main-slider-three__shape-3 shape-mover">
+                    <img src="assets/images/shapes/main-slider-three-shape-3.png" alt="">
+                </div>
+
+                <div class="container">
+                    <div class="main-slider-three__content">
+                        <h2 class="main-slider-three__title">Get more of what <br> you want from your <br> business
+                        </h2>
+                        <p class="main-slider-three__text">Lorem Ipsum is simply dummy text of the printing</p>
+                        <div class="main-slider-three__btn-box">
+                            <a href="contact.html" class="thm-btn main-slider__btn-1">Get Consulting</a>
+                            <a href="about.html" class="thm-btn main-slider__btn-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <!--Main Sllider Start -->
+
+    <!--Feature Two Start -->
+    <section class="feature-two">
         <div class="container">
             <div class="row">
-                <div class="col-ld-6 col-sm-7 fadeInLeft animated" data-animate="fadeInLeft">
-                    <div class="pl-6 border-4x border-left border-primary">
-                        <h2 class="text-heading lh-15 fs-md-32 fs-25">Explore more with us, <span class="text-primary"> get in touch</span></h2>
-                        <p class="lh-2 fs-md-15 mb-0">Amazing new offers, beautiful location and packages, trusted by a community of thousands of travellers.</p>
-                    </div>
-                </div>
-                <div class="col-ld-6 col-sm-5 text-center mt-sm-0 mt-8 fadeInRight animated" data-animate="fadeInRight">
-                    <a href="{{ route($module.'activity.index') }}" class="btn btn-lg btn-primary mt-2 px-10">Our Activity</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    @if(count($data['countries'])>0)
-        <section class="pb-lg-13 bg-single-image-03 pt-11 pb-11">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 pr-xl-14" data-animate="fadeInLeft">
-                        <h2 class="text-heading lh-163 mt-md-4">Explore Our Locations</h2>
-                        <p class="mb-6">Find the best activity suited for you based on our locations</p>
-    {{--                    <a href="" class="btn btn-lg text-secondary btn-accent rounded-lg mb-md-0 mb-8">Explore all--}}
-    {{--                        <i class="far fa-long-arrow-right ml-1"></i>--}}
-    {{--                    </a>--}}
-                    </div>
-                    <div class="col-md-8" data-animate="fadeInRight">
-                        <div class="slick-slider custom-arrow-spacing-30" data-slick-options='{"slidesToShow": 3, "autoplay":true,"arrows":true,"dots":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":2,"arrows":false,"autoplay":true}},{"breakpoint": 768,"settings": {"slidesToShow": 3,"arrows":false,"autoplay":true}},{"breakpoint": 576,"settings": {"slidesToShow": 1,"arrows":false,"dots":true,"autoplay":true}}]}'>
-                            @foreach($data['countries'] as $country)
-                                <div class="card border-0">
-                                    <a href="#" class="hover-zoom-in d-block">
-                                        <img class="card-img" src="{{ asset(imagePath($country->image))}}" alt="">
-                                    </a>
-                                    <div class="card-body p-0 mt-2">
-                                        <h2 class="mb-0"><a href="#" class="text-dark hover-primary fs-16 lh-2 ">{{ $country->title }}</a></h2>
-                                        <p class="font-weight-500 text-gray-light mb-0">{{ $country->packages_count }} Activities</p>
-                                    </div>
-                                </div>
-                            @endforeach
+                <!--Feature Two Single Start-->
+                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                    <div class="feature-two__single">
+                        <div class="feature-two__icon">
+                            <span class="icon-business-advice"></span>
+                        </div>
+                        <h3 class="feature-two__title"><a href="business-audit.html">Business Advice</a></h3>
+                        <p class="feature-two__text">We make the insurance quoting, purchasing, and claiming process
+                            stress and hassle-free.</p>
+                        <div class="feature-two__btn">
+                            <a href="business-audit.html">Learn More<span class="icon-right-arrow1"></span></a>
                         </div>
                     </div>
                 </div>
+                <!--Feature Two Single End-->
+                <!--Feature Two Single Start-->
+                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
+                    <div class="feature-two__single">
+                        <div class="feature-two__icon">
+                            <span class="icon-financial-advice"></span>
+                        </div>
+                        <h3 class="feature-two__title"><a href="financial-advices.html">Financial Advice</a></h3>
+                        <p class="feature-two__text">We make the insurance quoting, purchasing, and claiming process
+                            stress and hassle-free.</p>
+                        <div class="feature-two__btn">
+                            <a href="financial-advices.html">Learn More<span class="icon-right-arrow1"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Feature Two Single End-->
+                <!--Feature Two Single Start-->
+                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="feature-two__single">
+                        <div class="feature-two__icon">
+                            <span class="icon-risk-management"></span>
+                        </div>
+                        <h3 class="feature-two__title"><a href="tax-strategy.html">Risk Management</a></h3>
+                        <p class="feature-two__text">We make the insurance quoting, purchasing, and claiming process
+                            stress and hassle-free.</p>
+                        <div class="feature-two__btn">
+                            <a href="tax-strategy.html">Learn More<span class="icon-right-arrow1"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Feature Two Single End-->
             </div>
-        </section>
-    @endif
+        </div>
+    </section>
+    <!--Feature Two End -->
 
-    @if(count($data['services'])>0)
-        <section class="bg-gray-02 pt-9 pb-9 pb-lg-11">
+    <!--About Three Start -->
+    <section class="about-three">
+        <div class="about-three__shape-5">
+            <img src="assets/images/shapes/about-three-shape-5.png" alt="">
+        </div>
+        <div class="about-three__shape-3 float-bob-x">
+            <img src="assets/images/shapes/about-three-shape-3.png" alt="">
+        </div>
+        <div class="about-three__shape-4 float-bob-y">
+            <img src="assets/images/shapes/about-three-shape-4.png" alt="">
+        </div>
         <div class="container">
-            <h2 class="text-center text-dark line-height-base">
-                Our Best Services For You
-            </h2>
-            <span class="heading-divider mx-auto"></span>
-            <div class="row custom-arrow-spacing-30">
-                @foreach($data['services'] as $service)
-                    <div class="col-lg-4 mt-2 fadeInLeft animated" data-animate="fadeInLeft">
-                        <div class="card bg-overlay-gradient-4 rounded-0 border-0 bg-overlay-opacity-74">
-                            <img src="{{ asset(imagePath($service->image))}}" class="card-img rounded-0" alt="Tommy Wolfe">
-                            <div class="card-img-overlay d-flex flex-column justify-content-end p-6 position-relative-sm">
-                                <div class="border-white-opacity-03 border-bottom">
-                                    <h2 class="mb-1"><a class="fs-22 text-white">{{ $service->title }}</a></h2>
-                                    <p class="text-lighter mb-4"> {{ $service->description ? elipsis($service->description,20):'' }}</p>
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="about-three__left">
+                        <div class="about-three__img wow slideInLeft" data-wow-delay="100ms"
+                             data-wow-duration="2500ms">
+                            <img src="assets/images/resources/about-three-img-1.jpg" alt="">
+                            <div class="about-three__experience">
+                                <div class="about-three__experience-count count-box">
+                                    <h3 class="count-text" data-stop="10" data-speed="1500">00</h3>
+                                    <span>+</span>
                                 </div>
+                                <p class="about-three__experience-text">YEARS OF <br> EXPERIENCES</p>
+                            </div>
+                            <div class="about-three__shape-1 zoominout">
+                                <img src="assets/images/shapes/about-three-shape-1.png" alt="">
+                            </div>
+                            <div class="about-three__shape-2 float-bob-y">
+                                <img src="assets/images/shapes/about-three-shape-2.png" alt="">
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
+                <div class="col-xl-6">
+                    <div class="about-three__right">
+                        <div class="section-title-three text-left">
+                            <div class="section-title-three__tagline-box">
+                                <p class="section-title-three__tagline">ABOUT US</p>
+                            </div>
+                            <h2 class="section-title-three__title">Busicon is One of The
+                                <br> Best Business Consulting</h2>
+                        </div>
+                        <p class="about-three__text-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="about-three__text-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                            do<br> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim<br> ad minim
+                            veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut <br>aliquip ex ea commodo consequat.
+                        </p>
+                        <ul class="about-three__points list-unstyled">
+                            <li>
+                                <div class="about-three__points-count count-box">
+                                    <h3 class="count-text" data-stop="5" data-speed="1500">00</h3>
+                                    <span>k</span>
+                                </div>
+                                <p class="about-three__points-text">Business Strategy <br>Growth</p>
+                            </li>
+                            <li>
+                                <div class="about-three__points-count count-box">
+                                    <h3 class="count-text" data-stop="7" data-speed="1500">00</h3>
+                                    <span>k</span>
+                                </div>
+                                <p class="about-three__points-text">Finance Valuable<br> Ideas</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    @endif
+    <!--About Three End -->
 
-    @if(count($data['testimonials'])>0)
-        <section class="pt-lg-10 pb-lg-9 mt-lg-1 py-11">
-            <div class="container container-xxl">
-                <p class="text-primary font-weight-500 letter-spacing-263 text-center text-uppercase mb-2 fadeInLeft animated" data-animate="fadeInLeft">Our Testimonials</p>
-                <h2 class="text-dark text-center mb-4 pb-lg-1 fadeInLeft animated" data-animate="fadeInLeft">Hear from our clients</h2>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="bg-accent px-3 pl-md-11 pr-md-10 pt-6 pb-7" data-animate="fadeInRight">
-                            <div class="slick-slider custom-slider-1 mx-0" data-slick-options='{"slidesToShow": 1, "autoplay":true,"dots":true}'>
-                                @foreach($data['testimonials'] as $index=>$testimonial)
-                                    <div class="box px-0">
-                                        <div class="card border-0 bg-transparent">
-                                            <div class="card-body p-0">
-                                                <div class="d-flex mb-6 align-items-end">
-                                                    <div class="ml-auto opacity-2">
-                                                        <img src="{{ asset('assets/frontend/images/quote.png') }}" alt="quote">
-                                                    </div>
-                                                </div>
-                                                <p class="card-text fs-18 lh-2 text-heading mb-5">
-                                                    {{ $testimonial->description }}
-                                                </p>
-                                                <div class="media align-items-center">
-                                                    <div class="rounded-circle mr-4 bg-white w-70px h-70 d-flex align-items-end justify-content-center">
-                                                        <img src="{{ asset(imagePath($testimonial->image))}}" alt="">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <p class="fs-17 lh-1 text-heading font-weight-600 mb-2">{{ $testimonial->title ?? '' }}</p>
-                                                        <p class="fs-15 lh-12 mb-0">{{ $testimonial->position ?? '' }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+    <!--Why Choose Two Start -->
+    <section class="why-choose-two">
+        <div class="why-choose-two__shape-3 img-bounce">
+            <img src="assets/images/shapes/why-choose-two-shape-3.png" alt="">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="why-choose-two__left">
+                        <div class="section-title-three text-left">
+                            <div class="section-title-three__tagline-box">
+                                <p class="section-title-three__tagline">Why Choose Us</p>
+                            </div>
+                            <h2 class="section-title-three__title">We are awards winning <br> business consulting
+                                firms</h2>
+                        </div>
+                        <p class="why-choose-two__text">Lorem Ipsum is simply dummy text of the printing and
+                            typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                        <ul class="why-choose-two__points list-unstyled">
+                            <li>
+                                <div class="icon">
+                                    <span class="icon-solution"></span>
+                                </div>
+                                <div class="content">
+                                    <h3>Client - Focused Solutions</h3>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting<br>
+                                        industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span class="icon-diversity"></span>
+                                </div>
+                                <div class="content">
+                                    <h3>Diversity & Inclusion</h3>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting<br>
+                                        industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span class="icon-woman"></span>
+                                </div>
+                                <div class="content">
+                                    <h3>Women’s Empowerment</h3>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting<br>
+                                        industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="why-choose-two__right">
+                        <div class="why-choose-two__img wow slideInRight" data-wow-delay="100ms"
+                             data-wow-duration="2500ms">
+                            <img src="assets/images/resources/why-choose-two-img-1.jpg" alt="">
+                            <div class="why-choose-two__shape-1 float-bob-y">
+                                <img src="assets/images/shapes/why-choose-two-shape-1.png" alt="">
+                            </div>
+                            <div class="why-choose-two__shape-2 zoominout">
+                                <img src="assets/images/shapes/why-choose-two-shape-2.png" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    @endif
+        </div>
+    </section>
+    <!--Why Choose Two End -->
 
-    @if(count($data['blogs'])>0)
-        <section class="pt-10 pb-9">
-            <div class="container">
-                <p class="text-primary letter-spacing-263 text-uppercase lh-186 text-center mb-0">new & articles</p>
-                <h2 class="text-center lh-1625 text-dark pb-1">
-                    Check Out Recent News & Articles
-                </h2>
-                <div class="mx-n2">
-                    <div class="slick-slider mt-6 mx-n1 slick-dots-mt-0" data-slick-options='{"slidesToShow": 3, "autoplay":false,"arrows":false,"dots":false,"responsive":[{"breakpoint": 992,"settings": {"slidesToShow":2}},{"breakpoint": 768,"settings": {"slidesToShow": 2,"autoplay":true}},{"breakpoint": 576,"settings": {"slidesToShow": 1,"arrows":false,"dots":true,"autoplay":true}}]}'>
-                        @foreach($data['blogs'] as $blog)
-                            <div class="item py-4" data-animate="fadeInUp">
-                                <div class="card border-0 shadow-xxs-3" data-animate="fadeInUp">
-                                    <div class="position-relative d-flex align-items-end card-img-top">
-                                        <a href="{{ route('frontend.blog.show', $blog->slug) }}" class="hover-shine">
-                                            <img src="{{ asset(imagePath($blog->image))}}" alt="">
-                                        </a>
-                                        <a href="{{ route('frontend.blog.category', $blog->blogCategory->slug) }}" class="badge text-white bg-dark-opacity-04 fs-13 font-weight-500 bg-hover-primary hover-white mx-2 my-4 position-absolute pos-fixed-bottom">
-                                            {{ $blog->blogCategory->title ?? '' }}
-                                        </a>
-                                    </div>
-                                    <div class="card-body px-5 pt-3 pb-5">
-                                        <p class="mb-1 fs-13">{{date('d M Y', strtotime($blog->created_at))}}</p>
-                                        <h3 class="fs-18 text-heading lh-194 mb-1">
-                                            <a href="{{ route('frontend.blog.show', $blog->slug) }}" class="text-heading hover-primary">
-                                                {{ $blog->title ?? '' }}
-                                            </a>
-                                        </h3>
-                                        <a class="text-heading font-weight-500" href="{{ route('frontend.blog.show', $blog->slug) }}">Learn more <i class="far fa-long-arrow-right text-primary ml-1"></i></a>
-                                    </div>
-                                </div>
+    <!--Services Three Start -->
+    <section class="services-three">
+        <div class="services-three__shape-1 float-bob-y">
+            <img src="assets/images/shapes/services-three-shape-1.png" alt="">
+        </div>
+        <div class="services-three__shape-2 zoominout">
+            <img src="assets/images/shapes/services-three-shape-2.png" alt="">
+        </div>
+        <div class="container">
+            <div class="section-title-three text-center">
+                <div class="section-title-three__tagline-box">
+                    <p class="section-title-three__tagline">What We Do</p>
+                </div>
+                <h2 class="section-title-three__title">What Services we Provide for <br> Our Customers Business</h2>
+            </div>
+            <div class="row">
+                <!--Services Three Single Start-->
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                    <div class="services-three__single">
+                        <h3 class="services-three__title"><a href="business-audit.html">Business Audit</a></h3>
+                        <div class="services-three__icon">
+                            <span class="icon-report"></span>
+                        </div>
+                        <p class="services-three__text">Lorem Ipsum is simply dummy text of the printing industry.
+                            The industry's standard dummy</p>
+                        <div class="services-three__btn">
+                            <a href="business-audit.html">Learn More<span class="icon-right-arrow1"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Services Three Single End-->
+                <!--Services Three Single Start-->
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInDown" data-wow-delay="200ms">
+                    <div class="services-three__single">
+                        <h3 class="services-three__title"><a href="business-planning.html">Business Planning</a>
+                        </h3>
+                        <div class="services-three__icon">
+                            <span class="icon-planning"></span>
+                        </div>
+                        <p class="services-three__text">Lorem Ipsum is simply dummy text of the printing industry.
+                            The industry's standard dummy</p>
+                        <div class="services-three__btn">
+                            <a href="business-planning.html">Learn More<span class="icon-right-arrow1"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Services Three Single End-->
+                <!--Services Three Single Start-->
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="services-three__single">
+                        <h3 class="services-three__title"><a href="financial-advices.html">Financial Advices</a>
+                        </h3>
+                        <div class="services-three__icon">
+                            <span class="icon-financial-advices11"></span>
+                        </div>
+                        <p class="services-three__text">Lorem Ipsum is simply dummy text of the printing industry.
+                            The industry's standard dummy</p>
+                        <div class="services-three__btn">
+                            <a href="financial-advices.html">Learn More<span class="icon-right-arrow1"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Services Three Single End-->
+                <!--Services Three Single Start-->
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInDown" data-wow-delay="400ms">
+                    <div class="services-three__single">
+                        <h3 class="services-three__title"><a href="tax-strategy.html">Tax Strategy</a></h3>
+                        <div class="services-three__icon">
+                            <span class="icon-tax-strategy11"></span>
+                        </div>
+                        <p class="services-three__text">Lorem Ipsum is simply dummy text of the printing industry.
+                            The industry's standard dummy</p>
+                        <div class="services-three__btn">
+                            <a href="tax-strategy.html">Learn More<span class="icon-right-arrow1"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Services Three Single End-->
+            </div>
+            <p class="services-three__bottom-text">You Can Also <a href="services.html" class="all-services">See All
+                    Business<span class="icon-right-arrow-11"></span></a> <a href="services.html"
+                                                                             class="">Services</a></p>
+        </div>
+    </section>
+    <!--Services Three End -->
+
+    <!--Portfolio Three Start -->
+    <section class="portfolio-three">
+        <div class="portfolio-three__shape-1 zoominout">
+            <img src="assets/images/shapes/portfolio-three-shape-1.png" alt="">
+        </div>
+        <div class="portfolio-three__shape-2 float-bob-y">
+            <img src="assets/images/shapes/portfolio-three-shape-2.png" alt="">
+        </div>
+        <div class="container">
+            <div class="section-title-three text-center">
+                <div class="section-title-three__tagline-box">
+                    <p class="section-title-three__tagline">RECENT CASE STUDIES</p>
+                </div>
+                <h2 class="section-title-three__title">We Are Specialist For Many <br>Consulting Cases</h2>
+            </div>
+            <div class="portfolio-three__filter-box">
+                <ul class="portfolio-three__filter style1 post-filter list-unstyled clearfix">
+                    <li data-filter=".filter-item" class="active"><span class="filter-text">All</span>
+                    </li>
+                    <li data-filter=".business"><span class="filter-text">Business Strategy</span></li>
+                    <li data-filter=".financial"><span class="filter-text">Financial</span></li>
+                    <li data-filter=".planning"><span class="filter-text">Planning</span></li>
+                    <li data-filter=".tax"><span class="filter-text">Tax Strategy</span></li>
+                    <li data-filter=".investment"><span class="filter-text">Investment</span></li>
+                </ul>
+            </div>
+            <div class="row filter-layout">
+                <div class="col-xl-4 col-lg-6 col-md-6 filter-item business investment tax">
+                    <div class="portfolio-three__single">
+                        <div class="portfolio-three__img-box">
+                            <div class="portfolio-three__img">
+                                <img src="assets/images/project/portfolio-3-1.jpg" alt="">
                             </div>
-                        @endforeach
+                        </div>
+                        <div class="portfolio-three__content">
+                            <p class="portfolio-three__sub-title">Business Audit</p>
+                            <h3 class="portfolio-three__title"><a href="portfolio-details.html">Our Business
+                                    Growth</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 filter-item financial investment">
+                    <div class="portfolio-three__single">
+                        <div class="portfolio-three__img-box">
+                            <div class="portfolio-three__img">
+                                <img src="assets/images/project/portfolio-3-2.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="portfolio-three__content">
+                            <p class="portfolio-three__sub-title">Business Audit</p>
+                            <h3 class="portfolio-three__title"><a href="portfolio-details.html">Our Women’s
+                                    Empowerment</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 filter-item business planning tax">
+                    <div class="portfolio-three__single">
+                        <div class="portfolio-three__img-box">
+                            <div class="portfolio-three__img">
+                                <img src="assets/images/project/portfolio-3-3.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="portfolio-three__content">
+                            <p class="portfolio-three__sub-title">Business Audit</p>
+                            <h3 class="portfolio-three__title"><a href="portfolio-details.html">Our Business
+                                    Audit</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 filter-item financial">
+                    <div class="portfolio-three__single">
+                        <div class="portfolio-three__img-box">
+                            <div class="portfolio-three__img">
+                                <img src="assets/images/project/portfolio-3-4.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="portfolio-three__content">
+                            <p class="portfolio-three__sub-title">Business Audit</p>
+                            <h3 class="portfolio-three__title"><a href="portfolio-details.html">Our Business
+                                    Planning</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 filter-item business investment tax">
+                    <div class="portfolio-three__single">
+                        <div class="portfolio-three__img-box">
+                            <div class="portfolio-three__img">
+                                <img src="assets/images/project/portfolio-3-5.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="portfolio-three__content">
+                            <p class="portfolio-three__sub-title">Business Audit</p>
+                            <h3 class="portfolio-three__title"><a href="portfolio-details.html">Our Financial
+                                    Advices</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 filter-item tax financial planning">
+                    <div class="portfolio-three__single">
+                        <div class="portfolio-three__img-box">
+                            <div class="portfolio-three__img">
+                                <img src="assets/images/project/portfolio-3-6.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="portfolio-three__content">
+                            <p class="portfolio-three__sub-title">Business Audit</p>
+                            <h3 class="portfolio-three__title"><a href="portfolio-details.html">Our Tax Strategy</a>
+                            </h3>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    @endif
-</main>
-@include($view_path.'includes.book-flight')
+        </div>
+    </section>
+    <!--Portfolio Three End -->
+
+    <!--CTA Three Start -->
+    <section class="cta-three">
+        <div class="cta-three__shape-2 float-bob-x">
+            <img src="assets/images/shapes/cta-three-shape-2.png" alt="">
+        </div>
+        <div class="cta-three__shape-3 float-bob-y">
+            <img src="assets/images/shapes/cta-three-shape-3.png" alt="">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="cta-three__left">
+                        <h3 class="cta-three__title">Request a Schedule For
+                            <br> Free Consultation</h3>
+                        <div class="cta-three__btn">
+                            <a href="about.html">Request a Scheduel<span class="icon-right-arrow-11"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="cta-three__right">
+                        <div class="cta-three__img">
+                            <img src="assets/images/resources/cta-three-img-1.png" alt="">
+                            <div class="cta-three__img-2">
+                                <img src="assets/images/resources/cta-three-img-2.png" alt="">
+                            </div>
+                            <div class="cta-three__shape-1 shape-mover">
+                                <img src="assets/images/shapes/cta-three-shape-1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--CTA Three End -->
+
+    <!--Team Three Start -->
+    <section class="team-three">
+        <div class="team-three__shape-1 img-bounce">
+            <img src="assets/images/shapes/team-three-shape-1.png" alt="">
+        </div>
+        <div class="team-three__shape-2 float-bob-y">
+            <img src="assets/images/shapes/team-three-shape-2.png" alt="">
+        </div>
+        <div class="container">
+            <div class="section-title-three text-center">
+                <div class="section-title-three__tagline-box">
+                    <p class="section-title-three__tagline">TEAM MEMBERS</p>
+                </div>
+                <h2 class="section-title-three__title">Meet Our Experts</h2>
+            </div>
+            <div class="row">
+                <!--Team Three Single Start-->
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="100ms">
+                    <div class="team-three__single">
+                        <div class="team-three__img-box">
+                            <div class="team-three__img">
+                                <img src="assets/images/team/team-3-1.jpg" alt="">
+                            </div>
+                            <div class="team-three__social">
+                                <a href="team-details.html"><span class="fab fa-facebook"></span></a>
+                                <a href="team-details.html"><span class="fab fa-twitter"></span></a>
+                                <a href="team-details.html"><span class="fab fa-instagram"></span></a>
+                                <a href="team-details.html"><span class="fab fa-linkedin"></span></a>
+                            </div>
+                        </div>
+                        <div class="team-three__content">
+                            <h3 class="team-three__title"><a href="team-details.html">Susan Sarandom</a></h3>
+                            <p class="team-three__sub-title">Founder and CEO</p>
+                        </div>
+                    </div>
+                </div>
+                <!--Team Three Single End-->
+                <!--Team Three Single Start-->
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                    <div class="team-three__single">
+                        <div class="team-three__img-box">
+                            <div class="team-three__img">
+                                <img src="assets/images/team/team-3-2.jpg" alt="">
+                            </div>
+                            <div class="team-three__social">
+                                <a href="team-details.html"><span class="fab fa-facebook"></span></a>
+                                <a href="team-details.html"><span class="fab fa-twitter"></span></a>
+                                <a href="team-details.html"><span class="fab fa-instagram"></span></a>
+                                <a href="team-details.html"><span class="fab fa-linkedin"></span></a>
+                            </div>
+                        </div>
+                        <div class="team-three__content">
+                            <h3 class="team-three__title"><a href="team-details.html">Ralph Edwards</a></h3>
+                            <p class="team-three__sub-title">Founder and CEO</p>
+                        </div>
+                    </div>
+                </div>
+                <!--Team Three Single End-->
+                <!--Team Three Single Start-->
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInDown" data-wow-delay="300ms">
+                    <div class="team-three__single">
+                        <div class="team-three__img-box">
+                            <div class="team-three__img">
+                                <img src="assets/images/team/team-3-3.jpg" alt="">
+                            </div>
+                            <div class="team-three__social">
+                                <a href="team-details.html"><span class="fab fa-facebook"></span></a>
+                                <a href="team-details.html"><span class="fab fa-twitter"></span></a>
+                                <a href="team-details.html"><span class="fab fa-instagram"></span></a>
+                                <a href="team-details.html"><span class="fab fa-linkedin"></span></a>
+                            </div>
+                        </div>
+                        <div class="team-three__content">
+                            <h3 class="team-three__title"><a href="team-details.html">Savannah Nguyen</a></h3>
+                            <p class="team-three__sub-title">Founder and CEO</p>
+                        </div>
+                    </div>
+                </div>
+                <!--Team Three Single End-->
+                <!--Team Three Single Start-->
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="400ms">
+                    <div class="team-three__single">
+                        <div class="team-three__img-box">
+                            <div class="team-three__img">
+                                <img src="assets/images/team/team-3-4.jpg" alt="">
+                            </div>
+                            <div class="team-three__social">
+                                <a href="team-details.html"><span class="fab fa-facebook"></span></a>
+                                <a href="team-details.html"><span class="fab fa-twitter"></span></a>
+                                <a href="team-details.html"><span class="fab fa-instagram"></span></a>
+                                <a href="team-details.html"><span class="fab fa-linkedin"></span></a>
+                            </div>
+                        </div>
+                        <div class="team-three__content">
+                            <h3 class="team-three__title"><a href="team-details.html">Theresa Webb</a></h3>
+                            <p class="team-three__sub-title">Founder and CEO</p>
+                        </div>
+                    </div>
+                </div>
+                <!--Team Three Single End-->
+            </div>
+            <div class="team-three__btn-box">
+                <div class="team-three__btn">
+                    <a href="team.html">View All<span class="icon-right-arrow1"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Team Three End -->
+
+    <!--Testimonial Three STart -->
+    <section class="testimonial-three">
+        <div class="testimonial-three__shape-1 float-bob-x">
+            <img src="assets/images/shapes/testimonial-three-shape-1.png" alt="">
+        </div>
+        <div class="testimonial-three__shape-2 float-bob-x">
+            <img src="assets/images/shapes/testimonial-three-shape-2.png" alt="">
+        </div>
+        <div class="container">
+            <div class="section-title-three text-center">
+                <div class="section-title-three__tagline-box">
+                    <p class="section-title-three__tagline">Testimonials</p>
+                </div>
+                <h2 class="section-title-three__title">What our client's says <br> about our work.</h2>
+            </div>
+            <div class="testimonial-three__bottom">
+                <div class="testimonial-three__carousel owl-carousel owl-theme thm-owl__carousel" data-owl-options='{
+                        "loop": true,
+                        "autoplay": true,
+                        "margin": 70,
+                        "nav": false,
+                        "dots": true,
+                        "smartSpeed": 500,
+                        "autoplayTimeout": 10000,
+                        "navText": ["<span class=\"icon-right-arrow\"></span>","<span class=\"icon-right-arrow1\"></span>"],
+                        "responsive": {
+                            "0": {
+                                "items": 1
+                            },
+                            "768": {
+                                "items": 2
+                            },
+                            "992": {
+                                "items": 2
+                            },
+                            "1200": {
+                                "items": 3
+                            }
+                        }
+                    }'>
+                    <!--Testimonial Three Single Start -->
+                    <div class="testimonial-three__single">
+                        <div class="testimonial-three__quote">
+                            <span class="icon-quote11"></span>
+                        </div>
+                        <p class="testimonial-three__text">Divided by arches into stiff sections. The bedding
+                            was
+                            hardly able to cover it and seemed ready to slide off any momentMagazine and
+                            housed in a
+                            nice, gilded frame.</p>
+                        <div class="testimonial-three__client-info">
+                            <h3>Micle Deno</h3>
+                            <p>Co-Founder</p>
+                        </div>
+                    </div>
+                    <!--Testimonial Three Single End-->
+                    <!--Testimonial Three Single Start -->
+                    <div class="testimonial-three__single">
+                        <div class="testimonial-three__quote">
+                            <span class="icon-quote11"></span>
+                        </div>
+                        <p class="testimonial-three__text">Divided by arches into stiff sections. The bedding
+                            was
+                            hardly able to cover it and seemed ready to slide off any momentMagazine and
+                            housed in a
+                            nice, gilded frame.</p>
+                        <div class="testimonial-three__client-info">
+                            <h3>Jerome Bell</h3>
+                            <p>Co-Founder</p>
+                        </div>
+                    </div>
+                    <!--Testimonial Three Single End-->
+                    <!--Testimonial Three Single Start -->
+                    <div class="testimonial-three__single">
+                        <div class="testimonial-three__quote">
+                            <span class="icon-quote11"></span>
+                        </div>
+                        <p class="testimonial-three__text">Divided by arches into stiff sections. The bedding
+                            was
+                            hardly able to cover it and seemed ready to slide off any momentMagazine and
+                            housed in a
+                            nice, gilded frame.</p>
+                        <div class="testimonial-three__client-info">
+                            <h3>Kristin Watson</h3>
+                            <p>Co-Founder</p>
+                        </div>
+                    </div>
+                    <!--Testimonial Three Single End-->
+                    <!--Testimonial Three Single Start -->
+                    <div class="testimonial-three__single">
+                        <div class="testimonial-three__quote">
+                            <span class="icon-quote11"></span>
+                        </div>
+                        <p class="testimonial-three__text">Divided by arches into stiff sections. The bedding
+                            was
+                            hardly able to cover it and seemed ready to slide off any momentMagazine and
+                            housed in a
+                            nice, gilded frame.</p>
+                        <div class="testimonial-three__client-info">
+                            <h3>Nikolo Vali</h3>
+                            <p>Co-Founder</p>
+                        </div>
+                    </div>
+                    <!--Testimonial Three Single End-->
+                    <!--Testimonial Three Single Start -->
+                    <div class="testimonial-three__single">
+                        <div class="testimonial-three__quote">
+                            <span class="icon-quote11"></span>
+                        </div>
+                        <p class="testimonial-three__text">Divided by arches into stiff sections. The bedding
+                            was
+                            hardly able to cover it and seemed ready to slide off any momentMagazine and
+                            housed in a
+                            nice, gilded frame.</p>
+                        <div class="testimonial-three__client-info">
+                            <h3>Harbert Spen</h3>
+                            <p>Co-Founder</p>
+                        </div>
+                    </div>
+                    <!--Testimonial Three Single End-->
+                    <!--Testimonial Three Single Start -->
+                    <div class="testimonial-three__single">
+                        <div class="testimonial-three__quote">
+                            <span class="icon-quote11"></span>
+                        </div>
+                        <p class="testimonial-three__text">Divided by arches into stiff sections. The bedding
+                            was
+                            hardly able to cover it and seemed ready to slide off any momentMagazine and
+                            housed in a
+                            nice, gilded frame.</p>
+                        <div class="testimonial-three__client-info">
+                            <h3>David Kapor</h3>
+                            <p>Co-Founder</p>
+                        </div>
+                    </div>
+                    <!--Testimonial Three Single End-->
+                    <!--Testimonial Three Single Start -->
+                    <div class="testimonial-three__single">
+                        <div class="testimonial-three__quote">
+                            <span class="icon-quote11"></span>
+                        </div>
+                        <p class="testimonial-three__text">Divided by arches into stiff sections. The bedding
+                            was
+                            hardly able to cover it and seemed ready to slide off any momentMagazine and
+                            housed in a
+                            nice, gilded frame.</p>
+                        <div class="testimonial-three__client-info">
+                            <h3>Alisha Martin</h3>
+                            <p>Co-Founder</p>
+                        </div>
+                    </div>
+                    <!--Testimonial Three Single End-->
+                    <!--Testimonial Three Single Start -->
+                    <div class="testimonial-three__single">
+                        <div class="testimonial-three__quote">
+                            <span class="icon-quote11"></span>
+                        </div>
+                        <p class="testimonial-three__text">Divided by arches into stiff sections. The bedding
+                            was
+                            hardly able to cover it and seemed ready to slide off any momentMagazine and
+                            housed in a
+                            nice, gilded frame.</p>
+                        <div class="testimonial-three__client-info">
+                            <h3>Harbi Shaien</h3>
+                            <p>Co-Founder</p>
+                        </div>
+                    </div>
+                    <!--Testimonial Three Single End-->
+                    <!--Testimonial Three Single Start -->
+                    <div class="testimonial-three__single">
+                        <div class="testimonial-three__quote">
+                            <span class="icon-quote11"></span>
+                        </div>
+                        <p class="testimonial-three__text">Divided by arches into stiff sections. The bedding
+                            was
+                            hardly able to cover it and seemed ready to slide off any momentMagazine and
+                            housed in a
+                            nice, gilded frame.</p>
+                        <div class="testimonial-three__client-info">
+                            <h3>Jena Armi</h3>
+                            <p>Co-Founder</p>
+                        </div>
+                    </div>
+                    <!--Testimonial Three Single End-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Testimonial Three End -->
+
+    <!--News Three Start -->
+    <section class="news-three">
+        <div class="news-three__shape-1 img-bounce">
+            <img src="assets/images/shapes/news-three-shape-1.png" alt="">
+        </div>
+        <div class="news-three__shape-2 float-bob-y">
+            <img src="assets/images/shapes/news-three-shape-2.png" alt="">
+        </div>
+        <div class="container">
+            <div class="section-title-three text-center">
+                <div class="section-title-three__tagline-box">
+                    <p class="section-title-three__tagline">Latest Blog</p>
+                </div>
+                <h2 class="section-title-three__title">Learn about our latest<br> news from blog.</h2>
+            </div>
+            <div class="row">
+                <!--News Three Single Start-->
+                <div class="col-xl-4 col-lg-4">
+                    <div class="news-three__single">
+                        <div class="news-three__img-box">
+                            <div class="news-three__img">
+                                <img src="assets/images/blog/news-3-1.jpg" alt="">
+                            </div>
+                            <div class="news-three__date">
+                                <p>24 </p>
+                                <span>Sep 22</span>
+                            </div>
+                        </div>
+                        <div class="news-three__content">
+                            <ul class="news-three__meta list-unstyled">
+                                <li>
+                                    <p><span class="icon-user"></span>Admin</p>
+                                </li>
+                                <li>
+                                    <p><span class="icon-chat"></span>8 Comments</p>
+                                </li>
+                            </ul>
+                            <h3 class="news-three__title"><a href="news-details.html">We would love to share a
+                                    similar experience</a></h3>
+                            <p class="news-three__text">Lorem Ipsum is simply dummy text of the printing and
+                                typesetting industry.</p>
+                            <div class="news-three__btn">
+                                <a href="news-details.html">Learn More<span class="icon-right-arrow1"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--News Three Single End-->
+                <!--News Three Single Start-->
+                <div class="col-xl-4 col-lg-4">
+                    <div class="news-three__single">
+                        <div class="news-three__img-box">
+                            <div class="news-three__img">
+                                <img src="assets/images/blog/news-3-2.jpg" alt="">
+                            </div>
+                            <div class="news-three__date">
+                                <p>24 </p>
+                                <span>Sep 22</span>
+                            </div>
+                        </div>
+                        <div class="news-three__content">
+                            <ul class="news-three__meta list-unstyled">
+                                <li>
+                                    <p><span class="icon-user"></span>Admin</p>
+                                </li>
+                                <li>
+                                    <p><span class="icon-chat"></span>8 Comments</p>
+                                </li>
+                            </ul>
+                            <h3 class="news-three__title"><a href="news-details.html">Ipsum is simply dummy text of
+                                    the printing</a></h3>
+                            <p class="news-three__text">Lorem Ipsum is simply dummy text of the printing and
+                                typesetting industry.</p>
+                            <div class="news-three__btn">
+                                <a href="news-details.html">Learn More<span class="icon-right-arrow1"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--News Three Single End-->
+                <!--News Three Single Start-->
+                <div class="col-xl-4 col-lg-4">
+                    <div class="news-three__single">
+                        <div class="news-three__img-box">
+                            <div class="news-three__img">
+                                <img src="assets/images/blog/news-3-3.jpg" alt="">
+                            </div>
+                            <div class="news-three__date">
+                                <p>24 </p>
+                                <span>Sep 22</span>
+                            </div>
+                        </div>
+                        <div class="news-three__content">
+                            <ul class="news-three__meta list-unstyled">
+                                <li>
+                                    <p><span class="icon-user"></span>Admin</p>
+                                </li>
+                                <li>
+                                    <p><span class="icon-chat"></span>8 Comments</p>
+                                </li>
+                            </ul>
+                            <h3 class="news-three__title"><a href="news-details.html">Simply dummy text of the
+                                    printing and
+                                    typesetting</a></h3>
+                            <p class="news-three__text">Lorem Ipsum is simply dummy text of the printing and
+                                typesetting industry.</p>
+                            <div class="news-three__btn">
+                                <a href="news-details.html">Learn More<span class="icon-right-arrow1"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--News Three Single End-->
+            </div>
+        </div>
+    </section>
+    <!--News Three End -->
+
+    <!--Brand Three Start-->
+    <section class="brand-one brand-three">
+        <div class="container">
+            <div class="brand-one__inner">
+                <div class="brand-one__carousel thm-owl__carousel owl-theme owl-carousel" data-owl-options='{
+                        "items": 3,
+                        "margin": 30,
+                        "smartSpeed": 700,
+                        "loop":true,
+                        "autoplay": 6000,
+                        "nav":false,
+                        "dots":false,
+                        "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                        "responsive":{
+                            "0":{
+                                "items":1
+                            },
+                            "768":{
+                                "items":3
+                            },
+                            "992":{
+                                "items": 4
+                            },
+                            "1200":{
+                                "items": 5
+                            }
+                        }
+                    }'>
+                    <!--Brand One Single-->
+                    <div class="brand-one__single">
+                        <div class="brand-one__img">
+                            <img src="assets/images/brand/brand-3-1.png" alt="">
+                        </div>
+                    </div>
+                    <!--Brand One Single-->
+                    <!--Brand One Single-->
+                    <div class="brand-one__single">
+                        <div class="brand-one__img">
+                            <img src="assets/images/brand/brand-3-2.png" alt="">
+                        </div>
+                    </div>
+                    <!--Brand One Single-->
+                    <!--Brand One Single-->
+                    <div class="brand-one__single">
+                        <div class="brand-one__img">
+                            <img src="assets/images/brand/brand-3-3.png" alt="">
+                        </div>
+                    </div>
+                    <!--Brand One Single-->
+                    <!--Brand One Single-->
+                    <div class="brand-one__single">
+                        <div class="brand-one__img">
+                            <img src="assets/images/brand/brand-3-4.png" alt="">
+                        </div>
+                    </div>
+                    <!--Brand One Single-->
+                    <!--Brand One Single-->
+                    <div class="brand-one__single">
+                        <div class="brand-one__img">
+                            <img src="assets/images/brand/brand-3-5.png" alt="">
+                        </div>
+                    </div>
+                    <!--Brand One Single-->
+                </div>
+                <!-- If we need navigation buttons -->
+            </div>
+        </div>
+    </section>
+    <!--Brand Three End-->
 @endsection
 
 @section('js')
     <script src="{{asset('assets/common/lazyload.js')}}"></script>
-    @include($view_path.'includes.script')
 @endsection

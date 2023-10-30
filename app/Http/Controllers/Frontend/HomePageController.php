@@ -50,13 +50,9 @@ class HomePageController extends BackendBaseController
     {
         $data                       = $this->getCommonData();
         $data['sliders']            = Slider::active()->descending()->get();
-        $data['all_packages']       = Package::with('packageRibbon')->active()->descending()->get();
         $data['testimonials']       = Testimonial::active()->descending()->limit(8)->get();
-        $data['countries']          = Country::active()->has('packages')->withCount('packages')->descending()->get();
         $data['services']           = Service::active()->descending()->get();
         $data['blogs']              = Blog::active()->descending()->latest()->take(3)->get();
-        $data['search_countries']   = $this->getCountries();
-        $data['search_categories']  = $this->getPackageCategory();
 
 
         return view($this->loadResource($this->view_path.'homepage'), compact('data'));
@@ -64,11 +60,7 @@ class HomePageController extends BackendBaseController
 
     public function getCommonData(): array
     {
-        $data['search_countries']   = $this->getCountries();
-        $data['search_categories']  = $this->getPackageCategory();
-        $data['flight_list']        = getFlightList();
-
-        return $data;
+        return [];
     }
 
 
