@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion custom-accordionwithicon custom-accordion-border accordion-border-box accordion-success mt-3" id="accordionBordered5">
+                <div class="accordion custom-accordionwithicon custom-accordion-border accordion-border-box accordion-primary mt-3" id="accordionBordered5">
                     <input type="hidden" class="form-control" value="{{@$faq_section->id}}" name="faq_section">
                     @for ($i = 1; $i <=$faq_section->list_number_1; $i++)
                         <div class="accordion-item">

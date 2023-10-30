@@ -68,23 +68,30 @@ class PageService {
         $sorted_sections = $request['sorted_sections'];
         $section_position = $request['position'];
 
-        //number of sections as per required
-        $faq_list = $request['faq_list'] ?? 1;
-
-        //gallery section heading
-        $gallery_heading    = $request['gallery_title'];
-        $gallery_subheading = $request['gallery_subtitle'];
-
         if ($sorted_sections) {
             foreach ($sorted_sections as $key => $section) {
                 $section_name = str_replace("_", " ", $section);
                 if ($section == 'faq') {
                     PageSection::updateOrCreate(
-                        [   'page_id'=>$page->id,
+                        [   'page_id'=> $page->id,
                             'slug' => $section
                         ], [
                         'title'         => $section_name,
-                        'list_number_1' => $faq_list,
+                        'list_number_1' => $request['faq_list'] ?? 1,
+                        'position'      => $section_position[$key],
+                        'status'        => $request['status'],
+                        'created_by'    => $request['created_by'],
+                        'updated_by'    => $request['updated_by']
+                    ]);
+                }
+                elseif ($section == 'slider_list') {
+                    PageSection::updateOrCreate(
+                        [   'page_id'=> $page->id,
+                            'slug' => $section
+                        ], [
+                        'title'         => $section_name,
+                        'list_number_1' => $request['slider_list_number'] ?? 3,
+                        'list_number_2' => $request['slider_list_type'] ?? 'slider',
                         'position'      => $section_position[$key],
                         'status'        => $request['status'],
                         'created_by'    => $request['created_by'],
@@ -97,8 +104,8 @@ class PageService {
                             'slug' => $section
                         ], [
                         'title'         => $section_name,
-                        'list_number_1' => $gallery_heading,
-                        'list_number_2' => $gallery_subheading,
+                        'list_number_1' => $request['gallery_title'] ?? null,
+                        'list_number_2' => $request['gallery_subtitle'] ?? null,
                         'position'      => $section_position[$key],
                         'created_by'    => $request['created_by'],
                         'updated_by'    => $request['updated_by']

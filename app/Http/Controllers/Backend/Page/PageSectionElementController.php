@@ -57,7 +57,7 @@ class PageSectionElementController extends BackendBaseController
      * @param Request $request
      * @return JsonResponse
      */
-    public function store(Request $request, PageSectionElementsService $pageSectionElementsService)
+    public function store(PageSectionElementRequest $request, PageSectionElementsService $pageSectionElementsService)
     {
         $data                 = [];
         $data['section_name'] = $request['section_name'];

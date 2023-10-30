@@ -89,6 +89,7 @@ class PageController extends BackendBaseController
         $data['row']                = $this->model->find($id);
         $data['section_slug']       = $data['row']->pageSections->pluck('slug')->toArray();
         $data['section_position']   = $data['row']->pageSections->whereNotNull('list_number_1')->pluck('list_number_1','slug')->toArray();
+        $data['list_number_2']      = $data['row']->pageSections->whereNotNull('list_number_2')->pluck('list_number_2','slug')->toArray();
         $data['gallery']            = $data['row']->pageSections->where('slug','gallery')->first();
 
         return view($this->loadResource($this->view_path.'edit'), compact('data'));

@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion custom-accordionwithicon custom-accordion-border accordion-border-box accordion-success mt-3" id="accordionBorderedFlash">
+                <div class="accordion custom-accordionwithicon custom-accordion-border accordion-border-box accordion-primary mt-3" id="accordionBorderedFlash">
                     <input type="hidden" class="form-control" value="{{@$flash_card}}" name="flash_card_section">
                     @for ($i = 1; $i <=3; $i++)
                         <div class="accordion-item">

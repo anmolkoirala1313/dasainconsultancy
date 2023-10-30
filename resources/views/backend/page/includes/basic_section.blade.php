@@ -16,7 +16,7 @@
                 <div class="row">
                     <img class="img-responsive pb-4 border-bottom lazy" data-src="{{asset('assets/backend/images/pages/sections/'.$value.'.png')}}" width="100%"/>
                     <div class="col-lg-12 mt-3">
-                        <div class="mb-1">
+                        <div class="mb-2">
                             <label class="form-label required">Title </label>
                             <input type="text" class="form-control" name="title" value="{{$basic_element->title ?? null}}" maxlength="35" required>
                             <input type="hidden" class="form-control" value="{{$key}}" name="page_section_id" required>
@@ -37,7 +37,7 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                     <div class="col-lg-12">
-                        <div class="mb-1 mt-2">
+                        <div class="mb-2 mt-2">
                             <label class="form-label required"> Description <span class="text-danger">* write 800 characters only</span></label>
                             <textarea class="form-control" maxlength="1000" rows="14" name="description" id="basic_editor" required>{!! $basic_element->description ?? null !!}</textarea>
                             <div class="invalid-feedback">
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="mb-1">
+                        <div class="mb-2">
                             <label>Button Text </label>
                             <input type="text" maxlength="20" class="form-control" value="{{@$basic_element->button ?? null}}" name="button">
                             <div class="invalid-feedback">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="mb-1">
+                        <div class="mb-2">
                             <label>Button Link </label>
                             <input type="text" class="form-control" value="{{@$basic_element->button_link ?? null}}" name="button_link">
                             <div class="invalid-feedback">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="mb-1">
+                        <div class="mb-2">
                             {!! Form::label('image_input', 'Images', ['class' => 'form-label required']) !!}
                             {!! Form::file('image_input', ['class'=>'form-control','id'=>'basic_image_input']) !!}
                             <p class="text-muted mb-2">Recommended size: 600 x 550px</p>

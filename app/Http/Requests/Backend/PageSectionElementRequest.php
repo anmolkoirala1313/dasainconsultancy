@@ -24,15 +24,22 @@ class PageSectionElementRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title'         => 'required',
-        ];
+
+        if (request('section_name') == 'slider_list'){
+            $rules = [
+                'image_input.*' => 'required'
+            ];
+        }else{
+            $rules = [];
+        }
+
+        return $rules;
     }
 
     public function messages()
     {
         return [
-            'title.required'            => 'Please enter a title',
+            'image_input.*.required'            => 'Please select an image',
         ];
     }
 }

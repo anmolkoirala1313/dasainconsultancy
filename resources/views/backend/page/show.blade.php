@@ -77,6 +77,9 @@
                                         @if($value == 'flash_card')
                                             @include($view_path.'includes.flash_card')
                                         @endif
+                                        @if($value == 'slider_list')
+                                            @include($view_path.'includes.slider_list')
+                                        @endif
                                         @if($value == 'gallery')
                                             @include($view_path.'includes.gallery')
                                         @endif
