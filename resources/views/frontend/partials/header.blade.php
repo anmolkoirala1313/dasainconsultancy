@@ -147,219 +147,44 @@
                             <div class="main-menu-three__main-menu-box">
                                 <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
                                 <ul class="main-menu__list">
-                                    <li class="dropdown current megamenu">
+                                    <li>
                                         <a href="/">Home </a>
-                                        <ul>
-                                            <li>
-                                                <section class="home-showcase">
-                                                    <div class="container">
-                                                        <div class="home-showcase__inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-2">
-                                                                    <div class="home-showcase__item">
-                                                                        <div class="home-showcase__image">
-                                                                            <img src="assets/images/home-showcase/home-showcase-1-1.jpg"
-                                                                                 alt="">
-                                                                            <div class="home-showcase__buttons">
-                                                                                <a href="index-2.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">Multi
-                                                                                    Page</a>
-                                                                                <a href="index-one-page.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">One
-                                                                                    Page</a>
-                                                                            </div>
-                                                                            <!-- /.home-showcase__buttons -->
-                                                                        </div><!-- /.home-showcase__image -->
-                                                                        <h3 class="home-showcase__title">Home Page 01
-                                                                        </h3>
-                                                                        <!-- /.home-showcase__title -->
-                                                                    </div><!-- /.home-showcase__item -->
-                                                                </div><!-- /.col-lg-3 -->
-                                                                <div class="col-lg-2">
-                                                                    <div class="home-showcase__item">
-                                                                        <div class="home-showcase__image">
-                                                                            <img src="assets/images/home-showcase/home-showcase-1-2.jpg"
-                                                                                 alt="">
-                                                                            <div class="home-showcase__buttons">
-                                                                                <a href="index2.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">Multi
-                                                                                    Page</a>
-                                                                                <a href="index2-one-page.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">One
-                                                                                    Page</a>
-                                                                            </div>
-                                                                            <!-- /.home-showcase__buttons -->
-                                                                        </div><!-- /.home-showcase__image -->
-                                                                        <h3 class="home-showcase__title">Home
-                                                                            Page
-                                                                            02
-                                                                        </h3><!-- /.home-showcase__title -->
-                                                                    </div><!-- /.home-showcase__item -->
-                                                                </div><!-- /.col-lg-3 -->
-                                                                <div class="col-lg-2">
-                                                                    <div class="home-showcase__item">
-                                                                        <div class="home-showcase__image">
-                                                                            <img src="assets/images/home-showcase/home-showcase-1-3.jpg"
-                                                                                 alt="">
-                                                                            <div class="home-showcase__buttons">
-                                                                                <a href="index3.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">Multi
-                                                                                    Page</a>
-                                                                                <a href="index3-one-page.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">One
-                                                                                    Page</a>
-                                                                            </div>
-                                                                            <!-- /.home-showcase__buttons -->
-                                                                        </div><!-- /.home-showcase__image -->
-                                                                        <h3 class="home-showcase__title">Home
-                                                                            Page
-                                                                            03
-                                                                        </h3><!-- /.home-showcase__title -->
-                                                                    </div><!-- /.home-showcase__item -->
-                                                                </div><!-- /.col-lg-3 -->
-                                                                <div class="col-lg-2">
-                                                                    <div class="home-showcase__item">
-                                                                        <div class="home-showcase__image">
-                                                                            <img src="assets/images/home-showcase/home-showcase-1-4.jpg"
-                                                                                 alt="">
-                                                                            <div class="home-showcase__buttons">
-                                                                                <a href="index4.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">Multi
-                                                                                    Page</a>
-                                                                                <a href="index4-one-page.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">One
-                                                                                    Page</a>
-                                                                            </div>
-                                                                            <!-- /.home-showcase__buttons -->
-                                                                        </div><!-- /.home-showcase__image -->
-                                                                        <h3 class="home-showcase__title">Home
-                                                                            Page
-                                                                            04
-                                                                        </h3><!-- /.home-showcase__title -->
-                                                                    </div><!-- /.home-showcase__item -->
-                                                                </div><!-- /.col-lg-3 -->
-                                                                <div class="col-lg-2">
-                                                                    <div class="home-showcase__item">
-                                                                        <div class="home-showcase__image">
-                                                                            <img src="assets/images/home-showcase/home-showcase-1-5.jpg"
-                                                                                 alt="">
-                                                                            <div class="home-showcase__buttons">
-                                                                                <a href="index5.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">Multi
-                                                                                    Page</a>
-                                                                                <a href="index5-one-page.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">One
-                                                                                    Page</a>
-                                                                            </div>
-                                                                            <!-- /.home-showcase__buttons -->
-                                                                        </div><!-- /.home-showcase__image -->
-                                                                        <h3 class="home-showcase__title">Home
-                                                                            Page
-                                                                            05
-                                                                        </h3><!-- /.home-showcase__title -->
-                                                                    </div><!-- /.home-showcase__item -->
-                                                                </div><!-- /.col-lg-3 -->
-                                                                <div class="col-lg-2">
-                                                                    <div class="home-showcase__item">
-                                                                        <div class="home-showcase__image">
-                                                                            <img src="assets/images/home-showcase/home-showcase-1-6.jpg"
-                                                                                 alt="">
-                                                                            <div class="home-showcase__buttons">
-                                                                                <a href="index-dark.html"
-                                                                                   class="thm-btn home-showcase__buttons__item">View
-                                                                                    Page</a>
-                                                                            </div>
-                                                                            <!-- /.home-showcase__buttons -->
-                                                                        </div><!-- /.home-showcase__image -->
-                                                                        <h3 class="home-showcase__title">Home
-                                                                            Page
-                                                                            06
-                                                                        </h3><!-- /.home-showcase__title -->
-                                                                    </div><!-- /.home-showcase__item -->
-                                                                </div><!-- /.col-lg-3 -->
-                                                            </div><!-- /.row -->
-                                                        </div><!-- /.home-showcase__inner -->
-
-                                                    </div><!-- /.container -->
-                                                </section>
-                                            </li>
-                                        </ul>
                                     </li>
-                                    <li>
-                                        <a href="about.html">About</a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#">Services</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="services.html">Services</a></li>
-                                            <li><a href="services-carousel.html">Services Carousel</a></li>
-                                            <li><a href="business-audit.html">Business Audit</a></li>
-                                            <li><a href="business-planning.html">Business Planning</a></li>
-                                            <li><a href="financial-advices.html">Financial Advices</a></li>
-                                            <li><a href="tax-strategy.html">Tax Strategy</a></li>
-                                            <li><a href="insurance-strategy.html">Insurance Strategy</a></li>
-                                            <li><a href="start-ups.html">Start Ups</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#">Pages</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="team.html">Team</a></li>
-                                            <li><a href="team-carousel.html">Team Carousel</a></li>
-                                            <li><a href="team-details.html">Team Details</a></li>
-                                            <li><a href="portfolio.html">Portfolio</a></li>
-                                            <li><a href="portfolio-carousel.html">Portfolio Carousel</a></li>
-                                            <li><a href="portfolio-details.html">Portfolio Details</a></li>
-                                            <li><a href="testimonials.html">Testimonials</a></li>
-                                            <li><a href="testimonials-carousel.html">Testimonial Carousel</a></li>
-                                            <li><a href="price.html">Pricing</a></li>
-                                            <li><a href="price-carousel.html">Pricing Carousel</a></li>
-                                            <li><a href="appointment.html">Appointment</a></li>
-                                            <li><a href="404.html">404 Error</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#">News</a>
-                                        <ul class="sub-menu">
-                                            <li class="dropdown">
-                                                <a href="#">News Grid</a>
-                                                <ul>
-                                                    <li><a href="news.html">No Sidebar</a></li>
-                                                    <li><a href="news-left.html">Left Sidebar</a></li>
-                                                    <li><a href="news-right.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown">
-                                                <a href="#">News List One</a>
-                                                <ul>
-                                                    <li><a href="news-list-1.html">No Sidebar</a></li>
-                                                    <li><a href="news-list-one-left.html">Left Sidebar</a></li>
-                                                    <li><a href="news-list-one-right.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown">
-                                                <a href="#">News List Two</a>
-                                                <ul>
-                                                    <li><a href="news-list-2.html">No Sidebar</a></li>
-                                                    <li><a href="news-list-two-left.html">Left Sidebar</a></li>
-                                                    <li><a href="news-list-two-right.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown">
-                                                <a href="#">News List Three</a>
-                                                <ul>
-                                                    <li><a href="news-list-3.html">No Sidebar</a></li>
-                                                    <li><a href="news-list-three-left.html">Left Sidebar</a></li>
-                                                    <li><a href="news-list-three-right.html">Right Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="news-carousel.html">News Carousel</a></li>
-                                            <li><a href="news-details.html">News details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact</a>
-                                    </li>
+                                    @if(!empty($top_nav_data))
+                                        @foreach($top_nav_data as $nav)
+                                            @if(!empty($nav->children[0]))
+                                                <li class="dropdown">
+                                                    <a href="#">{{ @$nav->name ?? @$nav->title }}</a>
+                                                    <ul class="sub-menu">
+                                                        @foreach($nav->children[0] as $childNav)
+                                                            <li class="{{ !empty($childNav->children[0]) ? 'dropdown':'' }}">
+                                                                <a href="{{get_menu_url($childNav->type, $childNav)}}">
+                                                                    {{ @$childNav->name ?? @$childNav->title ??''}}
+                                                                </a>
+                                                                @if(!empty($childNav->children[0]))
+                                                                    <ul>
+                                                                        @foreach($childNav->children[0] as $key => $lastchild)
+                                                                            <li>
+                                                                                <a href="{{get_menu_url($lastchild->type, $lastchild)}}" target="{{@$lastchild->target ? '_blank':''}}">
+                                                                                    {{ @$lastchild->name ?? @$lastchild->title ?? ''}}
+                                                                                </a>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                @endif
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @else
+                                                <li>
+                                                    <a href="{{get_menu_url(@$nav->type, @$nav)}}" target="{{@$nav->target ? '_blank':''}}">
+                                                        {{ @$nav->name ?? @$nav->title ??''}}
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                             <div class="main-menu-three__right">
@@ -368,8 +193,9 @@
                                        class="main-menu-three__search search-toggler icon-magnifying-glass"></a>
                                 </div>
                                 <div class="main-menu-three__btn-box">
-                                    <a href="contact.html" class="thm-btn main-menu-three__btn thm-btn">Get
-                                        Consulting</a>
+                                    <a href="{{route('frontend.contact-us')}}" class="thm-btn main-menu-three__btn thm-btn">
+                                        Contact Us
+                                    </a>
                                 </div>
                             </div>
                         </div>

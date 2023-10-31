@@ -10,6 +10,7 @@ use App\Models\Backend\Activity\Country;
 use App\Models\Backend\CustomerInquiry;
 use App\Models\Backend\FlightInquiry;
 use App\Models\Backend\Homepage\Slider;
+use App\Models\Backend\Homepage\Welcome;
 use App\Models\Backend\News\Blog;
 use App\Models\Backend\Page\PageSectionGallery;
 use App\Models\Backend\Service;
@@ -53,7 +54,7 @@ class HomePageController extends BackendBaseController
         $data['testimonials']       = Testimonial::active()->descending()->limit(8)->get();
         $data['services']           = Service::active()->descending()->get();
         $data['blogs']              = Blog::active()->descending()->latest()->take(3)->get();
-
+        $data['homepage']           = Welcome::first();
 
         return view($this->loadResource($this->view_path.'homepage'), compact('data'));
     }

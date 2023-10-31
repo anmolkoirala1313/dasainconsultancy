@@ -5,229 +5,116 @@
 @endsection
 @section('content')
 
-    <!-- Main Sllider Start -->
-    <section class="main-slider-three">
-        <div class="main-slider-three__carousel owl-carousel owl-theme thm-owl__carousel"
+    <section class="main-slider">
+        <div class="main-slider__carousel owl-carousel owl-theme thm-owl__carousel"
              data-owl-options='{"loop": true, "items": 1, "navText": ["<span class=\"icon-left-arrow\"></span>","<span class=\"icon-right-arrow\"></span>"], "margin": 0, "dots": true, "nav": false, "animateOut": "slideOutDown", "animateIn": "fadeIn", "active": true, "smartSpeed": 1000, "autoplay": true, "autoplayTimeout": 7000, "autoplayHoverPause": false}'>
 
-            <div class="item main-slider-three__slide-1">
+            @foreach($data['sliders']  as $index=>$slider)
+                <div class="item main-slider__slide-{{$index+1}}">
+                    <div class="main-slider__bg"
+                         style="background-image: url( {{ asset(imagePath($slider->image)) }});">
+                    </div><!-- /.slider-one__bg -->
 
-                <div class="main-slider-three__img">
-                    <img src="assets/images/resources/main-slider-three-img-1.png" alt="">
-                </div>
+                    <div class="main-slider__shape-1 rotate-me">
+                        <img src="{{ asset('assets/frontend/images/shapes/main-slider-shape-1.png') }}" alt="">
+                    </div>
+                    <div class="main-slider__shape-2 float-bob-x">
+                        <img src="{{ asset('assets/frontend/images/shapes/main-slider-shape-2.png') }}" alt="">
+                    </div>
 
-                <div class="main-slider-three__shape-1 rotate-me">
-                    <img src="assets/images/shapes/main-slider-three-shape-1.png" alt="">
-                </div>
-                <div class="main-slider-three__shape-2 img-bounce">
-                    <img src="assets/images/shapes/main-slider-three-shape-2.png" alt="">
-                </div>
-                <div class="main-slider-three__shape-3 shape-mover">
-                    <img src="assets/images/shapes/main-slider-three-shape-3.png" alt="">
-                </div>
-
-                <div class="container">
-                    <div class="main-slider-three__content">
-                        <h2 class="main-slider-three__title">Get more of what <br> you want from your <br> business
-                        </h2>
-                        <p class="main-slider-three__text">Lorem Ipsum is simply dummy text of the printing</p>
-                        <div class="main-slider-three__btn-box">
-                            <a href="contact.html" class="thm-btn main-slider__btn-1">Get Consulting</a>
-                            <a href="about.html" class="thm-btn main-slider__btn-2">Learn More</a>
+                    <div class="container">
+                        <div class="main-slider__content">
+                            <p class="main-slider__sub-title">{{ $slider->subtitle ?? '' }}</p>
+                            <h2 class="main-slider__title">{{ $slider->title ?? '' }}</h2>
+                            @if($slider->link)
+                                <div class="main-slider__btn-and-video-box">
+                                    <div class="main-slider__btn-box">
+                                        <a href="{{ $slider->link ?? '' }}" class="thm-btn main-slider__btn-{{ $loop->even ? '1':'2'}}">{{ $slider->link ?? 'View More' }}</a>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="item main-slider-three__slide-2">
-
-                <div class="main-slider-three__img">
-                    <img src="assets/images/resources/main-slider-three-img-1.png" alt="">
-                </div>
-
-                <div class="main-slider-three__shape-1 rotate-me">
-                    <img src="assets/images/shapes/main-slider-three-shape-1.png" alt="">
-                </div>
-                <div class="main-slider-three__shape-2 img-bounce">
-                    <img src="assets/images/shapes/main-slider-three-shape-2.png" alt="">
-                </div>
-                <div class="main-slider-three__shape-3 shape-mover">
-                    <img src="assets/images/shapes/main-slider-three-shape-3.png" alt="">
-                </div>
-
-                <div class="container">
-                    <div class="main-slider-three__content">
-                        <h2 class="main-slider-three__title">Get more of what <br> you want from your <br> business
-                        </h2>
-                        <p class="main-slider-three__text">Lorem Ipsum is simply dummy text of the printing</p>
-                        <div class="main-slider-three__btn-box">
-                            <a href="contact.html" class="thm-btn main-slider__btn-1">Get Consulting</a>
-                            <a href="about.html" class="thm-btn main-slider__btn-2">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item main-slider-three__slide-3">
-
-                <div class="main-slider-three__img">
-                    <img src="assets/images/resources/main-slider-three-img-1.png" alt="">
-                </div>
-
-                <div class="main-slider-three__shape-1 rotate-me">
-                    <img src="assets/images/shapes/main-slider-three-shape-1.png" alt="">
-                </div>
-                <div class="main-slider-three__shape-2 img-bounce">
-                    <img src="assets/images/shapes/main-slider-three-shape-2.png" alt="">
-                </div>
-                <div class="main-slider-three__shape-3 shape-mover">
-                    <img src="assets/images/shapes/main-slider-three-shape-3.png" alt="">
-                </div>
-
-                <div class="container">
-                    <div class="main-slider-three__content">
-                        <h2 class="main-slider-three__title">Get more of what <br> you want from your <br> business
-                        </h2>
-                        <p class="main-slider-three__text">Lorem Ipsum is simply dummy text of the printing</p>
-                        <div class="main-slider-three__btn-box">
-                            <a href="contact.html" class="thm-btn main-slider__btn-1">Get Consulting</a>
-                            <a href="about.html" class="thm-btn main-slider__btn-2">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+            @endforeach
         </div>
     </section>
     <!--Main Sllider Start -->
 
-    <!--Feature Two Start -->
-    <section class="feature-two">
-        <div class="container">
-            <div class="row">
-                <!--Feature Two Single Start-->
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
-                    <div class="feature-two__single">
-                        <div class="feature-two__icon">
-                            <span class="icon-business-advice"></span>
-                        </div>
-                        <h3 class="feature-two__title"><a href="business-audit.html">Business Advice</a></h3>
-                        <p class="feature-two__text">We make the insurance quoting, purchasing, and claiming process
-                            stress and hassle-free.</p>
-                        <div class="feature-two__btn">
-                            <a href="business-audit.html">Learn More<span class="icon-right-arrow1"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Feature Two Single End-->
-                <!--Feature Two Single Start-->
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
-                    <div class="feature-two__single">
-                        <div class="feature-two__icon">
-                            <span class="icon-financial-advice"></span>
-                        </div>
-                        <h3 class="feature-two__title"><a href="financial-advices.html">Financial Advice</a></h3>
-                        <p class="feature-two__text">We make the insurance quoting, purchasing, and claiming process
-                            stress and hassle-free.</p>
-                        <div class="feature-two__btn">
-                            <a href="financial-advices.html">Learn More<span class="icon-right-arrow1"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Feature Two Single End-->
-                <!--Feature Two Single Start-->
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
-                    <div class="feature-two__single">
-                        <div class="feature-two__icon">
-                            <span class="icon-risk-management"></span>
-                        </div>
-                        <h3 class="feature-two__title"><a href="tax-strategy.html">Risk Management</a></h3>
-                        <p class="feature-two__text">We make the insurance quoting, purchasing, and claiming process
-                            stress and hassle-free.</p>
-                        <div class="feature-two__btn">
-                            <a href="tax-strategy.html">Learn More<span class="icon-right-arrow1"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Feature Two Single End-->
-            </div>
-        </div>
-    </section>
-    <!--Feature Two End -->
+    @if($data['homepage']->mission)
+        <section class="feature-two">
+            <div class="container">
+                <div class="row">
 
-    <!--About Three Start -->
-    <section class="about-three">
-        <div class="about-three__shape-5">
-            <img src="assets/images/shapes/about-three-shape-5.png" alt="">
-        </div>
-        <div class="about-three__shape-3 float-bob-x">
-            <img src="assets/images/shapes/about-three-shape-3.png" alt="">
-        </div>
-        <div class="about-three__shape-4 float-bob-y">
-            <img src="assets/images/shapes/about-three-shape-4.png" alt="">
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="about-three__left">
-                        <div class="about-three__img wow slideInLeft" data-wow-delay="100ms"
-                             data-wow-duration="2500ms">
-                            <img src="assets/images/resources/about-three-img-1.jpg" alt="">
-                            <div class="about-three__experience">
-                                <div class="about-three__experience-count count-box">
-                                    <h3 class="count-text" data-stop="10" data-speed="1500">00</h3>
-                                    <span>+</span>
-                                </div>
-                                <p class="about-three__experience-text">YEARS OF <br> EXPERIENCES</p>
+                    <div class="col-xl-4 col-lg-4 d-flex align-items-stretch wow fadeInUp" data-wow-delay="100ms">
+                        <div class="feature-two__single">
+                            <div class="feature-two__icon">
+                                <span class="icon-business-advice"></span>
                             </div>
-                            <div class="about-three__shape-1 zoominout">
-                                <img src="assets/images/shapes/about-three-shape-1.png" alt="">
-                            </div>
-                            <div class="about-three__shape-2 float-bob-y">
-                                <img src="assets/images/shapes/about-three-shape-2.png" alt="">
-                            </div>
+                            <h3 class="feature-two__title"><a>Mission</a></h3>
+                            <p class="feature-two__text">{{ $data['homepage']->mission ?? '' }}</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="about-three__right">
-                        <div class="section-title-three text-left">
-                            <div class="section-title-three__tagline-box">
-                                <p class="section-title-three__tagline">ABOUT US</p>
+
+                    <div class="col-xl-4 col-lg-4 d-flex align-items-stretch wow fadeInUp" data-wow-delay="200ms">
+                        <div class="feature-two__single">
+                            <div class="feature-two__icon">
+                                <span class="icon-icon-start-ups"></span>
                             </div>
-                            <h2 class="section-title-three__title">Busicon is One of The
-                                <br> Best Business Consulting</h2>
+                            <h3 class="feature-two__title"><a>Vision</a></h3>
+                            <p class="feature-two__text">{{ $data['homepage']->vision ?? '' }}</p>
+
                         </div>
-                        <p class="about-three__text-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                            do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <p class="about-three__text-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                            do<br> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim<br> ad minim
-                            veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut <br>aliquip ex ea commodo consequat.
-                        </p>
-                        <ul class="about-three__points list-unstyled">
-                            <li>
-                                <div class="about-three__points-count count-box">
-                                    <h3 class="count-text" data-stop="5" data-speed="1500">00</h3>
-                                    <span>k</span>
-                                </div>
-                                <p class="about-three__points-text">Business Strategy <br>Growth</p>
-                            </li>
-                            <li>
-                                <div class="about-three__points-count count-box">
-                                    <h3 class="count-text" data-stop="7" data-speed="1500">00</h3>
-                                    <span>k</span>
-                                </div>
-                                <p class="about-three__points-text">Finance Valuable<br> Ideas</p>
-                            </li>
-                        </ul>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-4 d-flex align-items-stretch wow fadeInUp" data-wow-delay="300ms">
+                        <div class="feature-two__single">
+                            <div class="feature-two__icon">
+                                <span class="icon-risk-management"></span>
+                            </div>
+                            <h3 class="feature-two__title"><a>Value</a></h3>
+                            <p class="feature-two__text">{{ $data['homepage']->value ?? '' }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if($data['homepage']->description)
+
+        <section class="about-two">
+            <div class="about-two__shape-2 zoominout">
+                <img src="{{ asset('assets/frontend/images/shapes/about-two-shape-2.png') }}" alt="">
+            </div>
+            <div class="about-two__shape-3 float-bob-y">
+                <img src="{{ asset('assets/frontend/images/shapes/about-two-shape-3.png') }}" alt="">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="about-two__left {{ $data['homepage']->image_position == 'left' ? 'custom_left':'' }}">
+                            @if($data['homepage']->image_position == 'left')
+                                @include($module.'partials.welcome_image')
+                            @else
+                                @include($module.'partials.welcome_description')
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="about-two__right {{ $data['homepage']->image_position == 'left' ? 'custom_right':'' }}">
+                            @if($data['homepage']->image_position == 'right')
+                                @include($module.'partials.welcome_image')
+                            @else
+                                @include($module.'partials.welcome_description')
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!--About Three End -->
+        </section>
+    @endif
 
     <!--Why Choose Two Start -->
     <section class="why-choose-two">
