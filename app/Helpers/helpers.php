@@ -190,32 +190,31 @@ if (!function_exists('get_icons')) {
     }
 }
 
-if (!function_exists('get_solution_icons')) {
+if (!function_exists('core_value_icon')) {
     /**
-     * @param $menu_type
-     * @param $menu
+     * @param $index
      * @return string
      */
-    function get_solution_icons($index){
-        $icon   = '';
+    function core_value_icon($index): string
+    {
         if($index == 0){
-            $icon = 'flaticon-worker';
+            $icon = 'icon-business-advice';
         }else if($index == 1){
-            $icon = 'flaticon-diamond';
+            $icon = 'icon-planning';
         }else if($index == 2){
-            $icon = 'flaticon-mission';
+            $icon = 'icon-report';
         }else if($index == 3){
-            $icon = 'flaticon-analytics';
+            $icon = 'icon-solution';
         }else if($index == 4){
-            $icon = 'flaticon-pie-graphic';
+            $icon = 'icon-diversity';
         }else if($index == 5){
-            $icon = 'flaticon-line-graph';
+            $icon = 'icon-risk-management';
         }else if($index == 6){
-            $icon = 'flaticon-sports-and-competition';
+            $icon = 'icon-woman';
         }else if($index == 7){
-            $icon = 'flaticon-analysis';
+            $icon = 'icon-risk-management';
         }else{
-            $icon = 'flaticon-graph-1';
+            $icon = 'icon-icon-years-experience';
         }
 
         return $icon;

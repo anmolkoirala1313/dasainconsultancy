@@ -118,41 +118,13 @@
         </section>
     @endif
 
-    @if($data['homepage']->action_title)
-        <section class="cta-one">
-            <div class="cta-one__shape-1 float-bob-x">
-                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-1.png') }}" alt="">
-            </div>
-            <div class="cta-one__shape-2 float-bob-y">
-                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-2.png') }}" alt="">
-            </div>
-            <div class="cta-one__shape-3 shape-mover">
-                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-3.png') }}" alt="">
-            </div>
-            <div class="cta-one__shape-4 img-bounce">
-                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-4.png') }}" alt="">
-            </div>
-            <div class="container">
-                <div class="cta-one__inner">
-                    <div class="cta-one__title-box">
-                        <p class="cta-one__text">{{ $data['homepage']->action_subtitle ?? '' }}</p>
-                        <h3 class="cta-one__title">{{ $data['homepage']->action_title ?? '' }}</h3>
-                    </div>
-                    <div class="cta-one__btn-box">
-                        <a href="{{ $data['homepage']->action_link ?? '/contact-us' }}" class="cta-one__btn thm-btn">{{ $data['homepage']->action_button ?? 'Start Here' }}</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-
     @if(count($data['jobs']) > 1)
         <section class="news-three">
             <div class="news-three__shape-1 img-bounce">
-                <img src="{{ asset('assets/frontend/images/shapes/news-three-shape-1.png') }}" alt="">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/news-three-shape-1.png') }}" alt="">
             </div>
             <div class="news-three__shape-2 float-bob-y">
-                <img src="{{ asset('assets/frontend/images/shapes/news-three-shape-2.png') }}" alt="">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/news-three-shape-2.png') }}" alt="">
             </div>
             <div class="container">
                 <div class="section-title-three text-center">
@@ -166,7 +138,7 @@
                         <div class="col-xl-6 col-lg-6">
                             <div class="news-page-three__single wow fadeInUp" data-wow-delay="{{$index+1}}00ms">
                                 <div class="news-page-three__img">
-                                    <img src="{{ asset(imagePath($job->image)) }}" alt="">
+                                    <img class="lazy" data-src="{{ asset(imagePath($job->image)) }}" alt="">
                                 </div>
                                 <div class="news-page-three__content news-page-three__content_padding">
                                     <ul class="list-unstyled news-page-three__meta">
@@ -196,17 +168,17 @@
     @if(count($data['services']) > 0)
         <section class="portfolio-one">
             <div class="portfolio-one__shape-1 float-bob-x">
-                <img src="assets/images/shapes/portfolio-one-shape-1.png" alt="">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/portfolio-one-shape-1.png') }}" alt="">
             </div>
             <div class="portfolio-one__shape-2 rotate-me">
-                <img src="assets/images/shapes/portfolio-one-shape-2.png" alt="">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/portfolio-one-shape-2.png') }}" alt="">
             </div>
             <div class="container">
                 <div class="section-title text-center">
                     <div class="section-title__tagline-box">
-                        <p class="section-title__tagline">Latest CASE STUDIES</p>
+                        <p class="section-title__tagline">OUR LATEST CATEGORIES</p>
                     </div>
-                    <h2 class="section-title__title">We Are Specialist For Many <br> Consulting Cases</h2>
+                    <h2 class="section-title__title">Covering All Bases With Our <br> Special Category</h2>
                 </div>
                 <div class="row">
                     @foreach($data['services'] as $index=>$service)
@@ -214,7 +186,7 @@
                             <div class="portfolio-one__single">
                                 <div class="portfolio-one__img-box">
                                     <div class="portfolio-one__img">
-                                        <img src="{{ asset(thumbnailImagePath($service->image)) }}" alt="">
+                                        <img class="lazy" data-src="{{ asset(thumbnailImagePath($service->image)) }}" alt="">
                                     </div>
                                     <div class="portfolio-one__content">
 {{--                                        <p class="portfolio-one__sub-title">Business Audit</p>--}}
@@ -230,75 +202,202 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="portfolio-one__btn-box">
-                    <a href="portfolio.html" class="portfolio-one__btn thm-btn">See All Project</a>
+                <p class="services-three__bottom-text">Learn more about <a href="{{ route('frontend.service.index') }}" class="all-services">
+                        Categories We Have<span class="icon-right-arrow-11"></span></a>
+                    <a href="{{ route('frontend.service.index') }}" class="">For you</a></p>
+            </div>
+        </section>
+    @endif
+
+    @if($data['homepage']->action_title)
+        <section class="cta-one">
+            <div class="cta-one__shape-1 float-bob-x">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-1.png') }}" alt="">
+            </div>
+            <div class="cta-one__shape-2 float-bob-y">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-2.png') }}" alt="">
+            </div>
+            <div class="cta-one__shape-3 shape-mover">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-3.png') }}" alt="">
+            </div>
+            <div class="cta-one__shape-4 img-bounce">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-4.png') }}" alt="">
+            </div>
+            <div class="container">
+                <div class="cta-one__inner">
+                    <div class="cta-one__title-box">
+                        <p class="cta-one__text">{{ $data['homepage']->action_subtitle ?? '' }}</p>
+                        <h3 class="cta-one__title">{{ $data['homepage']->action_title ?? '' }}</h3>
+                    </div>
+                    <div class="cta-one__btn-box">
+                        <a href="{{ $data['homepage']->action_link ?? '/contact-us' }}" class="cta-one__btn thm-btn">{{ $data['homepage']->action_button ?? 'Start Here' }}</a>
+                    </div>
                 </div>
             </div>
         </section>
     @endif
 
-        <!--Why Choose Two Start -->
-    <section class="why-choose-two">
+    @if(count($data['homepage']->coreValueDetail))
+        <section class="services-three">
+            <div class="services-three__shape-1 float-bob-y">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/services-three-shape-1.png') }}" alt="">
+            </div>
+            <div class="services-three__shape-2 zoominout">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/services-three-shape-2.png') }}" alt="">
+            </div>
+            <div class="container">
+                <div class="section-title text-center">
+                    <div class="section-title__tagline-box">
+                        <p class="section-title__tagline">Our Core Values</p>
+                    </div>
+                    <h2 class="section-title__title">>Our Core Guiding Values for <br> Success</h2>
+                </div>
+                <div class="row">
+
+                    @foreach($data['homepage']->coreValueDetail as $index=>$core_value)
+                        <div class="col-xl-4 col-lg-6 col-md-6 d-flex align-items-stretch wow fadeInUp" data-wow-delay="{{$index+1}}00ms">
+                            <div class="services-three__single">
+                                <h3 class="services-three__title">
+                                    <a>{{ $core_value->title ?? '' }}</a>
+                                </h3>
+                                <div class="services-three__icon">
+                                    <span class="{{ core_value_icon($index) }}"></span>
+                                </div>
+                                <p class="services-three__text">
+                                    {{ $core_value->description ?? '' }}
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if(count($data['homepage']->recruitmentProcess))
+        <section class="process-one">
+            <div class="container">
+                <div class="section-title text-center">
+                    <div class="section-title__tagline-box">
+                        <p class="section-title__tagline">Our Flow</p>
+                    </div>
+                    <h2 class="section-title__title">Understand Our Work process</h2>
+                </div>
+                <div class="process-one__inner">
+                    <div class="process-one__shape-1">
+                        <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/process-one-shape-1.png') }}" alt="">
+                    </div>
+                    <div class="row">
+                        @foreach($data['homepage']->recruitmentProcess as $index=>$process)
+                            <div class="col-xl-3 col-lg-6 col-md-6 {{ $index > 3 ? 'mt-3':'' }}">
+                                <div class="process-one__single">
+                                    <div class="process-one__count"></div>
+                                    <h3 class="process-one__title">{{ $process->title ?? '' }}</h3>
+                                    <p class="process-one__text">
+                                        {{ $process->description ?? '' }}
+                                    </p>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if($data['homepage']->why_title)
+        <section class="counter-one">
+            <div class="container">
+                <div class="counter-one__inner">
+                    <div class="counter-one__bg float-bob-y"
+                         style="background-image: url({{ asset('assets/frontend/images/backgrounds/counter-one-bg.png') }});"></div>
+                    <ul class="counter-one__count-list list-unstyled">
+                        <li>
+                            <div class="counter-one__icon">
+                                <span class="icon-icon-years-experience"></span>
+                            </div>
+                            <div class="counter-one__count count-box">
+                                <h3 class="count-text" data-stop="{{ $data['homepage']->project_completed ?? '600' }}" data-speed="1500">00</h3>
+                            </div>
+                            <p class="counter-one__text">Project Completed</p>
+                        </li>
+                        <li>
+                            <div class="counter-one__icon">
+                                <span class="icon-icon-team-members"></span>
+                            </div>
+                            <div class="counter-one__count count-box">
+                                <h3 class="count-text" data-stop="{{ $data['homepage']->happy_clients ?? '560' }}" data-speed="1500">00</h3>
+                            </div>
+                            <p class="counter-one__text">Happy Clients</p>
+                        </li>
+                        <li>
+                            <div class="counter-one__icon">
+                                <span class="icon-icon-successful-project"></span>
+                            </div>
+                            <div class="counter-one__count count-box">
+                                <h3 class="count-text" data-stop="{{ $data['homepage']->visa_approved ?? '785' }}" data-speed="1500">00</h3>
+                                <span>+</span>
+                            </div>
+                            <p class="counter-one__text">Visa Approved</p>
+                        </li>
+                        <li>
+                            <div class="counter-one__icon">
+                                <span class="icon-icon-satisfied-clients"></span>
+                            </div>
+                            <div class="counter-one__count count-box">
+                                <h3 class="count-text" data-stop="{{ $data['homepage']->success_stories ?? '650' }}" data-speed="1500">00</h3>
+                                <span>+</span>
+                            </div>
+                            <p class="counter-one__text">Success Stories</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-two">
+        <div class="about-one__shape-3 float-bob-y">
+            <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/about-one-shape-3.png') }}" alt="">
+        </div>
         <div class="why-choose-two__shape-3 img-bounce">
-            <img src="assets/images/shapes/why-choose-two-shape-3.png" alt="">
+            <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/why-choose-two-shape-3.png') }}" alt="">
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-xl-6">
                     <div class="why-choose-two__left">
                         <div class="section-title-three text-left">
                             <div class="section-title-three__tagline-box">
-                                <p class="section-title-three__tagline">Why Choose Us</p>
+                                <p class="section-title-three__tagline">{{ $data['homepage']->why_subtitle ?? 'Why Choose Us' }}</p>
                             </div>
-                            <h2 class="section-title-three__title">We are awards winning <br> business consulting
-                                firms</h2>
+                            <h2 class="section-title-three__title">{{ $data['homepage']->why_title }}</h2>
                         </div>
-                        <p class="why-choose-two__text">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-                        <ul class="why-choose-two__points list-unstyled">
-                            <li>
-                                <div class="icon">
-                                    <span class="icon-solution"></span>
-                                </div>
-                                <div class="content">
-                                    <h3>Client - Focused Solutions</h3>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting<br>
-                                        industry. Lorem Ipsum has been the industry's standard dummy</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon">
-                                    <span class="icon-diversity"></span>
-                                </div>
-                                <div class="content">
-                                    <h3>Diversity & Inclusion</h3>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting<br>
-                                        industry. Lorem Ipsum has been the industry's standard dummy</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon">
-                                    <span class="icon-woman"></span>
-                                </div>
-                                <div class="content">
-                                    <h3>Women’s Empowerment</h3>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting<br>
-                                        industry. Lorem Ipsum has been the industry's standard dummy</p>
-                                </div>
-                            </li>
-                        </ul>
+                        <p class="why-choose-two__text text-align-justify">{{ $data['homepage']->why_description ?? '' }}</p>
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="why-choose-two__right">
                         <div class="why-choose-two__img wow slideInRight" data-wow-delay="100ms"
                              data-wow-duration="2500ms">
-                            <img src="assets/images/resources/why-choose-two-img-1.jpg" alt="">
+                            <img class="lazy" data-src="{{ asset(imagePath($data['homepage']->why_image)) }}" alt="">
+                            @if($data['homepage']->why_video)
+                                <div class="about-two__video-link">
+                                    <a href="{{ $data['homepage']->why_video }}" class="video-popup">
+                                        <div class="about-two__video-icon">
+                                            <span class="fa fa-play"></span>
+                                            <i class="ripple"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
                             <div class="why-choose-two__shape-1 float-bob-y">
-                                <img src="assets/images/shapes/why-choose-two-shape-1.png" alt="">
+                                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/why-choose-two-shape-1.png') }}"
+                                   alt="">
                             </div>
                             <div class="why-choose-two__shape-2 zoominout">
-                                <img src="assets/images/shapes/why-choose-two-shape-2.png" alt="">
+                                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/why-choose-two-shape-2.png') }}"
+                                     alt="">
                             </div>
                         </div>
                     </div>
@@ -306,7 +405,7 @@
             </div>
         </div>
     </section>
-    <!--Why Choose Two End -->
+    @endif
 
     <!--Services Three Start -->
     <section class="services-three">

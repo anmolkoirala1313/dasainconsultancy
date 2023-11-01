@@ -26,8 +26,8 @@ class WhyUsRequest extends FormRequest
     {
         return [
             'why_title'         => 'required|string|max:60',
-            'why_description'   => 'required',
-            'image_input'       => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'why_description'   => 'required|string|max:1145',
+            'image_input'     => request()->method() == 'POST' ? 'required':'nullable'.'|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 
@@ -36,6 +36,7 @@ class WhyUsRequest extends FormRequest
         return [
             'why_title.required'           => 'Please enter title',
             'why_description.required'     => 'Please enter description',
+            'why_description.max'          => 'Description cannot be longer than 1145 characters.',
             'image_input.required'         => 'Please select an image',
         ];
     }

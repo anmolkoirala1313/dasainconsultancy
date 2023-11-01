@@ -67,7 +67,6 @@ class RecruitmentProcessController extends BackendBaseController
                     ],
                     [
                         'title'         => $title,
-                        'icon'          => $request['detail_icon'][$index] ?? null,
                         'description'   => $request['detail_description'][$index] ?? null,
                         'created_by'    => $request['created_by'],
                     ]
@@ -114,7 +113,6 @@ class RecruitmentProcessController extends BackendBaseController
                         'id'          => $request['detail_id'][$index]],
                     [
                         'title'         => $title,
-                        'icon'          => $request['detail_icon'][$index] ?? null,
                         'description'   => $request['detail_description'][$index] ?? null,
                         'created_by'    => auth()->user()->id,
                         'updated_by'    => $request['updated_by'],
