@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\Activity\PackageController;
+use App\Http\Controllers\Frontend\Career\JobController;
 use App\Http\Controllers\Frontend\HomePageController;
 use App\Http\Controllers\Frontend\News\BlogController;
 use App\Http\Controllers\Frontend\Page\PageController;
@@ -30,10 +31,9 @@ Route::any('/register', function() {
 Route::get('/contact-us', [HomePageController::class, 'contact'])->name('contact-us');
 Route::post('/contact/message', [HomePageController::class, 'contactStore'])->name('contact-us.store');
 
-Route::get('/activity', [PackageController::class, 'index'])->name('activity.index');
-Route::post('/activity/search', [PackageController::class, 'search'])->name('activity.search');
-Route::get('/activity/{slug}', [PackageController::class, 'show'])->name('activity.show');
-Route::get('/activity/category/{slug}', [PackageController::class, 'category'])->name('activity.category');
+Route::get('/jobs', [JobController::class, 'index'])->name('job.index');
+Route::post('/job/search', [JobController::class, 'search'])->name('job.search');
+Route::get('/job/{slug}', [JobController::class, 'show'])->name('job.show');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/search/', [BlogController::class, 'search'])->name('blog.search');

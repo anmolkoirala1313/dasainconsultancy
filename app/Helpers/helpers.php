@@ -3,6 +3,7 @@
 use App\Models\Backend\Menu;
 use App\Models\Backend\MenuItem;
 use App\Models\Backend\User;
+use JetBrains\PhpStorm\Pure;
 
 if (!function_exists('getNepaliMonth')) {
     $selected_month = '';
@@ -251,6 +252,20 @@ if (!function_exists('imagePath')) {
     }
 }
 
+if (!function_exists('thumbnailImagePath')) {
+
+    /**
+     * @param $image
+     * @return string
+     */
+    function thumbnailImagePath($image): string
+    {
+        $thumbnail = getThumbImageName($image);
+
+        return 'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.$thumbnail;
+    }
+}
+
 if (!function_exists('galleryImagePath')) {
     /**
      * @param $folder_name
@@ -332,6 +347,22 @@ if (! function_exists('getFlightList')) {
     function getFlightList()
     {
         return ['kathmandu'=>'Kathmandu','biratnagar'=>'Biratnagar', 'pokhara'=>'Pokhara', 'bhadrapur'=>'Bhadrapur', 'bhairahawa'=>'Bhairahawa', 'bharatpur'=>'Bharatpur', 'dhangadi'=>'Dhangadi', 'simara'=>'Simara', 'tumlingtar'=>'Tumlingtar', 'rajbiraj'=>'Rajbiraj', 'janakpur'=>'Janakpur', 'mountain_flight'=>'Mountain Flight', 'nepalgunj'=>'Nepalgunj'];
+    }
+}
+
+if (! function_exists('getThumbImageName')) {
+    /**
+     * returns list of flights
+     *
+     * @param $image
+     * @return string
+     */
+    function getThumbImageName($image): string
+    {
+        $thumb      = 'thumb_'.substr(strrchr($image, '/'), 1);
+        $folder     = substr($image, 0, strrpos($image, '/'));
+
+        return $folder.'/'.$thumb;
     }
 }
 

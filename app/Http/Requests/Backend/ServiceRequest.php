@@ -26,7 +26,7 @@ class ServiceRequest extends FormRequest
     {
         return [
             'title'         => 'required|string|max:50',
-            'description'   => 'required|string|max:191',
+            'description'   => 'required|string',
             'image_input'   => request()->method() == 'POST' ? 'required':'nullable'.'|image|mimes:jpeg,png,jpg',
         ];
     }
@@ -36,7 +36,6 @@ class ServiceRequest extends FormRequest
         return [
             'title.required'            => 'Please enter a title',
             'description.required'      => 'Please write a small description',
-            'description.max'           => 'Description must be less than 200 characters',
             'title.max'                 => 'Title must be less than 50 characters',
             'image_input.required'      => 'Please select a image',
         ];

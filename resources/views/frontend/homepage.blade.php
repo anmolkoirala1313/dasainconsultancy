@@ -83,13 +83,15 @@
     @endif
 
     @if($data['homepage']->description)
-
         <section class="about-two">
+            <div class="about-three__shape-5">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/about-three-shape-5.png') }}" alt="">
+            </div>
             <div class="about-two__shape-2 zoominout">
-                <img src="{{ asset('assets/frontend/images/shapes/about-two-shape-2.png') }}" alt="">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/about-two-shape-2.png') }}" alt="">
             </div>
             <div class="about-two__shape-3 float-bob-y">
-                <img src="{{ asset('assets/frontend/images/shapes/about-two-shape-3.png') }}" alt="">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/about-two-shape-3.png') }}" alt="">
             </div>
             <div class="container">
                 <div class="row">
@@ -116,7 +118,126 @@
         </section>
     @endif
 
-    <!--Why Choose Two Start -->
+    @if($data['homepage']->action_title)
+        <section class="cta-one">
+            <div class="cta-one__shape-1 float-bob-x">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-1.png') }}" alt="">
+            </div>
+            <div class="cta-one__shape-2 float-bob-y">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-2.png') }}" alt="">
+            </div>
+            <div class="cta-one__shape-3 shape-mover">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-3.png') }}" alt="">
+            </div>
+            <div class="cta-one__shape-4 img-bounce">
+                <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/cta-one-shape-4.png') }}" alt="">
+            </div>
+            <div class="container">
+                <div class="cta-one__inner">
+                    <div class="cta-one__title-box">
+                        <p class="cta-one__text">{{ $data['homepage']->action_subtitle ?? '' }}</p>
+                        <h3 class="cta-one__title">{{ $data['homepage']->action_title ?? '' }}</h3>
+                    </div>
+                    <div class="cta-one__btn-box">
+                        <a href="{{ $data['homepage']->action_link ?? '/contact-us' }}" class="cta-one__btn thm-btn">{{ $data['homepage']->action_button ?? 'Start Here' }}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if(count($data['jobs']) > 1)
+        <section class="news-three">
+            <div class="news-three__shape-1 img-bounce">
+                <img src="{{ asset('assets/frontend/images/shapes/news-three-shape-1.png') }}" alt="">
+            </div>
+            <div class="news-three__shape-2 float-bob-y">
+                <img src="{{ asset('assets/frontend/images/shapes/news-three-shape-2.png') }}" alt="">
+            </div>
+            <div class="container">
+                <div class="section-title-three text-center">
+                    <div class="section-title-three__tagline-box">
+                        <p class="section-title-three__tagline">Current demands</p>
+                    </div>
+                    <h2 class="section-title-three__title">Learn more about our latest<br> jobs</h2>
+                </div>
+                <div class="row">
+                    @foreach($data['jobs'] as $index=>$job)
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="news-page-three__single wow fadeInUp" data-wow-delay="{{$index+1}}00ms">
+                                <div class="news-page-three__img">
+                                    <img src="{{ asset(imagePath($job->image)) }}" alt="">
+                                </div>
+                                <div class="news-page-three__content news-page-three__content_padding">
+                                    <ul class="list-unstyled news-page-three__meta">
+                                        <li><a href="#"> <span class="icon-date11"></span>
+                                                @if(@$job->end_date >= date('Y-m-d'))
+                                                    {{date('M j, Y',strtotime(@$job->start_date))}} - {{date('M j, Y',strtotime(@$job->end_date))}}
+                                                @else
+                                                    Expired
+                                                @endif
+                                            </a></li>
+                                    </ul>
+                                    <div class="news-page-three__title-box">
+                                        <h3><a href="{{ route('frontend.job.show', $job->slug) }}">{{ $job->title ?? '' }}</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    <div class="portfolio-one__btn-box">
+                        <a href="{{ route('frontend.job.index') }}" class="portfolio-one__btn thm-btn">See All Jobs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if(count($data['services']) > 0)
+        <section class="portfolio-one">
+            <div class="portfolio-one__shape-1 float-bob-x">
+                <img src="assets/images/shapes/portfolio-one-shape-1.png" alt="">
+            </div>
+            <div class="portfolio-one__shape-2 rotate-me">
+                <img src="assets/images/shapes/portfolio-one-shape-2.png" alt="">
+            </div>
+            <div class="container">
+                <div class="section-title text-center">
+                    <div class="section-title__tagline-box">
+                        <p class="section-title__tagline">Latest CASE STUDIES</p>
+                    </div>
+                    <h2 class="section-title__title">We Are Specialist For Many <br> Consulting Cases</h2>
+                </div>
+                <div class="row">
+                    @foreach($data['services'] as $index=>$service)
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{$index+1}}00ms">
+                            <div class="portfolio-one__single">
+                                <div class="portfolio-one__img-box">
+                                    <div class="portfolio-one__img">
+                                        <img src="{{ asset(thumbnailImagePath($service->image)) }}" alt="">
+                                    </div>
+                                    <div class="portfolio-one__content">
+{{--                                        <p class="portfolio-one__sub-title">Business Audit</p>--}}
+                                        <h3 class="portfolio-one__title">
+                                            <a href="{{ route('frontend.service.show', $service->key) }}">{{ $service->title ?? '' }}</a></h3>
+                                    </div>
+                                    <div class="portfolio-one__arrow">
+                                        <a href="{{ route('frontend.service.show', $service->key) }}" class=""><span
+                                                class="icon-top-right-1"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="portfolio-one__btn-box">
+                    <a href="portfolio.html" class="portfolio-one__btn thm-btn">See All Project</a>
+                </div>
+            </div>
+        </section>
+    @endif
+
+        <!--Why Choose Two Start -->
     <section class="why-choose-two">
         <div class="why-choose-two__shape-3 img-bounce">
             <img src="assets/images/shapes/why-choose-two-shape-3.png" alt="">

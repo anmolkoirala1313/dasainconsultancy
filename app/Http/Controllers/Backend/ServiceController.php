@@ -21,7 +21,7 @@ class ServiceController extends BackendBaseController
     protected string $view_path     = 'backend.service.';
     protected string $page         = 'Service';
     protected string $folder_name   = 'service';
-    protected string $page_title, $page_method, $image_path, $file_path;
+    protected string $page_title, $page_method, $image_path, $file_path, $thumb_height, $thumb_width;
     protected object $model;
 
 
@@ -45,7 +45,7 @@ class ServiceController extends BackendBaseController
             $request->request->add(['key' => $this->model->changeTokey($request['title'])]);
 
             if($request->hasFile('image_input')){
-                $image_name = $this->uploadImage($request->file('image_input'),'600','400');
+                $image_name = $this->uploadImage($request->file('image_input'),'915','500');
                 $request->request->add(['image'=>$image_name]);
             }
 
@@ -74,7 +74,7 @@ class ServiceController extends BackendBaseController
         DB::beginTransaction();
         try {
             if($request->hasFile('image_input')){
-                $image_name = $this->updateImage($request->file('image_input'),$data['row']->image,'600','400');
+                $image_name = $this->updateImage($request->file('image_input'),$data['row']->image,'915','500');
                 $request->request->add(['image'=>$image_name]);
             }
 

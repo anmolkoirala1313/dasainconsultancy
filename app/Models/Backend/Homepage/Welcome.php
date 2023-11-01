@@ -12,7 +12,7 @@ class Welcome extends BackendBaseModel
     use HasFactory, SoftDeletes;
 
     protected $table    = 'homepages';
-    protected $fillable = ['id','title','subtitle','description','button','link','video','image','core_title','core_subtitle','recruitment_title','recruitment_subtitle','status','created_by','updated_by'];
+    protected $fillable = ['id','title','subtitle','description','button','link','video','image','image_position','core_title','core_subtitle','recruitment_title','recruitment_subtitle','status','created_by','updated_by'];
 
     public function coreValueDetail(): HasMany
     {
