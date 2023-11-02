@@ -26,7 +26,7 @@ class ManagingDirectorRequest extends FormRequest
     {
         return [
             'title'         => 'required|string|max:50',
-            'description'   => 'required|string|max:800',
+            'description'   => 'required|string|max:900',
             'image_input'   => request()->method() == 'POST' ? 'required':'nullable'.'|image|mimes:jpeg,png,jpg',
         ];
     }
@@ -36,7 +36,7 @@ class ManagingDirectorRequest extends FormRequest
         return [
             'title.required'            => 'Please enter title',
             'description.required'      => 'Please enter description',
-            'description.max'           => 'Description must be less than 800 characters',
+            'description.max'           => 'Description must be less than 900 characters',
             'title.max'                 => 'Title must be less than 50 characters',
             'image_input.required'   => 'Please select a image',
         ];

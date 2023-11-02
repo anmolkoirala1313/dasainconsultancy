@@ -4317,6 +4317,7 @@ ul {
   position: relative;
   display: block;
   padding: 120px 0 120px;
+  background-color: var(--bixola-primary);
   z-index: 1;
 }
 
@@ -5949,13 +5950,14 @@ ul {
 .brand-one {
   position: relative;
   display: block;
-  background-color: #1D2939;
+  /*background-color: #1D2939;*/
+    padding: 40px 0px 0px;
 }
 
 .brand-one__inner {
   position: relative;
   display: block;
-  padding: 80px 0 70px;
+  padding: 0px 0 20px;
 }
 
 .brand-one__carousel {
@@ -9417,7 +9419,7 @@ ul {
 .portfolio-three {
   position: relative;
   display: block;
-  background-color: var(--bixola-primary);
+  /*background-color: var(--bixola-primary);*/
   padding: 0 0 90px;
   z-index: 1;
 }
@@ -12360,13 +12362,14 @@ ul {
 .team-details {
   position: relative;
   display: block;
+    padding: 80px 0 80px;
 }
 
 .team-details__inner {
   position: relative;
   display: block;
-  padding: 120px 0 120px;
-  border-bottom: 1px solid #EAECF0;
+  /*padding: 120px 0 120px;*/
+  /*border-bottom: 1px solid #EAECF0;*/
 }
 
 .team-details__left {
@@ -12493,8 +12496,8 @@ ul {
 .team-details__sub-title {
   font-size: 16px;
   color: #475467;
-  margin-top: 2px;
-  margin-bottom: 17px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .team-details__title-2 {
