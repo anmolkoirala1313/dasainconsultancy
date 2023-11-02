@@ -13,7 +13,7 @@ class BlogController extends BackendBaseController
     protected string $module        = 'frontend.';
     protected string $base_route    = 'frontend.blog.';
     protected string $view_path     = 'frontend.blog.';
-    protected string $panel         = 'Blog';
+    protected string $page          = 'Blog';
     protected string $folder_name   = 'blog';
     protected string $page_title, $page_method, $image_path;
     protected object $model;
@@ -38,7 +38,7 @@ class BlogController extends BackendBaseController
         $this->page_method      = 'index';
         $this->page_title       = 'All '.$this->page;
         $data                   = $this->getCommonData();
-        $data['rows']           = $this->model->active()->descending()->paginate(6);
+        $data['rows']           = $this->model->active()->descending()->paginate(4);
 
         if(!$data['rows']){
             abort(404);

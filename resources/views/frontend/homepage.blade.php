@@ -685,7 +685,7 @@
     @endif
 
     @if(count($data['blogs'])>0)
-        <section class="news-three">
+        <section class="news-three" style="padding: 80px 0 90px;">
             <div class="news-three__shape-1 img-bounce">
                 <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/news-three-shape-1.png') }}" alt="">
             </div>
@@ -705,7 +705,7 @@
                         <div class="news-three__single">
                             <div class="news-three__img-box">
                                 <div class="news-three__img">
-                                    <img src="{{ asset(imagePath($blog->image))}}" alt="">
+                                    <img class="lazy" data-src="{{ asset(imagePath($blog->image))}}" alt="">
                                 </div>
                                 <div class="news-three__date">
                                     <p>{{date('d', strtotime($blog->created_at))}}</p>

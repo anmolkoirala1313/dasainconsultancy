@@ -3,42 +3,63 @@
 
 @section('content')
 
-    @include($module.'includes.breadcrumb',['breadcrumb_image'=>'team-cta-bg.jpeg'])
+    @include($module.'includes.breadcrumb',['breadcrumb_image'=>'page-header-bg.jpg'])
 
-    <section class="pt-11 pb-13">
+    <section class="news-page news-list-one-right">
         <div class="container">
-            <div class="row ml-xl-0 mr-xl-n6">
-                <div class="col-lg-8 mb-8 mb-lg-0 pr-xl-6 pl-xl-0">
-                    <div class="row">
-                        @foreach( $data['rows']  as $row)
-                            <div class="col-md-6 mb-6">
-                                <div class="card border-0 shadow-xxs-3" data-animate="fadeInUp">
-                                    <div class="position-relative d-flex align-items-end card-img-top">
-                                        <a href="{{ route('frontend.blog.show', $row->slug) }}" class="hover-shine">
-                                            <img src="{{ asset(imagePath($row->image))}}" alt="">
-                                        </a>
-                                        <a href="{{ route('frontend.blog.category', $row->blogCategory->slug) }}" class="badge text-white bg-dark-opacity-04 fs-13 font-weight-500 bg-hover-primary hover-white mx-2 my-4 position-absolute pos-fixed-bottom">
-                                            {{ $row->blogCategory->title ?? '' }}
-                                        </a>
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="news-page__left">
+                        <div class="row">
+                            @foreach( $data['rows']  as $index=>$row)
+                                <div class="col-lg-6 d-flex align-items-stretch wow fadeInUp" data-wow-delay="{{$index+1}}00ms">
+                                   ` <div class="news-three__single">
+                                        <div class="news-three__img-box">
+                                            <div class="news-three__img">
+                                                <img class="lazy" data-src="{{ asset(imagePath($row->image))}}" alt="">
+                                            </div>
+                                            <div class="news-three__date">
+                                                <p>{{date('d', strtotime($row->created_at))}}</p>
+                                                <span>{{date('M Y', strtotime($row->created_at))}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="news-three__content">
+                                            <ul class="news-three__meta list-unstyled">
+                                                <li>
+                                                    <p><span class="icon-report"></span>  {{ $row->blogCategory->title ?? '' }}</p>
+                                                </li>
+                                            </ul>
+                                            <h3 class="news-three__title"><a href="{{ route('frontend.blog.show', $row->slug) }}">
+                                                    {{ $row->title ?? '' }}</a></h3>
+
+                                            <div class="news-three__btn">
+                                                <a href="{{ route('frontend.blog.show', $row->slug) }}">Learn More<span
+                                                        class="icon-right-arrow1"></span></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-body px-5 pt-3 pb-5">
-                                        <p class="mb-1 fs-13">{{date('d M Y', strtotime($row->created_at))}}</p>
-                                        <h3 class="fs-18 text-heading lh-194 mb-1">
-                                            <a href="{{ route('frontend.blog.show', $row->slug) }}" class="text-heading hover-primary">
-                                                {{ $row->title ?? '' }}
-                                            </a>
-                                        </h3>
-                                        <a class="text-heading font-weight-500" href="{{ route('frontend.blog.show', $row->slug) }}">Learn more <i class="far fa-long-arrow-right text-primary ml-1"></i></a>
-                                    </div>
-                                    dropdownParent: $('#my_amazing_modal')
-                            </div>
-                        @endforeach
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="portfolio-page__pagination">
+                            {{ $data['rows']->links('vendor.pagination.default') }}
+{{--                            <ul class="pg-pagination list-unstyled">--}}
+{{--                                <li class="prev">--}}
+{{--                                    <a href="portfolio-details.html" aria-label="Prev"><i--}}
+{{--                                            class="fa fa-angle-left"></i></a>--}}
+{{--                                </li>--}}
+{{--                                <li class="count"><a href="portfolio-details.html">1</a></li>--}}
+{{--                                <li class="count"><a href="portfolio-details.html">2</a></li>--}}
+{{--                                <li class="count"><a href="portfolio-details.html">3</a></li>--}}
+{{--                                <li class="next">--}}
+{{--                                    <a href="portfolio-details.html" aria-label="Next"><i--}}
+{{--                                            class="fa fa-angle-right"></i></a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+                        </div>
                     </div>
-                    <nav class="pt-4">
-                        {{ $data['rows']->links('vendor.pagination.default') }}
-                    </nav>
                 </div>
-                <div class="col-lg-4 pl-xl-6 pr-xl-0 primary-sidebar sidebar-sticky" id="sidebar">
+                <div class="col-xl-4 col-lg-5">
                     @include($view_path.'includes.sidebar')
                 </div>
             </div>
