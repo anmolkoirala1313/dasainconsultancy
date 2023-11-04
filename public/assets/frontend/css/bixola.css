@@ -384,14 +384,14 @@ ul {
 }
 
 .section-title-three__title {
-  margin: 0;
-  color: var(--bixola-black);
-  font-size: 44px;
-  line-height: 52px;
-  font-weight: 700;
-  margin-top: 11px;
-  font-family: var(--bixola-font-two);
-  text-transform: capitalize;
+    margin: 0;
+    color: var(--bixola-black);
+    font-size: 36px;
+    line-height: 40px;
+    font-weight: 700;
+    margin-top: 5px;
+    font-family: var(--bixola-font-two);
+    text-transform: capitalize;
 }
 
 .bootstrap-select .btn-light:not(:disabled):not(.disabled).active,
@@ -8870,8 +8870,8 @@ ul {
 --------------------------------------------------------------*/
 .about-three {
   position: relative;
-  display: block;
-  padding: 0 0 150px;
+    display: block;
+    padding: 120px 0 120px;
   z-index: 1;
 }
 
@@ -8912,7 +8912,7 @@ ul {
 .about-three__left {
   position: relative;
   display: block;
-  margin-right: 86px;
+  margin-right: 30px;
 }
 
 .about-three__img {
@@ -8983,11 +8983,11 @@ ul {
 }
 
 .about-three__shape-2 {
-  position: absolute;
-  bottom: -75px;
-  left: -133px;
-  opacity: .70;
-  z-index: -1;
+    position: absolute;
+    bottom: 60px;
+    left: -61px;
+    opacity: .70;
+    z-index: -1;
 }
 
 .about-three__shape-2 img {
@@ -8997,11 +8997,11 @@ ul {
 .about-three__right {
   position: relative;
   display: block;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
 
 .about-three__right .section-title-three {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .about-three__text-1 {
@@ -9024,8 +9024,8 @@ ul {
 }
 
 .about-three__text-2 {
-  margin-top: 30px;
-  margin-bottom: 50px;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 .about-three__points {
@@ -11356,7 +11356,7 @@ ul {
     margin-bottom: 40px;
     margin-top: 40px;
 }
-}
+
 
 .services-details__services-list {
   position: relative;

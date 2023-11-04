@@ -15,10 +15,10 @@
             <div class="card-body">
                 <div class="row">
                     <img class="img-responsive pb-4 border-bottom lazy" data-src="{{asset('assets/backend/images/pages/sections/'.$value.'.png')}}" width="100%"/>
-                    <div class="col-lg-12 mt-3">
+                    <div class="col-lg-6 mt-3">
                         <div class="mb-2">
                             <label class="form-label required">Title </label>
-                            <input type="text" class="form-control" name="title" value="{{$basic_element->title ?? null}}" maxlength="35" required>
+                            <input type="text" class="form-control" name="title" value="{{$basic_element->title ?? null}}" maxlength="40" required>
                             <input type="hidden" class="form-control" value="{{$key}}" name="page_section_id" required>
                             <input type="hidden" class="form-control" value="{{$value}}" name="section_name" required>
                             <input type="hidden" class="form-control" value="{{ $data['row']->id }}" name="page_id" required>
@@ -27,15 +27,15 @@
                             </div>
                         </div>
                     </div>
-{{--                    <div class="col-lg-6 mt-3">--}}
-{{--                        <div class="mb-1">--}}
-{{--                            <label>Sub Title </label>--}}
-{{--                            <input type="text" class="form-control" maxlength="35" name="subtitle" value="{{$basic_element->subtitle ?? null}}">--}}
-{{--                            <div class="invalid-feedback">--}}
-{{--                                Please enter the basic section sub title.--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    <div class="col-lg-6 mt-3">
+                        <div class="mb-1">
+                            <label>Sub Title </label>
+                            <input type="text" class="form-control" maxlength="35" name="subtitle" value="{{$basic_element->subtitle ?? null}}">
+                            <div class="invalid-feedback">
+                                Please enter the basic section sub title.
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-12">
                         <div class="mb-2 mt-2">
                             <label class="form-label required"> Description <span class="text-danger">* write 800 characters only</span></label>

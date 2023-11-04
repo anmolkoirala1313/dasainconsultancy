@@ -13,7 +13,7 @@ class PageController extends BackendBaseController
     protected string $module        = 'frontend.';
     protected string $base_route    = 'frontend.page.';
     protected string $view_path     = 'frontend.page.';
-    protected string $panel         = 'Page';
+    protected string $page          = 'Page';
     protected string $folder_name   = 'page';
     protected string $page_title, $page_method, $image_path;
     protected object $model;
