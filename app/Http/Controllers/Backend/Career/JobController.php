@@ -83,6 +83,7 @@ class JobController extends BackendBaseController
         DB::beginTransaction();
         try {
             $request->request->add(['updated_by' => auth()->user()->id ]);
+            $request->request->add(['slug' => $this->model->changeTokey($request['title'])]);
 
             if($request->hasFile('image_input')){
                 $image_name = $this->updateImage($request->file('image_input'),$data['row']->image,'600','400');

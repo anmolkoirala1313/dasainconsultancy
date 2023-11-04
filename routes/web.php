@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Frontend\Activity\PackageController;
 use App\Http\Controllers\Frontend\Career\JobController;
 use App\Http\Controllers\Frontend\HomePageController;
 use App\Http\Controllers\Frontend\News\BlogController;
@@ -31,14 +30,18 @@ Route::any('/register', function() {
 Route::get('/contact-us', [HomePageController::class, 'contact'])->name('contact-us');
 Route::post('/contact/message', [HomePageController::class, 'contactStore'])->name('contact-us.store');
 
-Route::get('/jobs', [JobController::class, 'index'])->name('job.index');
-Route::post('/job/search', [JobController::class, 'search'])->name('job.search');
-Route::get('/job/{slug}', [JobController::class, 'show'])->name('job.show');
-
+//blogs
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/search/', [BlogController::class, 'search'])->name('blog.search');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/blog/category/{slug}', [BlogController::class, 'category'])->name('blog.category');
+
+//jobs
+Route::get('/job', [JobController::class, 'index'])->name('job.index');
+Route::get('/job/search/', [JobController::class, 'search'])->name('job.search');
+Route::get('/job/{slug}', [JobController::class, 'show'])->name('job.show');
+Route::get('/job/category/{slug}', [JobController::class, 'category'])->name('job.category');
+
 
 Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
 Route::get('/service/{slug}', [ServiceController::class, 'show'])->name('service.show');

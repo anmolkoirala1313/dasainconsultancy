@@ -5,7 +5,6 @@
 
     @include($module.'includes.breadcrumb',['breadcrumb_image'=>'image-3.jpeg'])
 
-
     <section class="news-details">
         <div class="container">
             <div class="row">
@@ -27,9 +26,7 @@
                         <h3 class="news-details__title-1">
                             {{ $data['row']->title ?? '' }}
                         </h3>
-                        <div class="news-details__text-2 custom-description">{!!  $data['row']->description !!}</div>
-
-
+                        <div class="news-details__text-2 text-align-justify custom-description">{!!  $data['row']->description !!}</div>
                         <div class="news-details__tag-and-social">
                             <div class="news-details__tag">
                             </div>

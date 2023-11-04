@@ -15,4 +15,7 @@ class JobCategory extends BackendBaseModel
     protected $table    ='job_categories';
     protected $fillable = ['id','title','slug','image','status','created_by','updated_by'];
 
+    public function jobs(){
+        return $this->belongsToMany(Job::class,'category_jobs','job_category_id','job_id');
+    }
 }

@@ -67,6 +67,7 @@ class JobCategoryController extends BackendBaseController
 
         DB::beginTransaction();
         try {
+            $request->request->add(['slug' => $this->model->changeTokey($request['title'])]);
             $request->request->add(['updated_by' => auth()->user()->id ]);
             $data['row']->update($request->all());
 

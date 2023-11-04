@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Frontend\News;
 use App\Http\Controllers\Backend\BackendBaseController;
 use App\Models\Backend\News\Blog;
 use App\Models\Backend\News\BlogCategory;
+use App\Traits\FrontendSearch;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
 class BlogController extends BackendBaseController
 {
+    use FrontendSearch;
     protected string $module        = 'frontend.';
     protected string $base_route    = 'frontend.blog.';
     protected string $view_path     = 'frontend.blog.';
@@ -55,25 +57,6 @@ class BlogController extends BackendBaseController
         return $data;
     }
 
-
-    public function search(Request $request)
-    {
-        $this->page_method      = 'search';
-        $this->page_title       = 'Search '.$this->page;
-        $data                   = $this->getCommonData();
-        $data['query']          = $request['for'];
-
-        $data['rows']           = $this->model->query();
-
-        if($request['for']){
-            $data['rows']->where('title', 'LIKE', '%' . $data['query']  . '%');
-        }
-
-        $data['rows']           = $data['rows']->active()->paginate(6);
-
-        return view($this->loadResource($this->view_path.'search'), compact('data'));
-    }
-
     public function show($slug)
     {
 
@@ -96,7 +79,7 @@ class BlogController extends BackendBaseController
             $data                   = $this->getCommonData();
             $data['category']       = BlogCategory::where('slug',$slug)->active()->first();
             $this->page_title       = $data['category']->title;
-            $data['rows']           = $this->model->where('blog_category_id', $data['category']->id)->active()->descending()->paginate(6);
+            $data['rows']           = $this->model->where('blog_category_id', $data['category']->id)->active()->descending()->paginate(4);
         } catch (\Exception $e) {
             abort(404);
         }

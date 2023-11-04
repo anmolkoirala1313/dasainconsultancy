@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-xl-8 col-lg-7">
                     <div class="news-page__left">
-                        <h3 class="team-five__title">We found: <span class="search-text">{{ count($data['rows']) }}</span> blog{{ count($data['rows']) > 1 ?'s':'' }}</h3>
+                        <h3 class="team-five__title">We found: <span class="search-text">{{ count($data['rows']) }}</span> Blog{{ count($data['rows']) > 1 ?'s':'' }}</h3>
 
                         <div class="row">
                             @foreach( $data['rows']  as $index=>$row)
