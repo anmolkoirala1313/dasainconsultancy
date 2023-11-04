@@ -28,9 +28,9 @@
                         </div>
                     </div>
                 @endforeach
-                    <div class="portfolio-page__pagination">
-                        {{ $data['rows']->links('vendor.pagination.default') }}
-                    </div>
+                <div class="portfolio-page__pagination">
+                    {{ $data['rows']->links('vendor.pagination.default') }}
+                </div>
             </div>
         </div>
     </section>
