@@ -3843,7 +3843,7 @@ ul {
 .about-one__shape-4 {
   position: absolute;
   right: 90px;
-  bottom: 80px;
+  /*bottom: 80px;*/
   z-index: -1;
 }
 
@@ -3854,8 +3854,8 @@ ul {
 .about-one__left {
   position: relative;
   display: block;
-  margin-left: 220px;
-  margin-right: 86px;
+  margin-left: 60px;
+  /*margin-right: 86px;*/
 }
 
 .about-one__img-box {
@@ -3867,7 +3867,7 @@ ul {
 .about-one__img {
   position: relative;
   display: block;
-  overflow: hidden;
+  /*overflow: hidden;*/
   z-index: 1;
 }
 
@@ -3885,12 +3885,12 @@ ul {
 }
 
 .about-one__img:hover::before {
-  -webkit-animation: shine 1.9s;
-  animation: shine 1.9s;
+  -webkit-animation: shine 1.2s;
+  animation: shine 1.2s;
 }
 
 .about-one__img img {
-  width: 100%;
+  /*width: 100%;*/
   transition: all 500ms linear;
   transition-delay: 0.2s;
 }
@@ -16209,4 +16209,14 @@ ul {
 
 .custom-description ol li:before{
     content: "\f00c";
+}
+img.mfp-img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    display: block;
+    line-height: 0;
+    box-sizing: border-box;
+    /* padding: 56px 0 91px; */
+    margin: 0 auto;
 }

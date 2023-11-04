@@ -1,7 +1,7 @@
 
 <section class="about-three">
     <div class="about-three__shape-2 float-bob-y">
-        <img src="{{asset('assets/frontend/images/shapes/about-three-shape-2.png')}}" alt="">
+        <img class="lazy" data-src="{{asset('assets/frontend/images/shapes/about-three-shape-2.png')}}" alt="">
     </div>
     <div class="container">
         <div class="row">

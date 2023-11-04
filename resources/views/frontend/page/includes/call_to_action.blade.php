@@ -1,13 +1,18 @@
-<section class="pt-11 pb-13 bg-cover bg-white-overlay" style="background-image:linear-gradient(360deg, rgba(24, 26, 48, 0) 0%, #3a3b3e 100%),url({{ asset('assets/frontend/images/bread-bg8.jpeg') }})" data-animated-id="9">
+
+<section class="cta-one">
     <div class="container">
-        <form class="text-center fadeInUp animated" data-animate="fadeInUp">
-            <p class="text-primary font-weight-500 letter-spacing-263 text-center text-uppercase mb-3">{{ $element->first()->subtitle ?? '' }}</p>
-            <h2 class="fs-34 font-weight-normal lh-141 text-white mxw-840">
-                {{ $element->first()->title ?? '' }}
-            </h2>
+        <div class="cta-one__inner">
+            <div class="counter-one__bg float-bob-y" style="background-image: url({{ asset('assets/frontend/images/backgrounds/counter-one-bg.png') }});"></div>
+            <div class="cta-one__title-box">
+                <h3 class="cta-one__title">  {{ $element->first()->title ?? '' }}</h3>
+                <p class="cta-one__text">{{ $element->first()->subtitle ?? '' }}</p>
+            </div>
             @if($element->first()->button_link)
-                <a href="{{ $element->first()->button_link }}"  class="btn btn-lg btn-primary mt-2 px-10">{{ $element->first()->button ?? 'Learn More' }}<i class="fal fa-arrow-right-long"></i></a>
+                <div class="cta-one__btn-box">
+                    <a href="{{ $element->first()->button_link }}" class="cta-one__btn thm-btn">{{ $element->first()->button ?? 'Learn More' }}</a>
+                </div>
             @endif
-        </form>
+
+        </div>
     </div>
 </section>
