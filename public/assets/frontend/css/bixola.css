@@ -11351,9 +11351,11 @@ ul {
 }
 
 .services-details__services-box {
-  position: relative;
-  display: block;
-  margin-bottom: 60px;
+    position: relative;
+    display: block;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
 }
 
 .services-details__services-list {

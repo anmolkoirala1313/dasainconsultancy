@@ -3,42 +3,36 @@
 
 @section('content')
 
-    @include($module.'includes.breadcrumb',['breadcrumb_image'=>'bread-bg8.jpeg'])
+    @include($module.'includes.breadcrumb',['breadcrumb_image'=>'image-3.jpeg'])
 
-    <section class="our-blog">
+    <section class="services-details">
         <div class="container">
-            <div class="row wow fadeInUp" data-wow-delay="300ms">
-                <div class="col-lg-8">
-                    <img class="w-100 bdrs12 lazy mb15" data-src="{{ asset(imagePath($data['row']->image)) }}" alt="">
-                    <h2 class="blog-title">{{ $data['row']->title ?? '' }}</h2>
-                    <div class="blog-single-meta">
-                        <div class="post-author d-sm-flex align-items-center">
-                            <a class="pr15 bdrr1" href="#">{{ $data['row']->blogCategory->title ?? ''}}</a>
-                            <a class="ml15" href="#">{{date('d M Y', strtotime($data['row']->created_at))}}</a>
+            <div class="row">
+                <div class="col-xl-3 col-lg-4">
+                    @include($view_path.'includes.sidebar')
+                </div>
+                <div class="col-xl-9 col-lg-8">
+                    <div class="services-details__right">
+                        <div class="services-details__img">
+                            <img class="lazy" data-src="{{ asset(imagePath($data['row']->image)) }}" alt="">
                         </div>
-                    </div>
-                    <div class="ui-content mt40 mb60">
-                        <div class="mb25 ff-heading custom-description">
+                        <h3 class="services-details__title-1">
+                            {{ $data['row']->title ?? '' }}
+                        </h3>
+                        <div class="services-details__text-1 text-align-justify custom-description">
                             {!!  $data['row']->description !!}
                         </div>
-                    </div>
-                    <div class="bdrt1 bdrb1 d-block d-sm-flex justify-content-between pt50 pt30-sm pb50 pb30-sm">
-                        <div class="blog_post_share d-flex align-items-center mb10-sm">
-                            <span class="mr30">Share this post</span>
-                            <a class="mr20" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mr20" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mr20" href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                        <div class="bsp_tags d-flex">
-                            <a class="mr10" href="#">Figma</a>
-                            <a class="mr10" href="#">Sketch</a>
-                            <a href="#">HTML5</a>
+                        <div class="news-details__tag-and-social">
+                            <div class="news-details__tag">
+                            </div>
+                            <div class="news-details__social">
+                                <span>Share on:</span>
+                                <a href="#"><i class="fab fa-facebook" onclick='fbShare("{{route('frontend.service.show',$data['row']->key)}}")'></i></a>
+                                <a href="#"><i class="fab fa-twitter" onclick='twitShare("{{route('frontend.service.show',$data['row']->key)}}","{{ $data['row']->title }}")'></i></a>
+                                <a href="#"><i class="fab fa-whatsapp" onclick='whatsappShare("{{route('frontend.service.show',$data['row']->key)}}","{{ $data['row']->title }}")'></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    @include($view_path.'includes.sidebar')
                 </div>
             </div>
         </div>

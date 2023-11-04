@@ -37,11 +37,11 @@
                 <li>
                     <div class="site-footer-three__contact-list-single">
                         <div class="icon">
-                            <span class="icon-location"></span>
+                            <span class="icon-envelope"></span>
                         </div>
                         <div class="content">
-                            <h3>Address</h3>
-                            <p>{{ $setting_data->address ?? '' }}</p>
+                            <h3>Email</h3>
+                            <p><a href="mailto:{{ $setting_data->email }}">{{ $setting_data->email }}</a></p>
                         </div>
                     </div>
                 </li>

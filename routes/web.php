@@ -44,6 +44,7 @@ Route::get('/job/category/{slug}', [JobController::class, 'category'])->name('jo
 
 
 Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
+Route::get('/service/search/', [ServiceController::class, 'search'])->name('service.search');
 Route::get('/service/{slug}', [ServiceController::class, 'show'])->name('service.show');
 
 Route::get('/{slug}', [PageController::class, 'index'])->name('page.index');

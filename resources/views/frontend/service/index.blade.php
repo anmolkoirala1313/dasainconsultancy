@@ -3,35 +3,34 @@
 
 @section('content')
 
-    @include($module.'includes.breadcrumb',['breadcrumb_image'=>'team-cta-bg.jpeg'])
+    @include($module.'includes.breadcrumb',['breadcrumb_image'=>'image-2.png'])
 
-    <section class="pt-8 pb-13">
+    <section class="services-page">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="text-heading fs-22 lh-15 mb-5">Services Offered</h2>
-                    <div class="row mb-8">
-                        @foreach( $data['rows']  as $row)
-                            <div class="col-sm-6 col-md-4 mb-6 mt-3">
-                                <div class="card border-0">
-                                    <div class="hover-flash card-img-top">
-                                        <img class="lazy" data-src="{{ asset(imagePath($row->image))}}" alt="Property Management">
-                                    </div>
-                                    <div class="card-body px-0 pt-2 pb-0">
-                                        <h4 class="card-title fs-18 lh-17 text-dark mb-0">{{ $row->title }}</h4>
-                                        <p class="card-text">
-                                            {{ $row->description ?? '' }}
-                                        </p>
-                                    </div>
+                @foreach( $data['rows']  as $index=>$row)
+                      <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{$index+1}}00ms">
+                        <div class="portfolio-one__single">
+                            <div class="portfolio-one__img-box">
+                                <div class="portfolio-one__img">
+                                    <img class="lazy" data-src="{{ asset(thumbnailImagePath($row->image)) }}" alt="">
+                                </div>
+                                <div class="portfolio-one__content">
+                                    {{--                                        <p class="portfolio-one__sub-title">Business Audit</p>--}}
+                                    <h3 class="portfolio-one__title">
+                                        <a href="{{ route('frontend.service.show', $row->key) }}">{{ $row->title ?? '' }}</a></h3>
+                                </div>
+                                <div class="portfolio-one__arrow">
+                                    <a href="{{ route('frontend.service.show', $row->key) }}" class=""><span
+                                            class="icon-top-right-1"></span></a>
                                 </div>
                             </div>
-                        @endforeach
-
-                        <nav class="pt-6">
-                            {{ $data['rows']->links('vendor.pagination.default') }}
-                        </nav>
+                        </div>
                     </div>
-                </div>
+                @endforeach
+                    <div class="portfolio-page__pagination">
+                        {{ $data['rows']->links('vendor.pagination.default') }}
+                    </div>
             </div>
         </div>
     </section>
