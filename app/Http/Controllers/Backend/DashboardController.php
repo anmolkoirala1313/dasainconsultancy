@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Backend\Career\Job;
+use App\Models\Backend\Menu;
+use App\Models\Backend\News\Blog;
+use App\Models\Backend\News\BlogCategory;
+use App\Models\Backend\Page\Page;
+use App\Models\Backend\Service;
 use App\Models\Backend\Setting;
 use App\Models\Backend\User;
 use Illuminate\Contracts\Support\Renderable;
@@ -31,8 +37,14 @@ class DashboardController extends BackendBaseController
      */
     public function index()
     {
-        $data               = [];
-        $data['all_users']  = User::take(4)->get();
+        $data                   = [];
+        $data['all_users']      = User::take(4)->get();
+        $data['services']       = Service::take(4)->get();
+        $data['feeds']          = Blog::take(4)->get();
+        $data['menus']          = Menu::all()->count();
+        $data['pages']          = Page::all()->count();
+        $data['blog_category']  = BlogCategory::all()->count();
+        $data['jobs']           = Job::all()->count();
 
         return view($this->loadResource($this->view_path.'dashboard'), compact('data'));
     }
