@@ -10255,7 +10255,7 @@ ul {
 }
 
 .news-three__date p {
-  font-size: 27px;
+  font-size: 22px;
   font-weight: 600;
   line-height: 27px;
   color: var(--bixola-white);
@@ -10263,7 +10263,7 @@ ul {
 }
 
 .news-three__date span {
-  font-size: 16px;
+  font-size: 13px;
   line-height: 16px;
   font-family: var(--bixola-font-two);
   color: var(--bixola-white);
@@ -10817,7 +10817,7 @@ ul {
 .page-header {
   position: relative;
   display: block;
-  padding: 276px 0 139px;
+  padding: 160px 0 139px;
   overflow: hidden;
   z-index: 1;
 }
@@ -10860,7 +10860,7 @@ ul {
 
 .page-header__shape-4 {
   position: absolute;
-  right: -30px;
+  right: -170px;
   bottom: 0;
   opacity: .20;
   z-index: -1;
@@ -10889,8 +10889,8 @@ ul {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, #000000 25%, rgba(34, 34, 34, 0.5) 100%);
-  z-index: -1;
+    background: linear-gradient(180deg, #000000 0%, rgba(34, 34, 34, 0.5) 70%);
+    z-index: -1;
 }
 
 
@@ -10900,6 +10900,7 @@ ul {
   display: block;
   text-align: center;
   z-index: 15;
+    /*top: -80px;*/
 }
 
 .page-header__inner h2 {
@@ -12591,16 +12592,21 @@ ul {
 }
 
 .team-five__title {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 700;
   line-height: 46px;
-  color: #000;
-  margin-bottom: 50px;
+  color: #414751;
+  margin-bottom: 25px;
 }
 
 .team-five .team-one__social a:hover {
   background-color: var(--bixola-white);
   color: var(--bixola-base);
+}
+
+.search-text{
+    color: #f5254999;
+
 }
 
 /*--------------------------------------------------------------
@@ -12784,7 +12790,7 @@ ul {
 .sidebar__post-image {
   position: relative;
   display: block;
-  max-width: 100px;
+  max-width: 110px;
   width: 100%;
 }
 
@@ -12817,8 +12823,8 @@ ul {
 }
 
 .sidebar__post-date {
-  font-size: 14px;
-  margin-top: 6px;
+  font-size: 13px;
+  margin-top: 0px;
 }
 
 .sidebar__post-date span {

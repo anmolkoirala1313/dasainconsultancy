@@ -3,7 +3,7 @@
 
 @section('content')
 
-    @include($module.'includes.breadcrumb',['breadcrumb_image'=>'page-header-bg.jpg'])
+    @include($module.'includes.breadcrumb',['breadcrumb_image'=>'background_action.jpeg'])
 
     <section class="news-page news-list-one-right">
         <div class="container">
@@ -43,19 +43,6 @@
                         </div>
                         <div class="portfolio-page__pagination">
                             {{ $data['rows']->links('vendor.pagination.default') }}
-{{--                            <ul class="pg-pagination list-unstyled">--}}
-{{--                                <li class="prev">--}}
-{{--                                    <a href="portfolio-details.html" aria-label="Prev"><i--}}
-{{--                                            class="fa fa-angle-left"></i></a>--}}
-{{--                                </li>--}}
-{{--                                <li class="count"><a href="portfolio-details.html">1</a></li>--}}
-{{--                                <li class="count"><a href="portfolio-details.html">2</a></li>--}}
-{{--                                <li class="count"><a href="portfolio-details.html">3</a></li>--}}
-{{--                                <li class="next">--}}
-{{--                                    <a href="portfolio-details.html" aria-label="Next"><i--}}
-{{--                                            class="fa fa-angle-right"></i></a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
                         </div>
                     </div>
                 </div>

@@ -4,10 +4,8 @@
             <h3 class="sidebar__title">Search Here</h3>
         </div>
         {!! Form::open(['route' => $base_route.'search', 'method'=>'GET', 'class'=>'sidebar__search-form']) !!}
-            <form action="#" class="sidebar__search-form">
                 <input type="text" placeholder="Search Blog" name="for" >
                 <button type="submit"><i class="icon-magnifying-glass"></i></button>
-            </form>
         {!! Form::close() !!}
 
     </div>
@@ -35,7 +33,7 @@
                 @foreach($data['latest'] as $latest)
                     <li>
                         <div class="sidebar__post-image">
-                            <img src="{{ asset(imagePath($latest->image)) }}" alt="">
+                            <img class="lazy" data-src="{{ asset(imagePath($latest->image)) }}" alt="">
                         </div>
                         <div class="sidebar__post-content">
                             <h3 class="sidebar__post-title"><a href="{{ route($module.'blog.show',$latest->slug) }}">

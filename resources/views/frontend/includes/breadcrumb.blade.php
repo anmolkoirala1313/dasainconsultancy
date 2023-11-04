@@ -1,6 +1,6 @@
 <section class="page-header">
     <div class="page-header__bg" style="background-image:url({{ isset($page_image) && $page_image  ? asset(imagePath($page_image)) :
- asset('assets/frontend/images/'.$breadcrumb_image) }});">
+ asset('assets/frontend/images/backgrounds/'.$breadcrumb_image) }});">
     </div>
     <div class="page-header__shape-1 float-bob-y">
         <img src="{{ asset('assets/frontend/images/shapes/page-header-shape-1.png') }}" alt="">
@@ -16,9 +16,14 @@
     </div>
     <div class="container">
         <div class="page-header__inner">
-            <h2>Contact</h2>
+            <h2>  {{ $page_title }}</h2>
             <ul class="thm-breadcrumb list-unstyled">
-                @if($page_method !=='index')
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li><span class="icon-down-arrow"></span></li>
+
+            @if($page_method !=='index')
                     <li>
                         <a href="{{route($base_route.'index')}}">{{ $page }}</a>
                     </li>

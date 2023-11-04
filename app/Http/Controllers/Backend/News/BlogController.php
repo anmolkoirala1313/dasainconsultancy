@@ -76,11 +76,14 @@ class BlogController extends BackendBaseController
 
         DB::beginTransaction();
         try {
+            $request->request->add(['slug' => $this->model->changeTokey($request['title'])]);
             $request->request->add(['updated_by' => auth()->user()->id ]);
+
             if($request->hasFile('image_input')){
                 $image_name = $this->updateImage($request->file('image_input'),$data['row']->image,'600','400');
                 $request->request->add(['image'=>$image_name]);
             }
+
 
             $data['row']->update($request->all());
 

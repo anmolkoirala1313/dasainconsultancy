@@ -3,29 +3,47 @@
 
 @section('content')
 
-    @include($module.'includes.breadcrumb',['breadcrumb_image'=>'bread-bg8.jpeg'])
+    @include($module.'includes.breadcrumb',['breadcrumb_image'=>'image-3.jpeg'])
 
-    <section class="pt-13 pb-12">
+
+    <section class="news-details">
         <div class="container">
-            <div class="row ml-xl-0 mr-xl-n6">
-                <div class="col-lg-8 mb-6 mb-lg-0 pr-xl-6 pl-xl-0">
-                    <div class="position-relative">
-                        <img class="rounded-lg d-block w-100 lazy" data-src="{{ asset(imagePath($data['row']->image)) }}" alt="">
-                        <a href="{{ route('frontend.blog.category', $data['row']->blogCategory->slug)}}" class="badge text-white bg-dark-opacity-04 fs-13 font-weight-500 bg-hover-primary hover-white m-2 position-absolute letter-spacing-1 pos-fixed-bottom">
-                            {{ $data['row']->blogCategory->title ?? ''}}
-                        </a>
-                    </div>
-                    <ul class="list-inline mt-4">
-                        <li class="list-inline-item mr-4"><i class="far fa-calendar mr-1"></i> {{date('d M Y', strtotime($data['row']->created_at))}}</li>
-                    </ul>
-                    <h3 class="fs-md-32 text-heading lh-141 mb-2">
-                        {{ $data['row']->title ?? '' }}
-                    </h3>
-                    <div class="lh-214 mb-9 custom-description">
-                        {!!  $data['row']->description !!}
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="news-details__left">
+                        <div class="news-details__img">
+                            <img class="lazy" data-src="{{ asset(imagePath($data['row']->image)) }}" alt="">
+                        </div>
+                        <div class="news-details__author-and-meta">
+                            <div class="news-details__meta">
+                                <p><span class="fas fa-calendar"></span>{{date('d M Y', strtotime($data['row']->created_at))}}</p>
+                                <p> <a href="{{ route('frontend.blog.category', $data['row']->blogCategory->slug)}}" >
+                                    <span class="fas fa-list-alt"></span>
+                                        {{ $data['row']->blogCategory->title ?? ''}}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <h3 class="news-details__title-1">
+                            {{ $data['row']->title ?? '' }}
+                        </h3>
+                        <div class="news-details__text-2 custom-description">{!!  $data['row']->description !!}</div>
+
+
+                        <div class="news-details__tag-and-social">
+                            <div class="news-details__tag">
+                            </div>
+                            <div class="news-details__social">
+                                <span>Share on:</span>
+                                <a href="#"><i class="fab fa-facebook" onclick='fbShare("{{route('frontend.blog.show',$data['row']->slug)}}")'></i></a>
+                                <a href="#"><i class="fab fa-twitter" onclick='twitShare("{{route('frontend.blog.show',$data['row']->slug)}}","{{ $data['row']->title }}")'></i></a>
+                                <a href="#"><i class="fab fa-whatsapp" onclick='whatsappShare("{{route('frontend.blog.show',$data['row']->slug)}}","{{ $data['row']->title }}")'></i></a>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 pl-xl-6 pr-xl-0 primary-sidebar sidebar-sticky" id="sidebar">
+                <div class="col-xl-4 col-lg-5">
                     @include($view_path.'includes.sidebar')
                 </div>
             </div>
