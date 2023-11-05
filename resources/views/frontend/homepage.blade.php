@@ -581,7 +581,7 @@
                                 <div class="section-title__tagline-box">
                                     <p class="section-title__tagline">Why Choose Us</p>
                                 </div>
-                                <h2 class="section-title__title">{{ $data['homepage']->grievance_title ?? '' }}
+                                <h2 class="section-title__title section-title_normal">{{ $data['homepage']->grievance_title ?? '' }}
                                 </h2>
                             </div>
                             <p class="why-choose-one__text text-align-justify">
@@ -628,7 +628,7 @@
                                 <div class="section-title__tagline-box">
                                     <p class="section-title__tagline">Testimonials</p>
                                 </div>
-                                <h2 class="section-title__title">What our client's <br> says about our
+                                <h2 class="section-title__title section-title_normal">What our client's <br> says about our
                                     <br> best work.</h2>
                             </div>
                         </div>
