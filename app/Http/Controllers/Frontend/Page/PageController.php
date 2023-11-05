@@ -44,6 +44,7 @@ class PageController extends BackendBaseController
         $this->page_title           = $data['row']->title;
         $data['page_section']       = $data['row']->pageSections->pluck('slug','id')->toArray();
         $data['section_elements']   = [];
+        $data['slider_list_type']   = $data['row']->pageSections->where('slug','slider_list')->first()->list_number_2 ?? null;
 
         foreach ($data['row']->pageSections as $section){
             if($section->slug == 'gallery'){

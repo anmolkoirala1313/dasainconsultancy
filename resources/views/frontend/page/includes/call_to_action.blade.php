@@ -1,5 +1,4 @@
-
-<section class="cta-one">
+<section class="cta-one mt-5">
     <div class="container">
         <div class="cta-one__inner">
             <div class="counter-one__bg float-bob-y" style="background-image: url({{ asset('assets/frontend/images/backgrounds/counter-one-bg.png') }});"></div>

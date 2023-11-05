@@ -337,15 +337,24 @@ if (! function_exists('getYoutubeThumbnail')) {
     }
 }
 
-if (! function_exists('getFlightList')) {
+if (!function_exists('get_flash_card_icons')) {
     /**
-     * returns list of flights
-     *
-     * @return array
+     * @param $index
+     * @return string
      */
-    function getFlightList()
+    function get_flash_card_icons($index): string
     {
-        return ['kathmandu'=>'Kathmandu','biratnagar'=>'Biratnagar', 'pokhara'=>'Pokhara', 'bhadrapur'=>'Bhadrapur', 'bhairahawa'=>'Bhairahawa', 'bharatpur'=>'Bharatpur', 'dhangadi'=>'Dhangadi', 'simara'=>'Simara', 'tumlingtar'=>'Tumlingtar', 'rajbiraj'=>'Rajbiraj', 'janakpur'=>'Janakpur', 'mountain_flight'=>'Mountain Flight', 'nepalgunj'=>'Nepalgunj'];
+        if ($index == 0) {
+            $icon = 'icon-icon-start-ups';
+        } else if ($index == 1) {
+            $icon = 'icon-icon-successful-project';
+        } else if ($index == 2) {
+            $icon = 'icon-icon-years-experience';
+        } else {
+            $icon = 'icon-star-1';
+        }
+
+        return $icon;
     }
 }
 

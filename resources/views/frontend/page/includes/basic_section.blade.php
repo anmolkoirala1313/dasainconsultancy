@@ -1,5 +1,5 @@
 
-<section class="about-three">
+<section class="about-three" style="    padding: 120px 0 0px;">
     <div class="about-three__shape-2 float-bob-y">
         <img class="lazy" data-src="{{asset('assets/frontend/images/shapes/about-three-shape-2.png')}}" alt="">
     </div>
