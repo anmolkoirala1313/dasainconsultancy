@@ -33,9 +33,9 @@
     <div class="container">
         <div class="section-title text-center">
             <div class="section-title__tagline-box">
-                <p class="section-title__tagline">{{ $element->list_number_1 ?? '' }}</p>
+                <p class="section-title__tagline">{{ $element->list_number_2 ?? '' }}</p>
             </div>
-            <h2 class="section-title__title">{{ $element->list_number_2 ?? '' }}</h2>
+            <h2 class="section-title__title">{{ $element->list_number_1 ?? '' }}</h2>
         </div>
         <div class="row">
             @foreach($element->pageSectionGalleries as $index=>$gallery)

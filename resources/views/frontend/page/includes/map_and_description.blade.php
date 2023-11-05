@@ -10,7 +10,7 @@
                         <div class="section-title__tagline-box">
                             <p class="section-title__tagline">{{ $element->first()->subtitle ?? '' }}</p>
                         </div>
-                        <h2 class="section-title__title">{{ $element->first()->title ?? '' }}
+                        <h2 class="section-title__title section-title_normal">{{ $element->first()->title ?? '' }}
                         </h2>
                     </div>
                     <p class="why-choose-one__text text-align-justify">

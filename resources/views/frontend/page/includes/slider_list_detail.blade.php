@@ -13,7 +13,7 @@
             <div class="news-one__content">
                 <div class="news-one__content-top">
                     <h3 class="news-one__title"><a href="#">{{ $row->list_title ?? '' }}</a></h3>
-                        <p class="news-one__text text-align-justify">{{ $data['slider_list_type'] == 'normal' ? $row->list_description : elipsis($row->list_description)}}</p>
+                        <p class="news-one__text text-align-justify">{{ $data['slider_list_type'] == 'normal' ? strip_tags($row->list_description) : elipsis($row->list_description)}}</p>
                 </div>
                 @if($data['slider_list_type'] !== 'normal')
                     <div class="news-one__person-and-date">

@@ -61,9 +61,9 @@
                                                     Please enter the heading.
                                                 </div>
                                             </div>
-                                            <div class="form-group mb-3">
+                                            <div class="form-group mb-3 {{ $slider_list_section->list_number_2 !== 'normal' ? 'editor':'' }}">
                                                 <label>Description </label>
-                                                <textarea class="form-control" maxlength="600" rows="6" name="list_description[]" id="accordian_two_editor_{{$i}}">{{$slider_list[$i-1]->list_description ?? null}}</textarea>
+                                                <textarea class="form-control {{ $slider_list_section->list_number_2 !== 'normal' ? 'ck-editor':'' }}" maxlength="{{ $slider_list_section->list_number_2 == 'normal' ? '500':'' }}" rows="6" name="list_description[]" id="editor_{{$i}}">{{$slider_list[$i-1]->list_description ?? null}}</textarea>
                                                 <div class="invalid-feedback">
                                                     Please write the description.
                                                 </div>
