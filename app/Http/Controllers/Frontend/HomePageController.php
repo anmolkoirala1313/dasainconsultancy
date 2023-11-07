@@ -18,9 +18,13 @@ use App\Models\Backend\News\Blog;
 use App\Models\Backend\Page\PageSectionGallery;
 use App\Models\Backend\Service;
 use App\Models\Backend\Setting;
+use App\Models\Backend\Team;
 use App\Models\Backend\Testimonial;
 use App\Models\Backend\Activity\Package;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -32,7 +36,7 @@ class HomePageController extends BackendBaseController
     protected string $module        = 'frontend.';
     protected string $base_route    = 'frontend.';
     protected string $view_path     = 'frontend.';
-    protected string $panel         = '';
+    protected string $page          = '';
     protected string $page_title, $page_method, $image_path;
 
     /**
@@ -63,7 +67,6 @@ class HomePageController extends BackendBaseController
         $data['map']                = Setting::first()->google_map;
         $data['clients']            = Client::active()->descending()->latest()->take(10)->get();
 
-
         return view($this->loadResource($this->view_path.'homepage'), compact('data'));
     }
 
@@ -73,77 +76,28 @@ class HomePageController extends BackendBaseController
     }
 
 
-    public function contact()
+    public function team()
     {
-        $this->page_method      = 'index';
-        $this->page_title       = 'Contact us';
-        $this->page            = 'Contact';
-        $data                   = [];
-        $data['setting_data']   = Setting::first();
-        return view($this->loadResource($this->view_path.'page.contact_us'), compact('data'));
+        $this->page_method   = 'index';
+        $this->page_title    = 'Our Team';
+        $this->page          = 'Team';
+        $data                = $this->getCommonData();
+        $data['rows']        = Team::active()->orderBy('order','desc')->get();
+
+        return view($this->loadResource($this->view_path.'page.team'), compact('data'));
     }
 
-    public function getFieldType()
+    public function testimonial()
     {
-        $value   = \request()->type;
-        $data    = $this->getCommonData();
+        $this->page_method     = 'index';
+        $this->page_title      = 'Our Testimonial';
+        $this->page            = 'Testimonial';
+        $data                  = $this->getCommonData();
+        $data['rows']          = Testimonial::active()->descending()->paginate(9);
 
-        if($value){
-            $rendered_view = view($this->view_path.'partials.national', compact('data'))->render();
-        }else{
-            $rendered_view = view($this->view_path.'partials.international')->render();
-        }
-
-       return response()->json(['rendered_view'=>$rendered_view]);
+        return view($this->loadResource($this->view_path.'page.testimonial'), compact('data'));
     }
 
-    public function contactStore(CustomerInquiryRequest $request)
-    {
-        $data                   = $request->except(['_token']);
-        $data['setting_data']   = Setting::first();
-        $data['title']          = 'Contact us response';
 
-        DB::beginTransaction();
-        try {
-            CustomerInquiry::create($request->all());
-
-            if(!app()->environment('local')){
-                Mail::to($data['setting_data']->email)->send(new ContactDetail($data));
-            }
-
-            Session::flash('success','Your message was submitted successfully');
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-            Session::flash('error','Your message could not relayed at the moment. Something went wrong.');
-        }
-
-        return response()->json(route('frontend.contact-us'));
-    }
-
-    public function storeFlightBookInfo(BookFlightRequest $request)
-    {
-        dd($request->all());
-        $data                   = $request->except(['_token']);
-        $data['setting_data']   = Setting::first();
-        $data['title']          = 'Flight inquiry details';
-
-        DB::beginTransaction();
-        try {
-            FlightInquiry::create($request->all());
-
-            if(!app()->environment('local')){
-                Mail::to($data['setting_data']->email)->send(new ContactDetail($data));
-            }
-
-            Session::flash('success','Details about flight are sent. We will get back to you shortly.');
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-            Session::flash('error','Your message could not relayed at the moment. Something went wrong.');
-        }
-
-        return response()->json(route('frontend.home'));
-    }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\Career\JobController;
+use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\HomePageController;
 use App\Http\Controllers\Frontend\News\BlogController;
 use App\Http\Controllers\Frontend\Page\PageController;
@@ -27,8 +28,8 @@ Route::any('/register', function() {
 });
 
 
-Route::get('/contact-us', [HomePageController::class, 'contact'])->name('contact-us');
-Route::post('/contact/message', [HomePageController::class, 'contactStore'])->name('contact-us.store');
+Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us');
+Route::post('/contact/message', [ContactUsController::class, 'contactStore'])->name('contact-us.store');
 
 //blogs
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
@@ -46,6 +47,10 @@ Route::get('/job/category/{slug}', [JobController::class, 'category'])->name('jo
 Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
 Route::get('/service/search/', [ServiceController::class, 'search'])->name('service.search');
 Route::get('/service/{slug}', [ServiceController::class, 'show'])->name('service.show');
+
+Route::get('/team', [HomePageController::class, 'team'])->name('page.team');
+Route::get('/testimonial', [HomePageController::class, 'testimonial'])->name('page.testimonial');
+
 
 Route::get('/{slug}', [PageController::class, 'index'])->name('page.index');
 

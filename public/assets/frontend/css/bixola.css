@@ -7563,7 +7563,8 @@ ul {
 
 .testimonial-two__client-info {
   position: relative;
-  display: block;
+    display: block;
+    margin-top: 8px;
 }
 
 .testimonial-two__client-info h3 {
