@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AlbumGallery extends BackendBaseModel
 {
-    use HasFactory, SoftDeletes, Slug;
+    use HasFactory, SoftDeletes;
 
     protected $table    = 'album_galleries';
     protected $fillable = ['id','album_id','filename','resized_name','original_name','status','created_by','updated_by'];
