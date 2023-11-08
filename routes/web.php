@@ -51,6 +51,8 @@ Route::get('/service/{slug}', [ServiceController::class, 'show'])->name('service
 Route::get('/team', [HomePageController::class, 'team'])->name('page.team');
 Route::get('/testimonial', [HomePageController::class, 'testimonial'])->name('page.testimonial');
 
+Route::get('/album', [HomePageController::class, 'album'])->name('page.album');
+Route::get('/album/{slug}', [HomePageController::class, 'albumGallery'])->name('page.album_gallery');
 
 Route::get('/{slug}', [PageController::class, 'index'])->name('page.index');
 

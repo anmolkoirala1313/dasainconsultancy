@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Album extends BackendBaseModel
 {
-    use HasFactory, SoftDeletes, Slug;
+    use HasFactory, SoftDeletes, Sluggable, Slug;
 
     protected $table    = 'albums';
     protected $fillable = ['id','title','slug','image','status','created_by','updated_by'];

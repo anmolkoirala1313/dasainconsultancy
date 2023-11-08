@@ -7,6 +7,7 @@ use App\Http\Requests\Frontend\BookFlightRequest;
 use App\Http\Requests\Frontend\CustomerInquiryRequest;
 use App\Mail\ContactDetail;
 use App\Models\Backend\Activity\Country;
+use App\Models\Backend\Album;
 use App\Models\Backend\Career\Job;
 use App\Models\Backend\Client;
 use App\Models\Backend\CustomerInquiry;
@@ -96,6 +97,28 @@ class HomePageController extends BackendBaseController
         $data['rows']          = Testimonial::active()->descending()->paginate(9);
 
         return view($this->loadResource($this->view_path.'page.testimonial'), compact('data'));
+    }
+
+    public function album()
+    {
+        $this->page_method     = 'index';
+        $this->page_title      = 'Our Album';
+        $this->page            = 'Album';
+        $data                  = $this->getCommonData();
+        $data['rows']          = Album::active()->descending()->withCount('albumGallery')->having('album_gallery_count', '>', 0)->paginate(6);
+
+        return view($this->loadResource($this->view_path.'page.album'), compact('data'));
+    }
+
+    public function albumGallery($slug)
+    {
+        $this->page_method     = 'index';
+        $this->page_title      = 'Our Album';
+        $this->page            = 'Album';
+        $data                  = $this->getCommonData();
+        $data['rows']          = Album::where('slug', $slug)->with('albumGallery')->first();
+
+        return view($this->loadResource($this->view_path.'page.album_gallery'), compact('data'));
     }
 
 
