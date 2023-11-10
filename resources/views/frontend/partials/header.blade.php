@@ -142,7 +142,7 @@
                     <div class="container">
                         <div class="main-menu-three__wrapper-inner">
                             <div class="main-menu-three__logo">
-                                <a href="/"><img src="{{ $setting_data->logo_white ?  asset(imagePath($setting_data->logo_white)) : asset(imagePath($setting_data->logo))}}" style="max-width: 230px;" alt=""></a>
+                                <a href="/"><img src="{{ $setting_data->logo ?  asset(imagePath($setting_data->logo)) : asset(imagePath($setting_data->logo_white))}}" style="max-width: 355px;" alt=""></a>
                             </div>
                             <div class="main-menu-three__main-menu-box">
                                 <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
@@ -188,10 +188,10 @@
                                 </ul>
                             </div>
                             <div class="main-menu-three__right">
-                                <div class="main-menu-three__search-box">
-                                    <a href="#"
-                                       class="main-menu-three__search search-toggler icon-magnifying-glass"></a>
-                                </div>
+{{--                                <div class="main-menu-three__search-box">--}}
+{{--                                    <a href="#"--}}
+{{--                                       class="main-menu-three__search search-toggler icon-magnifying-glass"></a>--}}
+{{--                                </div>--}}
                                 <div class="main-menu-three__btn-box">
                                     <a href="{{route('frontend.contact-us')}}" class="thm-btn main-menu-three__btn thm-btn">
                                         Contact Us
