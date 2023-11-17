@@ -29,7 +29,7 @@
                             <span class="icon-phone"></span>
                         </div>
                         <div class="content">
-                            <h3>Get a quote</h3>
+                            <h3>Get in touch</h3>
                             <p><a href="tel:{{ $setting_data->phone ?? $setting_data->mobile }}">{{ $setting_data->phone ?? $setting_data->mobile }}</a></p>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                         <div class="footer-widget-two__logo">
                             <a href="/"><img class="lazy" data-src="{{ $setting_data->logo_white ?  asset(imagePath($setting_data->logo_white)) : asset(imagePath($setting_data->logo))}}" style="max-width: 230px;" alt=""></a>
                         </div>
-                        <p class="footer-widget-three__about-text">{{ $setting_data->description ?? '' }}</p>
+                        <p class="footer-widget-three__about-text text-align-justify">{{ $setting_data->description ?? '' }}</p>
                         <div class="footer-widget-three__email">
                             <a href="mailto:{{ $setting_data->email ?? '' }}"><span
                                     class="icon-gmail"></span>{{ $setting_data->email ?? '' }}</a>
@@ -77,7 +77,7 @@
                     </div>
                     @endif
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
                     @if($footer_nav_data2!==null)
                         <div class="footer-widget-three__column footer-widget-three__company">
                             <div class="footer-widget-three__title-box">
@@ -93,23 +93,26 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
-                    <div class="footer-widget-three__column footer-widget-three__subscribe">
-                        <div class="footer-widget-three__title-box">
-                            <h3 class="footer-widget-three__title">Subscribe Now</h3>
-                        </div>
-                        <p class="footer-widget-three__subscribe-text">Get the latest news, tips and latest
-                            messages, including special offers</p>
-                        <form class="footer-widget-three__subscribe-form mc-form" data-url="MC_FORM_URL"
-                              novalidate="novalidate">
-                            <div class="footer-widget-three__subscribe-form-input-box">
-                                <input type="email" placeholder="Enter email address" name="EMAIL">
-                                <button type="submit" class="footer-widget-three__subscribe-btn"><span
-                                        class="fas fa-paper-plane"></span></button>
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
+                    @if( count($latest_service)>0)
+                        <div class="footer-widget-three__column footer-widget-three__post">
+                            <div class="footer-widget-three__title-box">
+                                <h3 class="footer-widget-three__title">Latest Service</h3>
                             </div>
-                        </form>
-                        <div class="mc-form__response"></div>
-                    </div>
+                            <ul class="footer-widget-three__post-list list-unstyled">
+                                @foreach(@$latest_service as $service)
+                                    <li>
+                                        <div class="footer-widget-three__post-img">
+                                            <img class="lazy" data-src="{{ asset(thumbnailImagePath($service->image)) }}" alt="" style="width: 70px;height: 70px;object-fit: cover;">
+                                        </div>
+                                        <div class="footer-widget-three__post-content">
+                                            <h3><a href="{{ route('frontend.service.show', $service->key) }}">{{ $service->title ?? '' }}</a></h3>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -155,8 +158,8 @@
         <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
         <div class="logo-box">
-            <a href="index-2.html" aria-label="logo image"><img src="assets/images/resources/logo-1.png" width="145"
-                                                                alt="" /></a>
+            <a href="/"><img src="{{ $setting_data->logo ?  asset(imagePath($setting_data->logo)) : asset(imagePath($setting_data->logo_white))}}" style="max-width: 355px;" alt=""></a>
+
         </div>
         <!-- /.logo-box -->
         <div class="mobile-nav__container"></div>
@@ -165,19 +168,30 @@
         <ul class="mobile-nav__contact list-unstyled">
             <li>
                 <i class="fa fa-envelope"></i>
-                <a href="mailto:needhelp@packageName__.com">needhelp@bixola.com</a>
+                <a href="mailto:{{ $setting_data->email ?? '' }}">{{ $setting_data->email ?? '' }}</a>
             </li>
             <li>
                 <i class="fa fa-phone-alt"></i>
-                <a href="tel:666-888-0000">666 888 0000</a>
+                <a href="tel:{{ $setting_data->phone ?? $setting_data->mobile }}">{{ $setting_data->phone ?? $setting_data->mobile }}</a>
             </li>
         </ul><!-- /.mobile-nav__contact -->
         <div class="mobile-nav__top">
             <div class="mobile-nav__social">
-                <a href="#" class="fab fa-twitter"></a>
-                <a href="#" class="fab fa-facebook-square"></a>
-                <a href="#" class="fab fa-pinterest-p"></a>
-                <a href="#" class="fab fa-instagram"></a>
+                @if(@$setting_data->facebook)
+                    <a href="{{$setting_data->facebook}}"><i class="fab fa-facebook"></i></a>
+                @endif
+                @if(@$setting_data->instagram)
+                    <a href="{{$setting_data->instagram}}"><i class="fab fa-instagram"></i></a>
+                @endif
+                @if(@$setting_data->youtube)
+                    <a href="{{$setting_data->youtube}}"><i class="fab fa-youtube"></i></a>
+                @endif
+                @if(@$setting_data->linkedin)
+                    <a href="{{$setting_data->linkedin}}"><i class="fab fa-linkedin"></i></a>
+                @endif
+                @if(!empty(@$setting_data->ticktock))
+                    <a href="{{$setting_data->ticktock}}"><i class="fab fa-tiktok"></i></a>
+                @endif
             </div><!-- /.mobile-nav__social -->
         </div><!-- /.mobile-nav__top -->
 
@@ -192,13 +206,14 @@
     <div class="search-popup__overlay search-toggler"></div>
     <!-- /.search-popup__overlay -->
     <div class="search-popup__content">
-        <form action="#">
+        {!! Form::open(['route' => $base_route.'job.search', 'method'=>'GET']) !!}
             <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
-            <input type="text" id="search" placeholder="Search Here..." />
+            <input type="text" id="search" placeholder="Search Jobs..." />
             <button type="submit" aria-label="search submit" class="thm-btn">
                 <i class="icon-magnifying-glass"></i>
             </button>
-        </form>
+        {!! Form::close() !!}
+
     </div>
     <!-- /.search-popup__content -->
 </div>

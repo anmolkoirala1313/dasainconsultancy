@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\Backend\MenuRequest;
 use App\Http\Requests\Backend\ServiceRequest;
-use App\Models\Backend\Activity\Package;
 use App\Models\Backend\Menu;
 use App\Models\Backend\MenuItem;
 use App\Models\Backend\News\Blog;
@@ -45,7 +44,6 @@ class MenuController extends BackendBaseController
         $data['menus']       = Menu::active()->descending()->get();
         $data['pages']       = Page::active()->descending()->get();
         $data['blogs']       = Blog::active()->descending()->get();
-        $data['packages']    = Package::active()->descending()->get();
 
         return $data;
     }
@@ -170,11 +168,11 @@ class MenuController extends BackendBaseController
                 $status = $menu->update(['content'=>$olddata]);
             }
         }
-            if($status){
+        if($status){
             Session::flash('success','Page added in '.$this->page);
-            }else{
-                Session::flash('error','Page could not be added in '.$this->page);
-            }
+        }else{
+            Session::flash('error','Page could not be added in '.$this->page);
+        }
     }
 
     public function addService(Request $request){

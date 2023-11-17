@@ -6,6 +6,7 @@ namespace App\Http\ViewComposer;
 use App\Models\Backend\Menu;
 use App\Models\Backend\MenuItem;
 use App\Models\Backend\Page\Page;
+use App\Models\Backend\Service;
 use App\Models\Backend\Setting;
 use Illuminate\View\View;
 
@@ -24,8 +25,7 @@ class SensitiveComposer
         $footerItem2          = @$footerItem2[0];
         $footerItemTitle1     = @$footerMenu[0]->title;
         $footerItemTitle2     = @$footerMenu[1]->title;
-        $today                = date('Y-m-d');
-        $pageData                 = Page::active()->whereIn('slug',['terms-conditions','terms-and-conditions','privacy-policy','service-agreement'])->pluck('slug')->toArray();
+        $pageData             = Page::active()->whereIn('slug',['terms-conditions','terms-and-conditions','privacy-policy','service-agreement'])->pluck('slug')->toArray();
 
         if(!empty(@$topNavItems)){
             foreach($topNavItems as $menu){
@@ -74,7 +74,9 @@ class SensitiveComposer
                 $menu2->type    = MenuItem::where('id',$menu2->id)->value('type');
             }
         }
+
         $theme_data = Setting::first();
+        $services   = Service::active()->latest()->limit(3)->get();
         $view
             ->with('setting_data', $theme_data)
             ->with('footer_nav_data1', $footerItem1)
@@ -83,6 +85,6 @@ class SensitiveComposer
             ->with('footer_nav_title2', $footerItemTitle2)
             ->with('top_nav_data', $topNavItems)
             ->with('footerTopNav', $pageData)
-            ->with('today', $today);
+            ->with('latest_service', $services);
     }
 }
