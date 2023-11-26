@@ -104,7 +104,7 @@
                                                 </div>
                                             </li>
                                         @endif
-                                        @if($data['row']->formlink && $data['row']->end_date >= $today)
+                                        @if($data['row']->formlink && $data['row']->end_date >= date('Y-m-d'))
                                             <li>
                                                 <div class="icon">
                                                     <span class="icon-location11"></span>

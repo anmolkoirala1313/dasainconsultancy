@@ -86,7 +86,7 @@ class JobController extends BackendBaseController
             $request->request->add(['slug' => $this->model->changeTokey($request['title'])]);
 
             if($request->hasFile('image_input')){
-                $image_name = $this->updateImage($request->file('image_input'),$data['row']->image,'600','400');
+                $image_name = $this->updateImage($request->file('image_input'),$data['row']->image);
                 $request->request->add(['image'=>$image_name]);
             }
 
