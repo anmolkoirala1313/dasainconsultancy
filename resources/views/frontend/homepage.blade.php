@@ -15,15 +15,15 @@
                          style="background-image: url( {{ asset(imagePath($slider->image)) }});">
                     </div><!-- /.slider-one__bg -->
 
-                    <div class="main-slider__shape-1 rotate-me">
-                        <img src="{{ asset('assets/frontend/images/shapes/main-slider-shape-1.png') }}" alt="">
-                    </div>
+{{--                    <div class="main-slider__shape-1 rotate-me">--}}
+{{--                        <img src="{{ asset('assets/frontend/images/shapes/main-slider-shape-1.png') }}" alt="">--}}
+{{--                    </div>--}}
                     <div class="main-slider__shape-2 float-bob-x">
                         <img src="{{ asset('assets/frontend/images/shapes/main-slider-shape-2.png') }}" alt="">
                     </div>
 
                     <div class="container">
-                        <div class="main-slider__content">
+                        <div class="main-slider__content" style="    top: -60px;">
                             <p class="main-slider__sub-title">{{ $slider->subtitle ?? '' }}</p>
                             <h2 class="main-slider__title">{{ $slider->title ?? '' }}</h2>
                             @if($slider->link)

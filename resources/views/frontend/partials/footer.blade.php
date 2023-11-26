@@ -206,7 +206,7 @@
     <div class="search-popup__overlay search-toggler"></div>
     <!-- /.search-popup__overlay -->
     <div class="search-popup__content">
-        {!! Form::open(['route' => $base_route.'job.search', 'method'=>'GET']) !!}
+        {!! Form::open(['route' => $module.'job.search', 'method'=>'GET']) !!}
             <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
             <input type="text" id="search" placeholder="Search Jobs..." />
             <button type="submit" aria-label="search submit" class="thm-btn">
