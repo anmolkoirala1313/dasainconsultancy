@@ -94,19 +94,20 @@
                     @endif
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
-                    @if( count($latest_service)>0)
+                    @if( count($latest_blogs)>0)
                         <div class="footer-widget-three__column footer-widget-three__post">
                             <div class="footer-widget-three__title-box">
-                                <h3 class="footer-widget-three__title">Latest Service</h3>
+                                <h3 class="footer-widget-three__title">Latest Blogs</h3>
                             </div>
                             <ul class="footer-widget-three__post-list list-unstyled">
-                                @foreach(@$latest_service as $service)
+                                @foreach(@$latest_blogs as $latest)
                                     <li>
                                         <div class="footer-widget-three__post-img">
-                                            <img class="lazy" data-src="{{ asset(thumbnailImagePath($service->image)) }}" alt="" style="width: 70px;height: 70px;object-fit: cover;">
+                                            <img class="lazy" data-src="{{ asset(imagePath($latest->image)) }}" alt="" style="width: 70px;height: 70px;object-fit: cover;">
                                         </div>
                                         <div class="footer-widget-three__post-content">
-                                            <h3><a href="{{ route('frontend.service.show', $service->key) }}">{{ $service->title ?? '' }}</a></h3>
+                                            <h3><a href="{{ route('frontend.blog.show', $latest->key) }}">{{ $latest->title ?? '' }}</a></h3>
+                                            <p><span class="icon-menu"></span>{{ $latest->blogCategory->title ?? '' }}</p>
                                         </div>
                                     </li>
                                 @endforeach

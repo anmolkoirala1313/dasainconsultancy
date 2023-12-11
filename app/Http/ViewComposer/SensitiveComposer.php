@@ -5,8 +5,8 @@ namespace App\Http\ViewComposer;
 
 use App\Models\Backend\Menu;
 use App\Models\Backend\MenuItem;
+use App\Models\Backend\News\Blog;
 use App\Models\Backend\Page\Page;
-use App\Models\Backend\Service;
 use App\Models\Backend\Setting;
 use Illuminate\View\View;
 
@@ -76,7 +76,8 @@ class SensitiveComposer
         }
 
         $theme_data = Setting::first();
-        $services   = Service::active()->latest()->limit(3)->get();
+        $blogs   = Blog::active()->latest()->limit(3)->get();
+
         $view
             ->with('setting_data', $theme_data)
             ->with('footer_nav_data1', $footerItem1)
@@ -85,6 +86,6 @@ class SensitiveComposer
             ->with('footer_nav_title2', $footerItemTitle2)
             ->with('top_nav_data', $topNavItems)
             ->with('footerTopNav', $pageData)
-            ->with('latest_service', $services);
+            ->with('latest_blogs', $blogs);
     }
 }
