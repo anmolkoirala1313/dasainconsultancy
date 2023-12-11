@@ -44,9 +44,9 @@ Route::get('/job/{slug}', [JobController::class, 'show'])->name('job.show');
 Route::get('/job/category/{slug}', [JobController::class, 'category'])->name('job.category');
 
 
-Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
-Route::get('/service/search/', [ServiceController::class, 'search'])->name('service.search');
-Route::get('/service/{slug}', [ServiceController::class, 'show'])->name('service.show');
+Route::get('/categories-we-recruit', [ServiceController::class, 'index'])->name('service.index');
+Route::get('/categories-we-recruit/search/', [ServiceController::class, 'search'])->name('service.search');
+Route::get('/categories-we-recruit/{slug}', [ServiceController::class, 'show'])->name('service.show');
 
 Route::get('/team', [HomePageController::class, 'team'])->name('page.team');
 Route::get('/testimonial', [HomePageController::class, 'testimonial'])->name('page.testimonial');
