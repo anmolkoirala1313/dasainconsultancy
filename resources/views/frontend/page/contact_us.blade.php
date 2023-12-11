@@ -5,7 +5,7 @@
 
 @section('content')
 
-    @include($module.'includes.breadcrumb',['breadcrumb_image'=> 'bread-bg8.jpeg'])
+    @include($module.'includes.breadcrumb',['breadcrumb_image'=> 'background_action.jpeg'])
 
 
     <!--Information Start-->

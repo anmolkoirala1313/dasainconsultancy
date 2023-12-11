@@ -9,176 +9,95 @@
         } */
 
         .rendered-form h1{
-            margin: 0;
-            color: var(--insur-black);
-            font-size: 45px;
-            line-height: 55px;
+            font-size: 36px;
             font-weight: 700;
+            line-height: 46px;
+        }
+        .rendered-form p, .contact-page__sub-title{
+            font-size: 16px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #26292E;
+            margin-top: 14px;
             margin-bottom: 10px;
-            letter-spacing: var(--insur-letter-spacing);
-        }
-
-        .rendered-form p {
-            font-size: 20px;
-            line-height: 30px;
-            letter-spacing: var(--insur-letter-spacing);
-            font-weight: 500;
-            padding-bottom: 20px;
-        }
-
-        .rendered-form input.form-control,.rendered-form select.form-control {
-            height: 60px;
-            width: 100%;
-            border: none;
-            background-color: var(--insur-extra);
-            padding-left: 30px;
-            padding-right: 30px;
-            outline: none;
-            font-size: 14px;
-            color: var(--insur-gray);
-            display: block;
-            border-radius: var(--insur-bdr-radius);
-            font-weight: 500;
-            letter-spacing: var(--insur-letter-spacing);
         }
 
         .rendered-form label{
-            font-size: 16px!important;
-            color: var(--insur-black) !important;
-            font-weight: 700;
-            line-height: 26px;
-            letter-spacing: 0.1em;
-            margin-bottom: 8px!important;
-        }
-        .rendered-form textarea.form-control {
+            color: var(--bixola-black);
             font-size: 14px;
-            color: var(--insur-gray);
-            height: 180px!important;
-            width: 100%;
-            background-color: var(--insur-extra);
-            padding: 15px 30px 30px;
-            border: none;
-            border-radius: var(--insur-bdr-radius);
-            outline: none;
-            margin-bottom: 0px;
-            font-weight: 500;
+            font-weight: 400;
+            letter-spacing: 1.12px;
+            text-transform: uppercase;
+            font-family: var(--bixola-font);
+            margin-bottom: 2px;
         }
 
-        .card-footer button{
-            width: 30%!important;
-            border: none!important;
+
+        .rendered-form input[type="text"], .rendered-form input[type="email"] {
+            height: 38px;
+            width: 100%;
+            border: none;
+            padding-right: 30px;
+            outline: none;
+            font-size: 14px;
+            color: var(--bixola-gray);
+            display: block;
+            font-weight: 400;
+            background-color: transparent;
+            border-bottom: 1px solid #EAECF0;
+            -webkit-transition: all 500ms ease;
+            transition: all 500ms ease;
+        }
+
+        .rendered-form input[type="text"]:focus, .rendered-form input[type="email"]:focus {
+            border-bottom: 1px solid var(--bixola-black);
+        }
+
+        .rendered-form .form-control:focus {
+            /* outline: 0; */
+            box-shadow: inset 0 1px 1px rgb(0 0 0 / 0%), 0 0 8px rgb(102 175 233 / 0%) !important;
+        }
+
+        .card-footer {
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            border-top: 1px solid transparent;
+        }
+
+        .card-footer button {
             position: relative;
             display: inline-block;
             vertical-align: middle;
             -webkit-appearance: none;
-            appearance: none;
             outline: none !important;
-            background-color: var(--insur-base);
-            color: var(--insur-white);
+            background-color: var(--bixola-base);
+            color: var(--bixola-white);
             font-size: 16px;
-            font-weight: 700;
-            letter-spacing: var(--insur-letter-spacing);
-            border-radius: var(--insur-bdr-radius);
-            padding: 17px 40px 17px;
-            transition: all 0.5s linear;
+            font-weight: 500;
+            padding: 10px 33px 10px;
+            border-radius: 5px;
             overflow: hidden;
+            transition: all 0.5s linear;
             z-index: 1;
+            width: 20%!important;
+            border-color: var(--bixola-base);
         }
-        }
-
-        .card {
-            position: relative !important;
-            display: -webkit-box !important;
-            display: -ms-flexbox !important;
-            display: flex !important;
-            -webkit-box-orient: vertical !important;
-            -webkit-box-direction: normal !important;
-            -ms-flex-direction: column !important;
-            flex-direction: column !important;
-            min-width: 0 !important;
-            word-wrap: break-word !important;
-            background-color: var(--vz-card-bg) !important;
-            background-clip: border-box !important;
-            border: 0 solid rgba(0,0,0,.125) !important;
-            border-radius: 0.25rem !important;
-        }
-        .card-header:first-child {
-            border-radius: 0.25rem 0.25rem 0 0 !important;
-        }
-
-        .card-header {
-            padding: 1rem 1rem !important;
-            margin-bottom: 0 !important;
-            background-color: var(--vz-card-cap-bg) !important;
-            border-bottom: 0 solid rgba(0,0,0,.125) !important;
-        }
-
-        .card-footer:last-child {
-            border-radius: 0 0 0.25rem 0.25rem !important;
-        }
-
-        .card-footer {
-            padding: 1rem 1rem !important;
-            background-color: var(--vz-card-cap-bg) !important;
-            border-top: 0 solid rgba(0,0,0,.125) !important;
-        }
-
 
     </style>
 @endsection
 @section('content')
 
-    <section class="page-header">
-        <div class="page-header-bg" style="background-image: url({{asset('assets/frontend/images/backgrounds/page-header-bg.jpg')}})">
-        </div>
-        <div class="page-header-shape-1"><img src="{{asset('assets/frontend/images/shapes/page-header-shape-1.png')}}" alt=""></div>
-        <div class="container">
-            <div class="page-header__inner">
-                <ul class="thm-breadcrumb list-unstyled">
-                    <li><a href="/">Home</a></li>
-                    <li><span>/</span></li>
-                    <li>{{ $form->name }}</li>
-                </ul>
-                <h2>{{ $pageTitle }}</h2>
-            </div>
-        </div>
-    </section>
+    @include($module.'includes.breadcrumb',['breadcrumb_image'=> 'background_action.jpeg'])
 
-    <section class="contact-page" >
+    <!--Contact Page Start-->
+    <section class="contact-page mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-xl-4 col-lg-5">
+                <div class="col-xl-12 col-lg-12">
                     <div class="contact-page__left">
-                        <div class="section-title text-left">
-                            <div class="section-sub-title-box">
-                                <p class="section-sub-title">{{ ucwords($pageTitle) }}</p>
-                                <div class="section-title-shape-1">
-                                    <img src="{{asset('assets/frontend/images/shapes/section-title-shape-1.png')}}" alt="">
-                                </div>
-                                <div class="section-title-shape-2">
-                                    <img src="{{asset('assets/frontend/images/shapes/section-title-shape-2.png')}}" alt="">
-                                </div>
-                            </div>
-                            <h2 class="section-title__title">Feel free to get in touch with us</h2>
-                        </div>
-                        <div class="contact-page__call-email">
-                            <div class="contact-page__call-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-page__call-email-content">
-                                <h4>
-                                    <a href="tel:{{@$setting_data->phone}}" class="contact-page__call-number">{{@$setting_data->phone}}</a>
-                                    <a href="mailto:{{@$setting_data->email}}"
-                                       class="contact-page__email">{{@$setting_data->email}}</a>
-                                </h4>
-                            </div>
-                        </div>
-                        <p class="contact-page__location-text">{{@$setting_data->address}}</p>
-                    </div>
-                </div>
-                <div class="col-xl-8 col-lg-7">
-                    <div class="contact-page__right">
-                        <div class="contact-page__form">
+{{--                        <h3 class="contact-page__title">Get in Touch</h3>--}}
+{{--                        <p class="contact-page__sub-title">LEAVE US A MESSAGE</p>--}}
+                        <div class="contact-page__form-box">
                             <form action="{{ route('formbuilder::form.submit', $form->identifier) }}" method="POST" id="submitForm" enctype="multipart/form-data">
                                 @csrf
                                 @if ($message = Session::get('success'))
@@ -202,39 +121,23 @@
                                     </button>
                                 </div>
                             </form>
-
+                            <div class="result"></div>
                         </div>
                     </div>
                 </div>
+{{--                <div class="col-xl-6 col-lg-6">--}}
+{{--                    <div class="contact-page__right">--}}
+{{--                        @if($data['setting_data'] && $data['setting_data']->google_map)--}}
+{{--                            <iframe src="{{$data['setting_data']->google_map}}" style="border:0;width: 625px;height: 100%;" allowfullscreen="" loading="lazy"></iframe>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </section>
+    <!--Contact Page End-->
 
-    <section class="cta-one cta-three">
-        <div class="container">
-            <div class="cta-one__content">
-                <div class="cta-one__inner">
-                    <div class="cta-one__left">
-                        <h3 class="cta-one__title">You can also call us</h3>
-                    </div>
-                    <div class="cta-one__right">
-                        <div class="cta-one__call">
-                            <div class="cta-one__call-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="cta-one__call-number">
-                                <a href="tel:9200368090">+92 (003) 68-090</a>
-                                <p>Reach out to us</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cta-one__img">
-                        <img src="{{asset('assets/frontend/images/resources/cta-one-img.png')}}" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     @if(@$setting_data->google_map)
 
