@@ -11,5 +11,5 @@ class GeneralGrievance extends BackendBaseModel
     use HasFactory, SoftDeletes;
 
     protected $table    = 'homepages';
-    protected $fillable = ['id','grievance_title','grievance_description','grievance_button','grievance_link','status','created_by','updated_by'];
+    protected $fillable = ['id','grievance_title','grievance_subtitle','grievance_description','grievance_button','grievance_link','status','created_by','updated_by'];
 }

@@ -335,9 +335,9 @@
             <div class="container">
                 <div class="section-title text-center">
                     <div class="section-title__tagline-box">
-                        <p class="section-title__tagline"> Our Core Values</p>
+                        <p class="section-title__tagline"> {{ $data['homepage']->core_subtitle ?? '' }}</p>
                     </div>
-                    <h2 class="section-title__title">Our Core Guiding Values for <br> Success</h2>
+                    <h2 class="section-title__title">{{ $data['homepage']->core_title ?? '' }}</h2>
                 </div>
                 <div class="row">
 
@@ -371,23 +371,25 @@
                     <h2 class="section-title__title">Understand Our Work process</h2>
                 </div>
                 <div class="process-one__inner">
-                    <div class="process-one__shape-1">
-                        <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/process-one-shape-1.png') }}" alt="">
-                    </div>
-                    <div class="row">
-                        @foreach($data['homepage']->recruitmentProcess as $index=>$process)
-                            <div class="col-xl-3 col-lg-6 col-md-6 {{ $index > 3 ? 'mt-3':'' }}">
-                                <div class="process-one__single">
-                                    <div class="process-one__count"></div>
-                                    <h3 class="process-one__title">{{ $process->title ?? '' }}</h3>
-                                    <p class="process-one__text">
-                                        {{ $process->description ?? '' }}
-                                    </p>
+                    @foreach($data['homepage']->recruitmentProcess->chunk(4) as $index=>$chunked_process)
+                        <div class="process-one__shape-{{$index+1}}">
+                            <img class="lazy" data-src="{{ asset('assets/frontend/images/shapes/process-one-shape-1.png') }}" alt="">
+                        </div>
+                        <div class="row">
+                            @foreach($chunked_process as $index=>$process)
+                                <div class="col-xl-3 col-lg-6 col-md-6 {{ $index > 3 ? 'mt-3':'' }}">
+                                    <div class="process-one__single">
+                                        <div class="process-one__count"></div>
+                                        <h3 class="process-one__title">{{ $process->title ?? '' }}</h3>
+                                        <p class="process-one__text">
+                                            {{ $process->description ?? '' }}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
+                    @endforeach
 
-                    </div>
                 </div>
             </div>
         </section>
@@ -579,7 +581,7 @@
                         <div class="why-choose-one__left">
                             <div class="section-title text-left">
                                 <div class="section-title__tagline-box">
-                                    <p class="section-title__tagline">Why Choose Us</p>
+                                    <p class="section-title__tagline">{{ $data['homepage']->grievance_subtitle ?? '' }}</p>
                                 </div>
                                 <h2 class="section-title__title section-title_normal">{{ $data['homepage']->grievance_title ?? '' }}
                                 </h2>

@@ -5,11 +5,17 @@
 @endif
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <div class="mb-3">
             {!! Form::label('grievance_title', 'Title', ['class' => 'form-label required']) !!}
             {!! Form::text('grievance_title', null,['class'=>'form-control','id'=>'grievance_title','placeholder'=>'Enter title']) !!}
             {!! Form::hidden('id', isset($data['row']) ? $data['row']->id : null,['class'=>'form-control','readonly']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('grievance_subtitle', 'Subtitle', ['class' => 'form-label']) !!}
+            {!! Form::text('grievance_subtitle', null,['class'=>'form-control','id'=>'grievance_subtitle','placeholder'=>'Enter Subtitle']) !!}
         </div>
     </div>
     <div class="col-lg-12">

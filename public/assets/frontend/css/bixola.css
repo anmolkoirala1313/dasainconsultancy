@@ -7119,6 +7119,13 @@ ul {
   transform: translateX(-50%);
 }
 
+.process-one__shape-2 {
+  position: absolute;
+  top: 185px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .process-one__single {
   position: relative;
   display: block;
