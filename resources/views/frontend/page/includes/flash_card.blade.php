@@ -14,7 +14,11 @@
                             <a>{{$row->list_title ?? ''}}</a>
                         </h3>
                         <div class="services-page__icon">
-                            <span class="{{ get_flash_card_icons($index) }}"></span>
+                            @if($row->image)
+                                <span><img src="{{ asset(imagePath($row->image)) }}"  alt=""></span>
+                            @else
+                                <span class="{{ get_flash_card_icons($index) }}"></span>
+                            @endif
                         </div>
                         <p class="services-page__text text-align-justify">{{$row->list_description ?? ''}}</p>
                     </div>

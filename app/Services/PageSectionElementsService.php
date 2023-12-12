@@ -45,21 +45,63 @@ class PageSectionElementsService {
             }
         }
         elseif ($data['section_name'] == 'flash_card'){
-            $flash_card_num   = $request['list_number_1'];
-            for ($i=0;$i<$flash_card_num;$i++){
-                $heading     =  array_key_exists($i, $request->input('title')) ? $request->input('title')[$i] : null;
-                $subheading  =  array_key_exists($i, $request->input('subtitle')) ? $request->input('subtitle')[$i] : null;
+            $flash_cards       = PageSection::find($data['section_id']);
+            $flash_cards_id    = $flash_cards->pageSectionElements->pluck('id')->toArray();
+            foreach ($request['list_title'] as $index=>$title){
+                $section     = $this->model->find($request['list_id'][$index]);
+                $heading     =  array_key_exists($index, $request->input('title')) ? $request->input('title')[$index] : null;
+                $subheading  =  array_key_exists($index, $request->input('subtitle')) ? $request->input('subtitle')[$index] : null;
 
-                $this->model->create([
-                    'page_section_id'     => $data['section_id'],
-                    'title'               => $heading,
-                    'subtitle'            => $subheading,
-                    'list_title'          => $request['list_title'][$i],
-                    'list_description'    => $request['list_description'][$i],
-                    'status'              => $request['status'],
-                    'created_by'          => $request['created_by'],
-                ]);
+                if ($request->file('image_input') && array_key_exists($index,$request->file('image_input'))){
+                    $image_name  = $this->updateImage( $request->file('image_input')[$index],null,'45','45');
+                    $request->request->add(['image_'.$index => $image_name]);
+                    if ($section && $section->image){
+                        $this->deleteImage($section->image);
+                    }
+                }
+
+                $this->model->updateOrCreate(
+                    [
+                        'id'              => $request['list_id'][$index],
+                        'page_section_id' => $data['section_id']
+                    ],
+                    [
+                        'title'               => $heading,
+                        'subtitle'            => $subheading,
+                        'list_title'          => $title,
+                        'image'               => $request['image_'.$index] ?? $section->image,
+                        'list_description'    => $request['list_description'][$index],
+                        'status'              => $request['status'],
+                        'created_by'          => $request['created_by'],
+                        'updated_by'          => $request['updated_by']
+                    ]
+                );
+
             }
+
+            foreach ($flash_cards_id as $value){
+                if(!in_array($value,$request->input('id'))){
+                    $element = $this->model->find($value);
+                    $this->deleteImage($element->image);
+                    $element->forceDelete();
+                }
+            }
+
+//            $flash_card_num   = $request['list_number_1'];
+//            for ($i=0;$i<$flash_card_num;$i++){
+//                $heading     =  array_key_exists($i, $request->input('title')) ? $request->input('title')[$i] : null;
+//                $subheading  =  array_key_exists($i, $request->input('subtitle')) ? $request->input('subtitle')[$i] : null;
+//
+//                $this->model->create([
+//                    'page_section_id'     => $data['section_id'],
+//                    'title'               => $heading,
+//                    'subtitle'            => $subheading,
+//                    'list_title'          => $request['list_title'][$i],
+//                    'list_description'    => $request['list_description'][$i],
+//                    'status'              => $request['status'],
+//                    'created_by'          => $request['created_by'],
+//                ]);
+//            }
         }
         elseif ($data['section_name'] == 'slider_list'){
             $slider_list_num  = $request['list_number_1'];
@@ -89,7 +131,6 @@ class PageSectionElementsService {
                 $image_name = $this->uploadImage($request->file('image_input'), '550','450');
                 $request->request->add(['image' => $image_name]);
             }
-
             $this->model->create($request->all());
         }
     }
@@ -166,24 +207,64 @@ class PageSectionElementsService {
             }
         }
         else if($data['section_name'] == 'flash_card'){
-            $flash_card_num   = $request['list_number_1'];
-            for ($i=0;$i<$flash_card_num;$i++){
-                $heading     =  array_key_exists($i, $request->input('title')) ? $request->input('title')[$i] : null;
-                $subheading  =  array_key_exists($i, $request->input('subtitle')) ? $request->input('subtitle')[$i] : null;
+            $flash_cards       = PageSection::find($data['section_id']);
+            $flash_cards_id    = $flash_cards->pageSectionElements->pluck('id')->toArray();
+            foreach ($request['list_title'] as $index=>$title){
+                $section     = $this->model->find($request['list_id'][$index]);
+                $heading     =  array_key_exists($index, $request->input('title')) ? $request->input('title')[$index] : null;
+                $subheading  =  array_key_exists($index, $request->input('subtitle')) ? $request->input('subtitle')[$index] : null;
+
+                if ($request->file('image_input') && array_key_exists($index,$request->file('image_input'))){
+                    $image_name  = $this->updateImage( $request->file('image_input')[$index],null,'45','45');
+                    $request->request->add(['image_'.$index => $image_name]);
+                    if ($section && $section->image){
+                        $this->deleteImage($section->image);
+                    }
+                }
 
                 $this->model->updateOrCreate(
-                    [   'id'              => $request['id'][$i],
+                    [
+                        'id'              => $request['list_id'][$index],
                         'page_section_id' => $data['section_id']
-                    ], [
-                    'title'               => $heading,
-                    'subtitle'            => $subheading,
-                    'list_title'          => $request['list_title'][$i],
-                    'list_description'    => $request['list_description'][$i],
-                    'status'              => $request['status'],
-                    'created_by'          => $request['created_by'],
-                    'updated_by'          => $request['updated_by']
-                ]);
+                    ],
+                    [
+                        'title'               => $heading,
+                        'subtitle'            => $subheading,
+                        'list_title'          => $title,
+                        'image'               => $request['image_'.$index] ?? $section->image,
+                        'list_description'    => $request['list_description'][$index],
+                        'status'              => $request['status'],
+                        'created_by'          => $request['created_by'],
+                        'updated_by'          => $request['updated_by']
+                    ]
+                );
+
             }
+
+            foreach ($flash_cards_id as $value){
+                if(!in_array($value,$request->input('list_id'))){
+                    $element = $this->model->find($value);
+                    $this->deleteImage($element->image);
+                    $element->forceDelete();
+                }
+            }
+//            for ($i=0;$i<$flash_card_num;$i++){
+//                $heading     =  array_key_exists($i, $request->input('title')) ? $request->input('title')[$i] : null;
+//                $subheading  =  array_key_exists($i, $request->input('subtitle')) ? $request->input('subtitle')[$i] : null;
+//
+//                $this->model->updateOrCreate(
+//                    [   'id'              => $request['id'][$i],
+//                        'page_section_id' => $data['section_id']
+//                    ], [
+//                    'title'               => $heading,
+//                    'subtitle'            => $subheading,
+//                    'list_title'          => $request['list_title'][$i],
+//                    'list_description'    => $request['list_description'][$i],
+//                    'status'              => $request['status'],
+//                    'created_by'          => $request['created_by'],
+//                    'updated_by'          => $request['updated_by']
+//                ]);
+//            }
 
         }
 
