@@ -1,4 +1,4 @@
-<section class="portfolio-details" style="padding: 0px 0 100px;">
+<section class="portfolio-details" style="padding: 0px;">
     <div class="container">
         <div class="row">
             <div class="portfolio-details__bottom">

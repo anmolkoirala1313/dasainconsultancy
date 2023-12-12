@@ -52,7 +52,9 @@
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
                     <div class="footer-widget-three__column footer-widget-three__about">
                         <div class="footer-widget-two__logo">
-                            <a href="/"><img class="lazy" data-src="{{ $setting_data->logo_white ?  asset(imagePath($setting_data->logo_white)) : asset(imagePath($setting_data->logo))}}" style="max-width: 230px;" alt=""></a>
+                            <a href="/">
+                                <img class="lazy" data-src="{{ $setting_data->logo_white ?  asset(imagePath($setting_data->logo_white)) : asset(imagePath($setting_data->logo))}}" style="max-width: 305px;" alt="">
+                            </a>
                         </div>
                         <p class="footer-widget-three__about-text text-align-justify">{{ $setting_data->description ?? '' }}</p>
                         <div class="footer-widget-three__email">

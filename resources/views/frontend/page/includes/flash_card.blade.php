@@ -1,4 +1,4 @@
-<section class="services-page" style="background-color: #fff;">
+<section class="services-page" style="background-color: #fff;padding: 45px 0 90px;">
     <div class="container">
         <div class="section-title-three text-left">
             <div class="section-title__tagline-box">

@@ -1,4 +1,4 @@
-<section class="news-one" style="background-color: #F5F7F8;">
+<section class="news-one" style="background-color: #F5F7F8;padding: 100px 0 90px;margin-top: 40px;">
     <div class="container">
         <div class="section-title text-center">
             <div class="section-title__tagline-box">
