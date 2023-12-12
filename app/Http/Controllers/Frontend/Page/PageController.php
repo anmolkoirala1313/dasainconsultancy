@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Frontend\Page;
 use App\Http\Controllers\Backend\BackendBaseController;
 use App\Models\Backend\News\BlogCategory;
 use App\Models\Backend\Page\Page;
+use App\Models\Backend\Page\PageSectionElement;
+use App\Models\Backend\Setting;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 
 class PageController extends BackendBaseController
 {
@@ -57,14 +58,12 @@ class PageController extends BackendBaseController
         return view($this->loadResource($this->view_path.'index'), compact('data'));
     }
 
-
-
     public function show($slug)
     {
 
         $this->page_method      = 'show';
         $this->page_title       = $this->page.' Details';
-        $data                   = $this->getCommonData();
+        $data                   = [];
         $data['row']            = $this->model->where('slug',$slug)->first();
 
         if(!$data['row']){
@@ -87,6 +86,21 @@ class PageController extends BackendBaseController
         }
 
         return view($this->loadResource($this->view_path.'category'), compact('data'));
+    }
+
+    public function sliderListSingle($slug)
+    {
+        $this->page_method      = 'show';
+        $this->page_title       = 'List Details';
+        $data['row'] = PageSectionElement::with('section')->where('list_subtitle', $slug)->first();
+        if (!$data['row']) {
+            return abort(404);
+        }
+
+        $data['latest']  = PageSectionElement::with('section')->where('page_section_id', @$data['row']->page_section_id)->get();
+        $data['setting'] = Setting::first();
+
+        return view($this->loadResource($this->view_path.'slider_list.show'), compact('data'));
     }
 
 }

@@ -40,7 +40,7 @@ class PageSectionElementController extends BackendBaseController
         $this->page_method          = 'show';
         $this->page_title           = 'Update '.$this->page;
         $data                       = [];
-        $data['row']                = Page::active()->find($id);
+        $data['row']                = Page::find($id);
         $data['page_section']       = $data['row']->pageSections->pluck('slug','id')->toArray();
         $data['section_elements']   = [];
 

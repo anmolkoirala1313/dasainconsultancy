@@ -12,13 +12,17 @@
             </div>
             <div class="news-one__content">
                 <div class="news-one__content-top">
-                    <h3 class="news-one__title"><a href="#">{{ $row->list_title ?? '' }}</a></h3>
+                    <h3 class="news-one__title">
+                        <a href="{{ $data['slider_list_type'] !== 'normal' ? route($base_route.'slider_single',@$row->list_subtitle) : '#'}}">
+                            {{ $row->list_title ?? '' }}
+                        </a>
+                    </h3>
                         <p class="news-one__text text-align-justify">{{ $data['slider_list_type'] == 'normal' ? strip_tags($row->list_description) : elipsis($row->list_description)}}</p>
                 </div>
                 @if($data['slider_list_type'] !== 'normal')
                     <div class="news-one__person-and-date">
                         <div class="news-three__btn" style="margin-top: 0px;">
-                            <a href="#">Learn More<span class="icon-right-arrow1"></span></a>
+                            <a href="{{route($base_route.'slider_single',@$row->list_subtitle)}}">Learn More<span class="icon-right-arrow1"></span></a>
                         </div>
                     </div>
                 @endif

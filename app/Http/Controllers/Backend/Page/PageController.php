@@ -51,7 +51,6 @@ class PageController extends BackendBaseController
     {
         DB::beginTransaction();
         try {
-            $request->request->add(['key' => $this->model->changeTokey($request['title'])]);
             $request->request->add(['created_by' => auth()->user()->id ]);
             $request->request->add(['status' => true ]);
 
@@ -108,6 +107,7 @@ class PageController extends BackendBaseController
         $data['row']       = $this->model->find($id);
         DB::beginTransaction();
         try {
+            $request->request->add(['slug' => $this->model->changeTokey($request['title'])]);
             if($request->hasFile('image_input')){
                 $image_name = $this->updateImage($request->file('image_input'),$data['row']->image,'1920','765');
                 $request->request->add(['image'=>$image_name]);
@@ -115,6 +115,7 @@ class PageController extends BackendBaseController
             $request->request->add(['updated_by' => auth()->user()->id ]);
             $request->request->add(['created_by' => auth()->user()->id ]);
             $request->request->add(['page_id' => $id]);
+
             $data['row']->update($request->all());
 
             $section_slug_database  = $data['row']->pageSections->pluck('slug')->toArray();

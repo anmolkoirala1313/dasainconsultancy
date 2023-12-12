@@ -15,14 +15,16 @@ class PageService {
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.page.';
     protected string $view_path     = 'backend.page.';
+    protected string $page_title, $page_method, $image_path, $file_path;
 
     private DataTables $dataTables;
     private Page $model;
 
     public function __construct(DataTables $dataTables)
     {
-        $this->model        = new Page();
+        $this->model      = new Page();
         $this->dataTables = $dataTables;
+        $this->image_path = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
     }
 
     public function getDataForDatatable(Request $request){

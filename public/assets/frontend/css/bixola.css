@@ -10528,8 +10528,8 @@ ul {
 .site-footer-three__middle {
   position: relative;
   display: block;
-  padding: 95px 0 117px;
-  border-top: 1px solid rgba(var(--bixola-white-rgb), .10);
+    padding: 45px 0 70px;
+    border-top: 1px solid rgba(var(--bixola-white-rgb), .10);
   border-bottom: 1px solid rgba(var(--bixola-white-rgb), .10);
   margin-top: 59px;
 }

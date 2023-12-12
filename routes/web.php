@@ -54,6 +54,8 @@ Route::get('/testimonial', [HomePageController::class, 'testimonial'])->name('pa
 Route::get('/album', [HomePageController::class, 'album'])->name('page.album');
 Route::get('/album/{slug}', [HomePageController::class, 'albumGallery'])->name('page.album_gallery');
 
+//slider list single page
+Route::get('slider-detail/{slug}',[PageController::class, 'sliderListSingle'])->name('page.slider_single');
 Route::get('/{slug}', [PageController::class, 'index'])->name('page.index');
 
 
