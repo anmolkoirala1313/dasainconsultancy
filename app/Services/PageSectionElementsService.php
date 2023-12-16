@@ -86,22 +86,6 @@ class PageSectionElementsService {
                     $element->forceDelete();
                 }
             }
-
-//            $flash_card_num   = $request['list_number_1'];
-//            for ($i=0;$i<$flash_card_num;$i++){
-//                $heading     =  array_key_exists($i, $request->input('title')) ? $request->input('title')[$i] : null;
-//                $subheading  =  array_key_exists($i, $request->input('subtitle')) ? $request->input('subtitle')[$i] : null;
-//
-//                $this->model->create([
-//                    'page_section_id'     => $data['section_id'],
-//                    'title'               => $heading,
-//                    'subtitle'            => $subheading,
-//                    'list_title'          => $request['list_title'][$i],
-//                    'list_description'    => $request['list_description'][$i],
-//                    'status'              => $request['status'],
-//                    'created_by'          => $request['created_by'],
-//                ]);
-//            }
         }
         elseif ($data['section_name'] == 'slider_list'){
             $slider_list_num  = $request['list_number_1'];
@@ -269,6 +253,7 @@ class PageSectionElementsService {
         }
 
     }
+
 
 
 }
