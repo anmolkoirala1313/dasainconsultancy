@@ -104,4 +104,24 @@ class JobController extends BackendBaseController
         return response()->json(route($this->base_route.'index'));
     }
 
+    public function destroy($id)
+    {
+        try {
+            DB::beginTransaction();
+            $data = $this->model->find($id);
+
+            $data->categories()->detach();
+
+            //deletable without any child values
+            $this->model->find($id)->delete();
+            DB::commit();
+            Session::flash('success',$this->page.' was removed successfully');
+        } catch (\Exception $e) {
+            dd($e);
+            Session::flash('error',$this->page.' was not removed as data is already in use.');
+        }
+
+        return response()->json(route($this->base_route.'index'));
+    }
+
 }
