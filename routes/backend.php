@@ -24,10 +24,6 @@ use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\TestimonialController;
-use App\Http\Controllers\Backend\Activity\Basic_setup\CountryController;
-use App\Http\Controllers\Backend\Activity\Basic_setup\PackageCategoryController;
-use App\Http\Controllers\Backend\Activity\Basic_setup\PackageRibbonController;
-use App\Http\Controllers\Backend\Activity\PackageController;
 use App\Http\Controllers\Backend\User\UserController;
 use App\Http\Controllers\Backend\User\UserProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -163,6 +159,7 @@ Route::delete('/testimonial/trash/{id}/remove', [WelcomeController::class,'remov
 Route::resource('testimonial', TestimonialController::class)->names('testimonial');
 
 //services
+Route::post('/service/order', [ServiceController::class,'orderUpdate'])->name('service.order');
 Route::get('/service/trash', [ServiceController::class,'trash'])->name('service.trash');
 Route::post('/service/trash/{id}/restore', [ServiceController::class,'restore'])->name('service.restore');
 Route::delete('/service/trash/{id}/remove', [ServiceController::class,'removeTrash'])->name('service.remove-trash');

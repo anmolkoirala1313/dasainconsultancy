@@ -35,15 +35,17 @@
                                 <table id="NormalDataTable" class="table align-middle table-nowrap table-striped">
                                     <thead class="table-light">
                                     <tr>
+                                        <th width="30px">#</th>
                                         <th>S.N</th>
                                         <th>Title</th>
                                         <th>Status</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="sortable_rows">
                                     @foreach($data['row'] as $row)
-                                        <tr>
+                                        <tr class="rows" data-id="{{ $row->id }}">
+                                            <td class="pl-3"><i class=" ri-drag-move-2-fill"></i></td>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $row->title }}</td>
                                             <td>
@@ -70,6 +72,10 @@
     <script src="{{asset('assets/backend/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="{{asset('assets/common/general.js')}}"></script>
+    <script src="{{asset('assets/backend/js/jquery-ui.min.js')}}"></script>
+
     @include($module.'includes.toast_message')
     @include($module.'includes/gallery')
+    @include($view_path.'includes.script')
+
 @endsection

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Requests\Backend\Homepage\WelcomeRequest;
 use App\Http\Requests\Backend\ServiceRequest;
-use App\Http\Requests\Backend\TestimonialRequest;
 use App\Models\Backend\Service;
-use App\Models\Backend\Testimonial;
 use App\Traits\ControllerOps;
+use App\Traits\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -15,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 
 class ServiceController extends BackendBaseController
 {
-    use ControllerOps;
+    use ControllerOps, Order;
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.service.';
     protected string $view_path     = 'backend.service.';
@@ -30,6 +28,17 @@ class ServiceController extends BackendBaseController
         $this->model            = new Service();
         $this->image_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
     }
+
+    public function index()
+    {
+        $this->page_method = 'index';
+        $this->page_title  = 'List '.$this->page;
+        $data              = $this->getData();
+        $data['row']       = $this->model->orderBy('order')->get();
+
+        return view($this->loadResource($this->view_path.'index'), compact('data'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
