@@ -299,7 +299,7 @@
                                                                                     </label>
                                                                                 </div>
                                                                                 <div>
-                                                                                    <a href="{{url('adminsite/delete-menuitem')}}/{{$item->id}}/{{$key}}" class="btn btn-danger btn-sm btn-label">
+                                                                                    <a href="{{url('administration/delete-menuitem')}}/{{$item->id}}/{{$key}}" class="btn btn-danger btn-sm btn-label">
                                                                                         <i class=" ri-delete-bin-6-line label-icon align-middle fs-16 me-2"></i>Remove</a>
 
                                                                                     <button type="submit" class="btn btn-success btn-sm btn-label pull-right ">
@@ -353,7 +353,7 @@
                                                                                                     </label>
                                                                                                 </div>
                                                                                                 <div>
-                                                                                                    <a href="{{url('adminsite/delete-menuitem')}}/{{$data_child->id}}/{{$key}}/{{$in}}" class="btn btn-danger btn-sm btn-label">
+                                                                                                    <a href="{{url('administration/delete-menuitem')}}/{{$data_child->id}}/{{$key}}/{{$in}}" class="btn btn-danger btn-sm btn-label">
                                                                                                         <i class=" ri-delete-bin-6-line label-icon align-middle fs-16 me-2"></i>Remove</a>
 
                                                                                                     <button type="submit" class="btn btn-success btn-sm btn-label pull-right ">
@@ -408,7 +408,7 @@
                                                                                                                         </label>
                                                                                                                     </div>
                                                                                                                     <div>
-                                                                                                                        <a href="{{url('adminsite/delete-menuitem')}}/{{$data1->id}}/{{$key}}/{{$in}}/{{$keys}}" class="btn btn-danger btn-sm btn-label">
+                                                                                                                        <a href="{{url('administration/delete-menuitem')}}/{{$data1->id}}/{{$key}}/{{$in}}/{{$keys}}" class="btn btn-danger btn-sm btn-label">
                                                                                                                             <i class=" ri-delete-bin-6-line label-icon align-middle fs-16 me-2"></i>Remove</a>
 
                                                                                                                         <button type="submit" class="btn btn-success btn-sm btn-label pull-right ">

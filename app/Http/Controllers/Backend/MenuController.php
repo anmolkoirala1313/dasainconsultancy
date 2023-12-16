@@ -24,7 +24,7 @@ class MenuController extends BackendBaseController
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.menu.';
     protected string $view_path     = 'backend.menu.';
-    protected string $page         = 'Menu';
+    protected string $page          = 'Menu';
     protected string $folder_name   = 'menu';
     protected string $page_title, $page_method, $image_path, $file_path;
     protected object $model;
