@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Requests\Backend\Homepage\DocumentRequest;
+use App\Http\Requests\Backend\DocumentRequest;
 use App\Models\Backend\Document;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
