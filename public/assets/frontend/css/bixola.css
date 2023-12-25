@@ -15564,9 +15564,9 @@ ul {
 .news-page-two__title-box {
   position: relative;
   display: block;
-  border-bottom: 2px dashed #ddd;
-  padding-bottom: 13px;
-  margin-bottom: 11px;
+  /*border-bottom: 2px dashed #ddd;*/
+  /*padding-bottom: 13px;*/
+  /*margin-bottom: 11px;*/
 }
 
 .news-page-two__title-box h3 {
@@ -15587,8 +15587,11 @@ ul {
 }
 
 .news-page-two__read-more {
+    border-top: 2px dashed #ddd;
   position: relative;
   display: block;
+    padding-top: 11px;
+    margin-top: 101px;
 }
 
 .news-page-two__read-more a {
@@ -15704,12 +15707,20 @@ ul {
   align-items: center;
   margin-bottom: 10px;
 }
+.news-page-two__meta {
+  position: relative;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
 .news-page-three__meta li+li {
   margin-left: 15px;
 }
+.news-page-two__meta li+li {
+  margin-left: 0px;
+}
 
-.news-page-three__meta li a {
+.news-page-three__meta li a, .news-page-two__meta li a {
   position: relative;
   display: flex;
   align-items: center;
@@ -15719,11 +15730,11 @@ ul {
   transition: all 500ms ease;
 }
 
-.news-page-three__meta li a:hover {
+.news-page-three__meta li a:hover, .news-page-two__meta li a:hover {
   color: var(--bixola-base);
 }
 
-.news-page-three__meta li a span {
+.news-page-three__meta li a span, .news-page-two__meta li a span{
   position: relative;
   display: inline-block;
   font-size: 14px;

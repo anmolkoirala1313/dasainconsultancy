@@ -32,7 +32,7 @@ class JobController extends BackendBaseController
     public function getData(): array
     {
         $data['categories']        = JobCategory::active()->pluck('title','id');
-        $data['min_qualification'] = ['none','primary education','secondary education','SEE','intermediate pass','bachelor pass','post graduate pass'];
+        $data['min_qualification'] = ['none'=>'None','primary education'=>'Primary Education','secondary education'=>'Secondary Education','SEE'=>'SEE','intermediate pass'=>'Intermediate Pass','bachelor pass'=>'Bachelor Pass','post graduate pass'=>'Post Graduate Pass'];
 
         return $data;
     }

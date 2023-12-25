@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\Career\CompanyCareerController;
 use App\Http\Controllers\Frontend\Career\JobController;
 use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\HomePageController;
@@ -42,6 +43,11 @@ Route::get('/job', [JobController::class, 'index'])->name('job.index');
 Route::get('/job/search/', [JobController::class, 'search'])->name('job.search');
 Route::get('/job/{slug}', [JobController::class, 'show'])->name('job.show');
 Route::get('/job/category/{slug}', [JobController::class, 'category'])->name('job.category');
+
+//jobs
+Route::get('/career', [CompanyCareerController::class, 'index'])->name('career.index');
+Route::get('/career/search/', [CompanyCareerController::class, 'search'])->name('career.search');
+Route::get('/career/{slug}', [CompanyCareerController::class, 'show'])->name('career.show');
 
 //document
 Route::get('/our-document', [HomePageController::class, 'document'])->name('page.document');
