@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('list_title')->nullable();
             $table->string('list_subtitle')->nullable();
-            $table->string('list_description')->nullable();
+            $table->text('list_description')->nullable();
             $table->string('list_file')->nullable();
             $table->foreignId('created_by')->references('id')->on('users')->cascadeOnUpdate();
             $table->foreignId('updated_by')->nullable()->references('id')->on('users')->cascadeOnUpdate();

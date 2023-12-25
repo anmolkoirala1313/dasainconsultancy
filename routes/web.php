@@ -43,6 +43,9 @@ Route::get('/job/search/', [JobController::class, 'search'])->name('job.search')
 Route::get('/job/{slug}', [JobController::class, 'show'])->name('job.show');
 Route::get('/job/category/{slug}', [JobController::class, 'category'])->name('job.category');
 
+//document
+Route::get('/our-document', [HomePageController::class, 'document'])->name('page.document');
+
 
 Route::get('/categories-we-recruit', [ServiceController::class, 'index'])->name('service.index');
 Route::get('/categories-we-recruit/search/', [ServiceController::class, 'search'])->name('service.search');
@@ -57,6 +60,4 @@ Route::get('/album/{slug}', [HomePageController::class, 'albumGallery'])->name('
 //slider list single page
 Route::get('slider-detail/{slug}',[PageController::class, 'sliderListSingle'])->name('page.slider_single');
 Route::get('/{slug}', [PageController::class, 'index'])->name('page.index');
-
-
 

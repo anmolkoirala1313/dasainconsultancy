@@ -11,6 +11,7 @@ use App\Models\Backend\Album;
 use App\Models\Backend\Career\Job;
 use App\Models\Backend\Client;
 use App\Models\Backend\CustomerInquiry;
+use App\Models\Backend\Document;
 use App\Models\Backend\FlightInquiry;
 use App\Models\Backend\Homepage\Slider;
 use App\Models\Backend\Homepage\Welcome;
@@ -121,6 +122,16 @@ class HomePageController extends BackendBaseController
         return view($this->loadResource($this->view_path.'page.album_gallery'), compact('data'));
     }
 
+    public function document()
+    {
+        $this->page_method     = 'index';
+        $this->page            = 'Document';
+        $data                  = $this->getCommonData();
+        $data['rows']          = Document::descending()->get();
+        $this->page_title      = $data['rows']->first()->title ?? 'Our Document';
+
+        return view($this->loadResource($this->view_path.'page.document'), compact('data'));
+    }
 
 
 }

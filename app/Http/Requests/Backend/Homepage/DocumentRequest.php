@@ -25,7 +25,8 @@ class DocumentRequest extends FormRequest
     public function rules()
     {
         return [
-            'title.*'           => 'required|string|max:60',
+            'title.*'         => 'required|string|max:60',
+            'description.*'   => 'required|string|max:500',
             'list_title.*'    => 'required|string|max:60',
             'list_file.*'  => request()->isMethod('post') ? 'required|file|max:2048' : 'nullable|file|max:2048',
         ];
@@ -34,7 +35,8 @@ class DocumentRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.*.required'           => 'Please enter title',
+            'title.*.required'         => 'Please enter title',
+            'description.*.max'        => 'Description cannot be more than 500 characters',
             'list_title.*.required'    => 'Please enter detail title',
         ];
     }
