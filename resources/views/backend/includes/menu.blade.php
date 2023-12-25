@@ -155,6 +155,12 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link {{request()->route()->getName() == 'backend.document.create' ? 'active':''}}" href="{{route('backend.document.create')}}">
+                        <i class="ri-profile-line"></i> <span data-key="t-widgets">Document</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link {{request()->route()->getName() == 'backend.managing_director.index' ? 'active':''}}" href="{{route('backend.managing_director.index')}}">
                         <i class="ri-open-arm-line"></i> <span data-key="t-widgets">Managing Director</span>
                     </a>

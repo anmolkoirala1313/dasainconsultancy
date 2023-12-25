@@ -251,6 +251,17 @@ if (!function_exists('imagePath')) {
     }
 }
 
+if (!function_exists('filePath')) {
+    /**
+     * @param $file
+     * @return string
+     */
+    function filePath($file): string
+    {
+        return 'storage'.DIRECTORY_SEPARATOR.'files'.DIRECTORY_SEPARATOR.$file;
+    }
+}
+
 if (!function_exists('thumbnailImagePath')) {
 
     /**

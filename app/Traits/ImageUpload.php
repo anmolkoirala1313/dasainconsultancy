@@ -39,7 +39,6 @@ trait ImageUpload {
         }
     }
 
-
     protected function updateImage($image,$image_name=null,$width=null,$height=null)
     {
 
@@ -74,4 +73,40 @@ trait ImageUpload {
             @unlink($this->image_path.DIRECTORY_SEPARATOR.$image_path);
         }
     }
+
+    public function uploadFile($file)
+    {
+        // Generate a unique file name using the original file name and folder
+        $name = $this->folder_name.'/'.uniqid().$file->getClientOriginalName();
+
+        // Check if the directory exists, if not, create it
+        if (!is_dir($this->file_path.$this->folder_name)) {
+            File::makeDirectory($this->file_path.$this->folder_name, 0777, true);
+        }
+
+//        // Check if the file already exists, then delete it
+
+
+        // Store the uploaded file in the specified directory
+        $status = $file->move($this->file_path . $this->folder_name, $name);
+
+        if ($status){
+            return $name;
+        }
+    }
+
+
+    public function deleteFile($file){
+        $existingFilePath = $this->file_path . $file;
+
+        if (File::exists($existingFilePath)) {
+            File::delete($existingFilePath);
+        }
+
+    }
+
+
+
+
+
 }

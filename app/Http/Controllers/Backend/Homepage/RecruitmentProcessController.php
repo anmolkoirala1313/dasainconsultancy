@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Homepage;
 
 use App\Http\Controllers\Backend\BackendBaseController;
 use App\Http\Requests\Backend\Homepage\HomeValueRequest;
+use App\Http\Requests\Backend\Homepage\RecruitmentProcessRequest;
 use App\Models\Backend\Homepage\HomePageRecruitment;
 use App\Models\Backend\Homepage\HomePageValue;
 use App\Models\Backend\Homepage\Welcome;
@@ -44,10 +45,10 @@ class RecruitmentProcessController extends BackendBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param HomeValueRequest $request
+     * @param RecruitmentProcessRequest $request
      * @return JsonResponse
      */
-    public function store(HomeValueRequest $request)
+    public function store(RecruitmentProcessRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -88,11 +89,11 @@ class RecruitmentProcessController extends BackendBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param HomeValueRequest $request
+     * @param RecruitmentProcessRequest $request
      * @param int $id
      * @return JsonResponse
      */
-    public function update(HomeValueRequest $request, $id)
+    public function update(RecruitmentProcessRequest $request, $id)
     {
         $data['row']       = $this->model->find($id);
 

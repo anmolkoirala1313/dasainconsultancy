@@ -12,9 +12,9 @@
         </div>
     </div>
     <div class="col-lg-12">
-        <div class="mb-3">
+        <div class="mb-3 editor">
             {!! Form::label('description', 'Description', ['class' => 'form-label']) !!}
-            {!! Form::textarea('description', null,['class'=>'form-control','id'=>'description','placeholder'=>'Enter description']) !!}
+            {!! Form::textarea('description', null,['class'=>'form-control ck-editor','id'=>'description','placeholder'=>'Enter description']) !!}
         </div>
     </div>
     <div class="col-lg-6">

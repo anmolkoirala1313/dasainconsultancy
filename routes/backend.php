@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\Career\JobController;
 use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\CustomerInquiryController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\DocumentController;
 use App\Http\Controllers\Backend\Homepage\CallActionController;
 use App\Http\Controllers\Backend\Homepage\CoreValueController;
 use App\Http\Controllers\Backend\Homepage\GeneralGrievanceController;
@@ -54,7 +55,6 @@ Route::any('/register', function() {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::post('/setting/theme-mode',  [DashboardController::class, 'themeMode'])->name('setting.theme-mode');
 
-
 Route::prefix('user/')->name('user.')->middleware(['auth'])->group(function () {
     //signed-in user routes
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
@@ -97,7 +97,6 @@ Route::prefix('career/')->name('career.')->middleware(['auth'])->group(function 
     Route::resource('job', JobController::class)->names('job');
 
 });
-
 
 Route::prefix('news/')->name('news.')->middleware(['auth'])->group(function () {
 
@@ -151,6 +150,9 @@ Route::prefix('homepage/')->name('homepage.')->middleware(['auth'])->group(funct
     Route::resource('recruitment-process', RecruitmentProcessController::class)->only(['store', 'update'])->names('recruitment_process');
 });
 
+//documents
+Route::get('document', [DocumentController::class, 'create'])->name('document.create');
+Route::resource('document', DocumentController::class)->only(['store', 'update'])->names('document');
 
 //testimonials
 Route::get('/testimonial/trash', [WelcomeController::class,'trash'])->name('testimonial.trash');
