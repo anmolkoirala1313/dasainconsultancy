@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AlbumController;
 use App\Http\Controllers\Backend\Career\Basic_setup\JobCategoryController;
+use App\Http\Controllers\Backend\Career\CompanyCareerController;
 use App\Http\Controllers\Backend\Career\JobController;
 use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\CustomerInquiryController;
@@ -89,12 +90,19 @@ Route::prefix('career/')->name('career.')->middleware(['auth'])->group(function 
         Route::resource('category', JobCategoryController::class)->names('category');
     });
 
-    //package
+    //job
     Route::post('/job/status-update', [JobController::class,'statusUpdate'])->name('job.status-update');
     Route::get('/job/trash', [JobController::class,'trash'])->name('job.trash');
     Route::post('/job/trash/{id}/restore', [JobController::class,'restore'])->name('job.restore');
     Route::delete('/job/trash/{id}/remove', [JobController::class,'removeTrash'])->name('job.remove-trash');
     Route::resource('job', JobController::class)->names('job');
+
+    //company career
+    Route::post('/company-career/status-update', [CompanyCareerController::class,'statusUpdate'])->name('company_career.status-update');
+    Route::get('/company-career/trash', [CompanyCareerController::class,'trash'])->name('company_career.trash');
+    Route::post('/company-career/trash/{id}/restore', [CompanyCareerController::class,'restore'])->name('company_career.restore');
+    Route::delete('/company-career/trash/{id}/remove', [CompanyCareerController::class,'removeTrash'])->name('company_career.remove-trash');
+    Route::resource('company-career', CompanyCareerController::class)->names('company_career');
 
 });
 

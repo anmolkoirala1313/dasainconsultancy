@@ -13,6 +13,12 @@
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
                             <h4 class="card-title mb-0 flex-grow-1">{{ $page_title }}</h4>
+                            <div class="flex-shrink-0">
+                                <div class="d-flex justify-content-sm-end gap-2">
+                                    <a href="{{ route('frontend.page.document') }}" title="View in frontend" target="_blank"
+                                       class="btn btn-outline-info waves-effect waves-light"><i class="ri-eye-line"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     @include($view_path.'includes.form')
