@@ -16262,7 +16262,7 @@ img.mfp-img {
     z-index: 10000;
 }
 
-.fab {
+.hov {
     display: block;
     /*width: 56px;*/
     /*height: 56px;*/
@@ -16278,70 +16278,77 @@ img.mfp-img {
     position: relative;
 }
 
-.fab > i {
+.hov > i {
     font-size: 28px;
     line-height: 60px;
     transition: all 0.2s ease-in-out;
     transition-delay: 2s;
 }
 
-.fab.theme {
+.hov.theme {
     background: #fd7e14;
     width: 56px;
     height: 56px;
 }
 
-.fab.theme:hover {
+.hov.theme:hover {
+    transform: rotate(90deg);
+}
+.hov.theme:hover {
     transform: rotate(90deg);
 }
 
-.fab.whatsapp {
+.hov:hover{
+    color:#fff;
+}
+
+.hov.whatsapp {
     background: #25D366;
 }
-.fab.viber {
+.hov.viber {
     background: #8f5db7;
 }
-.fab:active,
-.fab:focus,
-.fab:hover {
+.hov:active,
+.hov:focus,
+.hov:hover {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
 
-.fab:not(:last-child) {
+.hov:not(:last-child) {
     width: 36px;
     height: 36px;
     margin: 20px auto 0;
     opacity: 0;
 }
 
-.fab:not(:last-child) > i {
+.hov:not(:last-child) > i {
     font-size: 18px;
     line-height: 40px;
     transition: all 0.3s ease-in-out;
 }
 
-.floating-share:hover .fab:not(:last-child) {
+.floating-share:hover .hov:not(:last-child) {
     opacity: 1;
     width: 40px;
     height: 40px;
     margin: 15px auto 0;
 }
 
-.fab:nth-last-child(1) {
+.hov:nth-last-child(1) {
     -webkit-transition-delay: 25ms;
     transition-delay: 25ms;
 }
 
-.fab:nth-last-child(1):hover {
+.hov:nth-last-child(1):hover {
     color: #fff;
 }
 
-.fab:not(:last-child):nth-last-child(2) {
+.hov:not(:last-child):nth-last-child(2) {
     -webkit-transition-delay: 20ms;
     transition-delay: 20ms;
 }
 
-.fab:not(:last-child):nth-last-child(3) {
+.hov:not(:last-child):nth-last-child(3) {
     -webkit-transition-delay: 40ms;
     transition-delay: 40ms;
 }
