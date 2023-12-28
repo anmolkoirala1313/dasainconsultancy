@@ -223,7 +223,18 @@
 <!-- /.search-popup -->
 
 <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="icon-right-arrow"></i></a>
+@if(@$setting_data->whatsapp || @$setting_data->viber)
 
+    <div class="floatings floating-share">
+        @if(@$setting_data->viber)
+            <a href="viber://contact?number=%2B0000000000000" target="_blank" class="fab viber" tooltip="Viber"><i class="fab fa-viber"></i></a>
+        @endif
+        @if(@$setting_data->whatsapp)
+            <a href="https://wa.me/{{$setting_data->whatsapp}}" target="_blank" class="fab whatsapp" tooltip="Whatsapp"><i class="fab fa-whatsapp"></i></i></a>
+        @endif
+        <a target="_blank" class="fab theme"><i class="fa-solid fa-plus"></i></a>
+    </div>
+@endif
 
 <script src="{{ asset('assets/frontend/vendors/jquery/jquery-3.6.0.min.js') }}"></script>
 <script src="{{ asset('assets/frontend/vendors/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

@@ -322,6 +322,20 @@
     });
   }
 
+  if ($(".floatings").length) {
+    $(".floatings").on("click", function () {
+      var target = $(this).attr("data-target");
+      // animate
+      $("html, body").animate({
+          scrollTop: $(target).offset().top
+        },
+        1000
+      );
+
+      return false;
+    });
+  }
+
 
   if ($(".contact-form-validated").length) {
     $(".contact-form-validated").validate({
@@ -1078,6 +1092,15 @@
         $(".scroll-to-top").fadeIn(500);
       } else if ($(this).scrollTop() <= strickyScrollPos) {
         $(".scroll-to-top").fadeOut(500);
+      }
+    }
+
+    if ($(".floating-share").length) {
+      var strickyScrollPos = 100;
+      if ($(window).scrollTop() > strickyScrollPos) {
+        $(".floating-share").fadeIn(500);
+      } else if ($(this).scrollTop() <= strickyScrollPos) {
+        $(".floating-share").fadeOut(500);
       }
     }
 
