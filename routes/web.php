@@ -52,7 +52,7 @@ Route::get('/career/{slug}', [CompanyCareerController::class, 'show'])->name('ca
 
 //document
 Route::get('/our-document', [HomePageController::class, 'document'])->name('page.document');
-Route::get('/brochure', [HomePageController::class, 'brochure'])->name('brochure');
+Route::get('/brochure', [HomePageController::class, 'brochure'])->name('page.brochure');
 
 
 Route::get('/categories-we-recruit', [ServiceController::class, 'index'])->name('service.index');

@@ -24,7 +24,7 @@
                     {!! Form::file('brochure_input',['class'=>'form-control','id'=>'brochure','placeholder'=>'Select brochure','accept'=>'.pdf']) !!}
                     @if(isset($data['row']) && $data['row']->brochure)
                         <div class="col-xxl-4 col-xl-4 col-sm-6">
-                            <a href="{{ asset(filePath($data['row']->brochure))}}" class="fw-medium link-primary" download>Download File</a>
+                            <a href="{{ route('frontend.page.brochure')}}" target="_blank" class="fw-medium link-primary">View File</a>
                         </div>
                     @endif
                 </div>
