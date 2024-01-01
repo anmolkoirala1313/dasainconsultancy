@@ -26,6 +26,7 @@ class SettingController extends BackendBaseController
     {
         $this->model            = new Setting();
         $this->image_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
+        $this->file_path        = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'files'.DIRECTORY_SEPARATOR);
     }
 
     public function index()
@@ -50,6 +51,11 @@ class SettingController extends BackendBaseController
         try {
             $request->request->add(['created_by' => auth()->user()->id ]);
             $request->request->add(['status' => true ]);
+
+            if ($request->file('brochure_input')){
+                $file_name  = $this->uploadFile( $request->file('brochure_input'));
+                $request->request->add(['brochure' => $file_name]);
+            }
 
             if($request->hasFile('logo_input')){
                 $image_name = $this->uploadImage($request->file('logo_input'));
@@ -100,6 +106,14 @@ class SettingController extends BackendBaseController
             if($request->hasFile('favicon_input')){
                 $image_name = $this->updateImage($request->file('favicon_input'),$data['row']->favicon);
                 $request->request->add(['favicon'=>$image_name]);
+            }
+
+            if ($request->file('brochure_input')){
+                $file_name  = $this->uploadFile( $request->file('brochure_input'));
+                $request->request->add(['brochure' => $file_name]);
+                if ($data['row'] &&  $data['row']->brochure){
+                    $this->deleteFile($data['row']->brochure);
+                }
             }
 
             $request->request->add(['updated_by' => auth()->user()->id ]);

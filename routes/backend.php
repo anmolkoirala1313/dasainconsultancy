@@ -251,7 +251,7 @@ Route::get('/section-element/gallery/{id}', [PageSectionElementController::class
 Route::resource('customer-inquiry', CustomerInquiryController::class)->names('customer_inquiry');
 
 
-Route::resource('setting', SettingController::class)->names('setting');
+Route::resource('setting', SettingController::class)->names('setting')->middleware(['auth']);
 
 
 //Route::get('/404', [DashboardController::class, 'errorPage'])->name('404');

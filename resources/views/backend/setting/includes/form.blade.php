@@ -19,6 +19,15 @@
                         <p class="text-muted mb-2">Recommended length: 150 characters</p>
                     </div>
                 </div>
+                <div class="mb-3">
+                    {!! Form::label('brochure_input', 'Company Brochure', ['class' => 'form-label']) !!}
+                    {!! Form::file('brochure_input',['class'=>'form-control','id'=>'brochure','placeholder'=>'Select brochure','accept'=>'.pdf']) !!}
+                    @if(isset($data['row']) && $data['row']->brochure)
+                        <div class="col-xxl-4 col-xl-4 col-sm-6">
+                            <a href="{{ asset(filePath($data['row']->brochure))}}" class="fw-medium link-primary" download>Download File</a>
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
 

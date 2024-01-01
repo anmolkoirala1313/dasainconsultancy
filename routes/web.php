@@ -32,6 +32,7 @@ Route::any('/register', function() {
 Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us');
 Route::post('/contact/message', [ContactUsController::class, 'contactStore'])->name('contact-us.store');
 
+
 //blogs
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/search/', [BlogController::class, 'search'])->name('blog.search');
@@ -51,6 +52,7 @@ Route::get('/career/{slug}', [CompanyCareerController::class, 'show'])->name('ca
 
 //document
 Route::get('/our-document', [HomePageController::class, 'document'])->name('page.document');
+Route::get('/brochure', [HomePageController::class, 'brochure'])->name('brochure');
 
 
 Route::get('/categories-we-recruit', [ServiceController::class, 'index'])->name('service.index');

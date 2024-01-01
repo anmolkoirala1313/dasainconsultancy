@@ -139,4 +139,13 @@ class HomePageController extends BackendBaseController
     }
 
 
+    public function brochure()
+    {
+        $this->page           = 'Company Brochure';
+        $data['row']          = Setting::first();
+
+        return view($this->loadResource($this->view_path.'page.brochure'), compact('data'));
+    }
+
+
 }
