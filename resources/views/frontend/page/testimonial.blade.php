@@ -7,9 +7,25 @@
 
     @include($module.'includes.breadcrumb',['breadcrumb_image'=> 'image-2.png'])
 
-    <section class="testimonials-page">
+    <section class="testimonials-page" style="padding: 90px 0 90px;">
         <div class="container">
-            <div class="row">
+            @if($data['heading'])
+                <div class="col-xl-6">
+                    <div class="why-choose-one__left">
+                        <div class="section-title text-left">
+                            <div class="section-title__tagline-box">
+                                <p class="section-title__tagline">{{ $data['heading']->subtitle ?? '' }}</p>
+                            </div>
+                            <h2 class="section-title__title section-title_normal">{{ $data['heading']->title ?? '' }}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-choose-one__text text-align-justify">
+                    {!! $data['heading']->description ?? ''  !!}
+                </div>
+            @endif
+            <div class="row mt-4">
                 @if(count($data['rows'] ))
                     @foreach($data['rows'] as $testimonial)
                         <div class="col-xl-4 col-lg-6 col-md-6 d-flex align-items-stretch">

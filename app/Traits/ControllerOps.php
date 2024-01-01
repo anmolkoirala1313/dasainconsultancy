@@ -180,7 +180,9 @@ trait ControllerOps {
         $data['row']       = $this->model->withTrashed()->find($id);
         DB::beginTransaction();
         try {
-            $this->deleteImage($data['row']->image);
+            if ($data['row']->image){
+                $this->deleteImage($data['row']->image);
+            }
             $data['row']->forceDelete();
 
             Session::flash('success',$this->page.' was removed successfully');

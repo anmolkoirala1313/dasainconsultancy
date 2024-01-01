@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Backend\BackendBaseController;
+use App\Http\Requests\Backend\PageHeadingRequest;
 use App\Http\Requests\Frontend\BookFlightRequest;
 use App\Http\Requests\Frontend\CustomerInquiryRequest;
 use App\Mail\ContactDetail;
@@ -18,6 +19,7 @@ use App\Models\Backend\Homepage\Welcome;
 use App\Models\Backend\ManagingDirector;
 use App\Models\Backend\News\Blog;
 use App\Models\Backend\Page\PageSectionGallery;
+use App\Models\Backend\PageHeading;
 use App\Models\Backend\Service;
 use App\Models\Backend\Setting;
 use App\Models\Backend\Team;
@@ -85,6 +87,7 @@ class HomePageController extends BackendBaseController
         $this->page          = 'Team';
         $data                = $this->getCommonData();
         $data['rows']        = Team::active()->orderBy('order','desc')->get();
+        $data['heading']     = PageHeading::active()->where('type','team')->first();
 
         return view($this->loadResource($this->view_path.'page.team'), compact('data'));
     }
@@ -96,6 +99,7 @@ class HomePageController extends BackendBaseController
         $this->page            = 'Testimonial';
         $data                  = $this->getCommonData();
         $data['rows']          = Testimonial::active()->descending()->paginate(9);
+        $data['heading']       = PageHeading::active()->where('type','testimonial')->first();
 
         return view($this->loadResource($this->view_path.'page.testimonial'), compact('data'));
     }
@@ -107,6 +111,7 @@ class HomePageController extends BackendBaseController
         $this->page            = 'Album';
         $data                  = $this->getCommonData();
         $data['rows']          = Album::active()->descending()->withCount('albumGallery')->having('album_gallery_count', '>', 0)->paginate(6);
+        $data['heading']       = PageHeading::active()->where('type','album')->first();
 
         return view($this->loadResource($this->view_path.'page.album'), compact('data'));
     }

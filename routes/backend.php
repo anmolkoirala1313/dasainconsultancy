@@ -4,7 +4,7 @@ use App\Http\Controllers\Backend\AlbumController;
 use App\Http\Controllers\Backend\Career\Basic_setup\JobCategoryController;
 use App\Http\Controllers\Backend\Career\CompanyCareerController;
 use App\Http\Controllers\Backend\Career\JobController;
-use App\Http\Controllers\Backend\ClientController;
+use App\Http\Controllers\Backend\PageHeadingController;
 use App\Http\Controllers\Backend\CustomerInquiryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\DocumentController;
@@ -190,10 +190,10 @@ Route::delete('/team/trash/{id}/remove', [TeamController::class,'removeTrash'])-
 Route::resource('team', TeamController::class)->names('team');
 
 //client
-Route::get('/client/trash', [ClientController::class,'trash'])->name('client.trash');
-Route::post('/client/trash/{id}/restore', [ClientController::class,'restore'])->name('client.restore');
-Route::delete('/client/trash/{id}/remove', [ClientController::class,'removeTrash'])->name('client.remove-trash');
-Route::resource('client', ClientController::class)->names('client');
+Route::get('/client/trash', [PageHeadingController::class,'trash'])->name('client.trash');
+Route::post('/client/trash/{id}/restore', [PageHeadingController::class,'restore'])->name('client.restore');
+Route::delete('/client/trash/{id}/remove', [PageHeadingController::class,'removeTrash'])->name('client.remove-trash');
+Route::resource('client', PageHeadingController::class)->names('client');
 
 
 //Album
@@ -219,6 +219,12 @@ Route::get('/menu/{slug?}', [MenuController::class,'index'])->name('menu.index')
 Route::get('/menu/{id}/delete',[MenuController::class,'destroy'])->name('menu.delete');
 Route::resource('menu', MenuController::class)->names('menu');
 
+//client
+Route::get('/page-heading/trash', [PageHeadingController::class,'trash'])->name('page_heading.trash');
+Route::post('/page-heading/trash/{id}/restore', [PageHeadingController::class,'restore'])->name('page_heading.restore');
+Route::delete('/page-heading/trash/{id}/remove', [PageHeadingController::class,'removeTrash'])->name('page_heading.remove-trash');
+Route::resource('page-heading', PageHeadingController::class)->names('page_heading');
+
 //pages
 Route::post('/page/status-update', [PageController::class,'statusUpdate'])->name('page.status-update');
 Route::post('/page/data', [PageController::class,'getDataForDataTable'])->name('page.data');
@@ -242,7 +248,7 @@ Route::put('/section-element-upload-gallery/{id}', [PageSectionElementController
 Route::post('/section-element/image-delete', [PageSectionElementController::class,'deleteGallery'])->name('section-element.gallery-delete');
 Route::get('/section-element/gallery/{id}', [PageSectionElementController::class,'getGallery'])->name('section-element.gallery-display');
 
-Route::resource('customer-inquiry', CustomerInquiryController::class)->names('customer-inquiry');
+Route::resource('customer-inquiry', CustomerInquiryController::class)->names('customer_inquiry');
 
 
 Route::resource('setting', SettingController::class)->names('setting');
