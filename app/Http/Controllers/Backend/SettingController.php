@@ -130,4 +130,27 @@ class SettingController extends BackendBaseController
 
         return response()->json(route($this->base_route.'index'));
     }
+
+    public function removeBrochure(){
+        $data['row'] = $this->model->first();
+
+        DB::beginTransaction();
+        try {
+
+            $data['row']->update(['brochure' => null]);
+
+            if ($data['row'] &&  $data['row']->brochure){
+                $this->deleteFile($data['row']->brochure);
+            }
+
+            Session::flash('success',$this->page.' was created successfully');
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Session::flash('error',$this->page.'  was not created. Something went wrong.');
+        }
+
+        return response()->json(route($this->base_route.'index'));
+
+    }
 }

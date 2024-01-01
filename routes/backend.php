@@ -250,7 +250,7 @@ Route::get('/section-element/gallery/{id}', [PageSectionElementController::class
 
 Route::resource('customer-inquiry', CustomerInquiryController::class)->names('customer_inquiry');
 
-
+Route::get('/setting/remove-brochure', [SettingController::class,'removeBrochure'])->name('setting.remove_brochure');
 Route::resource('setting', SettingController::class)->names('setting')->middleware(['auth']);
 
 

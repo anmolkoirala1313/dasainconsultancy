@@ -27,4 +27,18 @@
     @include($module.'includes/gallery')
     @include($module.'includes.toast_message')
 
+    <script>
+        $(document).ready(function() {
+            $('.remove-brochure').on('click', function() {
+                $.ajax({
+                    url: '{{ route($base_route."remove_brochure") }}',
+                    method: 'GET',
+                    success: function (url){
+                        window.location.href = url;
+                    },
+                });
+            });
+        });
+    </script>
+
 @endsection

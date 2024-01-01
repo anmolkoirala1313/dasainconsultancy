@@ -23,8 +23,12 @@
                     {!! Form::label('brochure_input', 'Company Brochure', ['class' => 'form-label']) !!}
                     {!! Form::file('brochure_input',['class'=>'form-control','id'=>'brochure','placeholder'=>'Select brochure','accept'=>'.pdf']) !!}
                     @if(isset($data['row']) && $data['row']->brochure)
-                        <div class="col-xxl-4 col-xl-4 col-sm-6">
-                            <a href="{{ route('frontend.page.brochure')}}" target="_blank" class="fw-medium link-primary">View File</a>
+                        <div class="d-flex justify-content-sm-end gap-2 mt-1">
+                            <a href="{{ route('frontend.page.brochure')}}" target="_blank" class="btn btn-outline-info waves-effect waves-light">
+                                <i class="ri-eye-fill align-bottom me-1"></i>
+                            </a>
+                            <button class="btn btn-outline-danger waves-effect waves-light remove-brochure" title="remove brochure" type="button"  id="remove-brochure">
+                                <i class="ri-delete-bin-6-line align-bottom me-1"></i></button>
                         </div>
                     @endif
                 </div>
