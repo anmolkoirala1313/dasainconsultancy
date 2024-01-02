@@ -143,11 +143,11 @@ class SettingController extends BackendBaseController
                 $this->deleteFile($data['row']->brochure);
             }
 
-            Session::flash('success',$this->page.' was created successfully');
+            Session::flash('success',$this->page.' was removed successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('error',$this->page.'  was not created. Something went wrong.');
+            Session::flash('error',$this->page.'  was not removed. Something went wrong.');
         }
 
         return response()->json(route($this->base_route.'index'));
