@@ -31,8 +31,9 @@ class PageSectionElementController extends BackendBaseController
 
     public function __construct()
     {
-        $this->model            = new PageSectionElement();
-        $this->image_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
+        $this->model           = new PageSectionElement();
+        $this->image_path      = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
+        $this->file_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'files'.DIRECTORY_SEPARATOR);
     }
 
     public function show($id)

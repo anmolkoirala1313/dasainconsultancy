@@ -13,7 +13,7 @@ class PageSectionElementsService {
 
     use ImageUpload;
     protected object $model;
-    protected string $image_path;
+    protected string $image_path, $file_path;
 
     protected string $module        = 'backend.';
     protected string $base_route    = 'backend.page.';
@@ -23,7 +23,7 @@ class PageSectionElementsService {
     {
         $this->model            = new PageSectionElement();
         $this->image_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
-
+        $this->file_path       = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'files'.DIRECTORY_SEPARATOR);
     }
 
     public function syncSectionElements($request,$data)
@@ -109,6 +109,9 @@ class PageSectionElementsService {
                     'created_by'          => $request['created_by'],
                 ]);
             }
+        }
+        elseif ($data['section_name'] == 'document'){
+            $this->storeDocument($request, $data);
         }
         else{
             if ($request->hasFile('image_input')) {
@@ -232,28 +235,67 @@ class PageSectionElementsService {
                     $element->forceDelete();
                 }
             }
-//            for ($i=0;$i<$flash_card_num;$i++){
-//                $heading     =  array_key_exists($i, $request->input('title')) ? $request->input('title')[$i] : null;
-//                $subheading  =  array_key_exists($i, $request->input('subtitle')) ? $request->input('subtitle')[$i] : null;
-//
-//                $this->model->updateOrCreate(
-//                    [   'id'              => $request['id'][$i],
-//                        'page_section_id' => $data['section_id']
-//                    ], [
-//                    'title'               => $heading,
-//                    'subtitle'            => $subheading,
-//                    'list_title'          => $request['list_title'][$i],
-//                    'list_description'    => $request['list_description'][$i],
-//                    'status'              => $request['status'],
-//                    'created_by'          => $request['created_by'],
-//                    'updated_by'          => $request['updated_by']
-//                ]);
-//            }
+
+        }
+        elseif ($data['section_name'] == 'document'){
+            $this->storeDocument($request, $data);
+        }
+    }
+
+    private function storeDocument($request, $data){
+
+        $document       = PageSection::find($data['section_id']);
+        $document_id    = $document->pageSectionElements->pluck('id')->toArray();
+
+        foreach ($request['list_title'] as $index=>$title){
+            $section      = $this->model->find($request['list_id'][$index]);
+            $heading      =  array_key_exists($index, $request->input('title')) ? $request->input('title')[$index] : null;
+            $subheading   =  array_key_exists($index, $request->input('subtitle')) ? $request->input('subtitle')[$index] : null;
+            $description  =  array_key_exists($index, $request->input('description')) ? $request->input('description')[$index] : null;
+
+            if ($request->file('image_input') && array_key_exists($index,$request->file('image_input'))){
+                $image_name  = $this->updateImage( $request->file('image_input')[$index],null,'45','45');
+                $request->request->add(['image_'.$index => $image_name]);
+                if ($section && $section->image){
+                    $this->deleteImage($section->image);
+                }
+            }
+
+            if ($request->file('file_input') && array_key_exists($index,$request->file('file_input'))){
+                $file_name  = $this->uploadFile( $request->file('file_input')[$index]);
+                $request->request->add(['image_'.$index => $file_name]);
+                if ($section && $section->image){
+                    $this->deleteFile($section->image);
+                }
+            }
+
+            $this->model->updateOrCreate(
+                [
+                    'id'              => $request['list_id'][$index],
+                    'page_section_id' => $data['section_id']
+                ],
+                [
+                    'title'               => $heading,
+                    'subtitle'            => $subheading,
+                    'description'         => $description,
+                    'list_title'          => $title,
+                    'image'               => $request['image_'.$index] ?? $section->image,
+                    'list_description'    => $request['list_description'][$index],
+                    'status'              => $request['status'],
+                    'created_by'          => $request['created_by'],
+                    'updated_by'          => $request['updated_by']
+                ]
+            );
 
         }
 
+        foreach ($document_id as $value){
+            if(!in_array($value,$request->input('list_id'))){
+                $element = $this->model->find($value);
+                $this->deleteFile($element->image);
+                $element->forceDelete();
+            }
+        }
+
     }
-
-
-
 }

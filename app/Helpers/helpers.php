@@ -317,6 +317,8 @@ if (!function_exists('get_page_section_icons')) {
             $icon = 'ri-screenshot-2-line';
         } else if($value == 'map_and_description'){
             $icon = 'ri-map-2-line';
+        } else if($value == 'document'){
+            $icon = 'ri-file-pdf-line';
         }else{
             $icon = 'ri-flag-line';
         }

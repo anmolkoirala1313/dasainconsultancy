@@ -83,6 +83,9 @@
                                         @if($value == 'gallery')
                                             @include($view_path.'includes.gallery')
                                         @endif
+                                        @if($value == 'document')
+                                            @include($view_path.'includes.document')
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>
