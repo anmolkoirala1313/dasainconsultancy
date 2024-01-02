@@ -39,6 +39,9 @@
         @if($index == 'slider_list' && count($element)>0)
             @include($base_route.'includes.slider_list')
         @endif
+        @if($index == 'document' && count($element)>0)
+            @include($base_route.'includes.document')
+        @endif
     @endforeach
 @endsection
 @section('js')
